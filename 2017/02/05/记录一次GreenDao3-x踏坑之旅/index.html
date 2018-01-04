@@ -17,7 +17,7 @@
 <meta property="og:description" content="最近公司开发新项目，于是便使用GreenDao做数据持久化，毕竟第一次正式在项目中使用，特此记录下使用中碰到的两个坑。  一.前言公司准备开发一个新项目，由于项目中需要用到数据持久化，所以便开始挑选合适的方案，目前最稳定的当然是sqlite了，但是近闻realm比较火，使用起来也比较方便，所以决定大胆尝试一次。但是最终集成开发后用了两天便弃坑了，后来才发现原来网上也有大部分相同感受的人。后来决">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1316029-5531c7d9ba730658.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
 <meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1316029-aae644526b4dc9a7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-01-04T03:15:16.879Z">
+<meta property="og:updated_time" content="2018-01-04T03:22:59.666Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记录一次GreenDao3.x踏坑之旅">
 <meta name="twitter:description" content="最近公司开发新项目，于是便使用GreenDao做数据持久化，毕竟第一次正式在项目中使用，特此记录下使用中碰到的两个坑。  一.前言公司准备开发一个新项目，由于项目中需要用到数据持久化，所以便开始挑选合适的方案，目前最稳定的当然是sqlite了，但是近闻realm比较火，使用起来也比较方便，所以决定大胆尝试一次。但是最终集成开发后用了两天便弃坑了，后来才发现原来网上也有大部分相同感受的人。后来决">
@@ -82,13 +82,13 @@
 		<nav class="header-nav">
 			<div class="social">
 				
-					<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+					<a class="github" target="_blank" href="https://github.com/lilei644" title="github"><i class="icon-github"></i></a>
 		        
-					<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+					<a class="jianshu" target="_blank" href="https://www.jianshu.com/u/222e19168ba5" title="jianshu"><i class="icon-jianshu"></i></a>
 		        
-					<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+					<a class="mail" target="_blank" href="/lilei931031@gmail.com" title="mail"><i class="icon-mail"></i></a>
 		        
-					<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+					<a class="google" target="_blank" href="https://plus.google.com/u/0/100609568361343032545" title="google"><i class="icon-google"></i></a>
 		        
 			</div>
 		</nav>
@@ -123,13 +123,13 @@
 			<nav class="header-nav">
 				<div class="social">
 					
-						<a class="github" target="_blank" href="#" title="github"><i class="icon-github"></i></a>
+						<a class="github" target="_blank" href="https://github.com/lilei644" title="github"><i class="icon-github"></i></a>
 			        
-						<a class="weibo" target="_blank" href="#" title="weibo"><i class="icon-weibo"></i></a>
+						<a class="jianshu" target="_blank" href="https://www.jianshu.com/u/222e19168ba5" title="jianshu"><i class="icon-jianshu"></i></a>
 			        
-						<a class="rss" target="_blank" href="#" title="rss"><i class="icon-rss"></i></a>
+						<a class="mail" target="_blank" href="/lilei931031@gmail.com" title="mail"><i class="icon-mail"></i></a>
 			        
-						<a class="zhihu" target="_blank" href="#" title="zhihu"><i class="icon-zhihu"></i></a>
+						<a class="google" target="_blank" href="https://plus.google.com/u/0/100609568361343032545" title="google"><i class="icon-google"></i></a>
 			        
 				</div>
 			</nav>
@@ -182,7 +182,7 @@
 <h3 id="二-踏坑之旅"><a href="#二-踏坑之旅" class="headerlink" title="二.踏坑之旅"></a>二.踏坑之旅</h3><blockquote>
 <p>GreenDao3.x的具体使用我就不介绍了，网上也有很多相关教程，特此记录项目开发中碰到的两个坑</p>
 </blockquote>
-<!-- moren -->
+<a id="more"></a>
 <h4 id="1-一定要有一个类型为Long的主键"><a href="#1-一定要有一个类型为Long的主键" class="headerlink" title="1.一定要有一个类型为Long的主键"></a>1.一定要有一个类型为Long的主键</h4><p>如果你的对象需要用到update，那么建议你一定要设置一个Long型的主键</p>
 <blockquote>
 <p>是Long不是long</p>
