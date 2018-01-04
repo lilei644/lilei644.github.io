@@ -174,51 +174,10 @@
         <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! 博客是大多数技术人员用来记录开发经验的方式，下面我们使用Hexo + Github建立个人静态博客。</p>
 <h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><h3 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h3><p>点击进入<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js官网</a>下载安装包,mac也可使用homebrew直接构建环境</p>
 <ul>
-<li>打开终端使用node –version查看是否安装成功</li>
-</ul>
-<p><img src="http://ohnnlpo94.bkt.clouddn.com/1.png" alt="node version"></p>
-<h3 id="安装Git"><a href="#安装Git" class="headerlink" title="安装Git"></a>安装Git</h3><p>点击进入<a href="https://git-scm.com/downloads" target="_blank" rel="noopener">Git官网</a>配置git环境</p>
-<ul>
-<li>同样使用git –version查看是否安装成功</li>
-</ul>
-<h3 id="安装Hexo"><a href="#安装Hexo" class="headerlink" title="安装Hexo"></a>安装Hexo</h3><p>点击进入<a href="https://hexo.io/" target="_blank" rel="noopener">Hexo官网</a>，由于已经安装好node，所以终端直接使用</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br></pre></td></tr></table></figure>
-<ul>
-<li>同样使用hexo –version查看版本号即可知道是否安装成功</li>
-</ul>
-<h2 id="创建仓库"><a href="#创建仓库" class="headerlink" title="创建仓库"></a>创建仓库</h2><h3 id="新建github项目"><a href="#新建github项目" class="headerlink" title="新建github项目"></a>新建github项目</h3><ul>
-<li>项目命名为yourname.github.io即可（yourname为你想使用的名字）<br><img src="http://ohnnlpo94.bkt.clouddn.com/2.png" alt="github"></li>
-</ul>
-<h2 id="hexo创建博客环境"><a href="#hexo创建博客环境" class="headerlink" title="hexo创建博客环境"></a>hexo创建博客环境</h2><ol>
-<li><p>终端cd到存储的文件夹下</p>
-</li>
-<li><p>初始化</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo init			</span><br><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>执行本地测试</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo server</span><br></pre></td></tr></table></figure>
-<ul>
-<li><p>执行后打开本地网页localhost:4000即可看到网页</p>
-<p><img src="http://ohnnlpo94.bkt.clouddn.com/3.png" alt="github"></p>
-</li>
-</ul>
-</li>
-</ol>
-<ol>
-<li><p>修改配置文件_config.yml（配置github上的git地址）</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  <span class="built_in">type</span>: git</span><br><span class="line">  repository: https://github.com/xxx/xxx.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>提交上传</p>
- <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hexo clean</span><br><span class="line">hexo g</span><br><span class="line">hexo d</span><br></pre></td></tr></table></figure>
-</li>
-<li><p>上传成功，打开网址<a href="https://xxx.github.io即可看到自己的个人博客网页" target="_blank" rel="noopener">https://xxx.github.io即可看到自己的个人博客网页</a></p>
-</li>
-<li>OK!下面就愉快的使用Markdown写博客吧</li>
-</ol>
-<h2 id="博客主题"><a href="#博客主题" class="headerlink" title="博客主题"></a>博客主题</h2><ul>
-<li>如果觉得hexo默认的博客主题不喜欢，可以github上搜索相关的开源主题，下面贴出本博客的<a href="https://material.vss.im/" target="_blank" rel="noopener">主题地址</a><br><img src="https://camo.githubusercontent.com/f7cfda6a2cc2dfee01b3e8856fce52c48fae39a9/68747470733a2f2f71696e69752e76696f7365792e636f6d2f696d672f4d6174657269616c2d50686f6e652d52656e6465722e706e67" alt="主题"></li>
-</ul>
-
+<li>打开终端使用node –version查看是否安装成功
+        
+          <a class="article-more-a" href="/2016/01/04/hello-world/#more">more >></a>
+        
       
 
       
@@ -226,6 +185,21 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">blog</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -351,6 +325,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
             <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
           </label>
           <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">hexo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">blog</a>
+              </li>
             
             <div class="clearfix"></div>
           </ul>
