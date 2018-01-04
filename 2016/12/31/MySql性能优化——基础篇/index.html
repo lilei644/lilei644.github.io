@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lilei644.github.io">
-  <title>LiLei&#39;s blogs</title>
+  <title>MySql性能优化——基础篇 | LiLei&#39;s blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="LiLei&#39;s blogs">
-<meta property="og:url" content="https://lilei644.github.io/index.html">
+  <meta name="description" content="记录工作中累计的sql正确的使用方式，从sql语句上优化mysql性能  1.分页mysql的limit语法跟sqlserver的top比起来真的是好用太多，特别是在分页上基本是想要什么就取什么，那么当单标数据量达到百万以上时应该怎样正确的使用分页呢？ 1SELECT * FROM table ORDER BY id LIMIT 1000000, 10; 这是大部分分页的方式，然而当数据量超过百">
+<meta name="keywords" content="mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySql性能优化——基础篇">
+<meta property="og:url" content="https://lilei644.github.io/2016/12/31/MySql性能优化——基础篇/index.html">
 <meta property="og:site_name" content="LiLei&#39;s blogs">
+<meta property="og:description" content="记录工作中累计的sql正确的使用方式，从sql语句上优化mysql性能  1.分页mysql的limit语法跟sqlserver的top比起来真的是好用太多，特别是在分页上基本是想要什么就取什么，那么当单标数据量达到百万以上时应该怎样正确的使用分页呢？ 1SELECT * FROM table ORDER BY id LIMIT 1000000, 10; 这是大部分分页的方式，然而当数据量超过百">
+<meta property="og:updated_time" content="2018-01-04T03:12:37.066Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="LiLei&#39;s blogs">
+<meta name="twitter:title" content="MySql性能优化——基础篇">
+<meta name="twitter:description" content="记录工作中累计的sql正确的使用方式，从sql语句上优化mysql性能  1.分页mysql的limit语法跟sqlserver的top比起来真的是好用太多，特别是在分页上基本是想要什么就取什么，那么当单标数据量达到百万以上时应该怎样正确的使用分页呢？ 1SELECT * FROM table ORDER BY id LIMIT 1000000, 10; 这是大部分分页的方式，然而当数据量超过百">
   
     <link rel="alternative" href="/atom.xml" title="LiLei&#39;s blogs" type="application/atom+xml">
   
@@ -149,205 +154,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-jni开发入门——看我就够了" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-MySql性能优化——基础篇" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/31/jni开发入门——看我就够了/">Android Studo jni开发入门——看我就够了!</a>
-    </h1>
-  
-
-        
-        <a href="/2017/03/31/jni开发入门——看我就够了/" class="archive-article-date">
-  	<time datetime="2017-03-31T12:44:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>此贴记录一下Android Studio 进行jni开发的基础配置以及入门教程，想当初使用eclipse配置ndk环境都难，现在基本都向AS转型，特此给需要帮助的新手村的同学们少走弯路☺</p>
-</blockquote>
-<h2 id="一、环境配置"><a href="#一、环境配置" class="headerlink" title="一、环境配置"></a>一、环境配置</h2><p>主要需要配置的就是NDK（Native Development Kit），现在Android studio很便利，可以一键下载：<br>file → setting → 按截图找到如下路径 → 选择NDK → 确定应用下载</p>
-<p>  <img src="http://upload-images.jianshu.io/upload_images/1316029-293070fc3c2ac350.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="NDK安装"></p>
-<ul>
-<li>安装完成以后就可以开撸了</li>
-</ul>
-        
-          <a class="article-more-a" href="/2017/03/31/jni开发入门——看我就够了/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jni</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/31/jni开发入门——看我就够了/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-记录一次GreenDao3-x踏坑之旅" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/05/记录一次GreenDao3-x踏坑之旅/">记录一次GreenDao3.x踏坑之旅</a>
-    </h1>
-  
-
-        
-        <a href="/2017/02/05/记录一次GreenDao3-x踏坑之旅/" class="archive-article-date">
-  	<time datetime="2017-02-05T06:27:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p> 最近公司开发新项目，于是便使用GreenDao做数据持久化，毕竟第一次正式在项目中使用，特此记录下使用中碰到的两个坑。</p>
-</blockquote>
-<h3 id="一-前言"><a href="#一-前言" class="headerlink" title="一.前言"></a>一.前言</h3><p>公司准备开发一个新项目，由于项目中需要用到数据持久化，所以便开始挑选合适的方案，目前最稳定的当然是sqlite了，但是近闻realm比较火，使用起来也比较方便，所以决定大胆尝试一次。但是最终集成开发后用了两天便弃坑了，后来才发现原来网上也有大部分相同感受的人。<br>后来决定还是重新使用稳定的sqlite方案，就开始选择开源的ORM类库，GreenDao无论是在效率还是使用上都是较优的，所以选择了它。看了下github的主页原来版本已经到3.x的时代了，网上查阅了下相关教程原来集成和使用上也变得更便捷，于是拿起键盘就开始干了！</p>
-<h3 id="二-踏坑之旅"><a href="#二-踏坑之旅" class="headerlink" title="二.踏坑之旅"></a>二.踏坑之旅</h3><blockquote>
-<p>GreenDao3.x的具体使用我就不介绍了，网上也有很多相关教程，特此记录项目开发中碰到的两个坑</p>
-</blockquote>
-<!-- moren -->
-<h4 id="1-一定要有一个类型为Long的主键"><a href="#1-一定要有一个类型为Long的主键" class="headerlink" title="1.一定要有一个类型为Long的主键"></a>1.一定要有一个类型为Long的主键</h4><p>如果你的对象需要用到update，那么建议你一定要设置一个Long型的主键</p>
-<blockquote>
-<p>是Long不是long</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@Id(autoincrement = true)</span><br><span class="line">private Long id;                      // 设置id为主键并自增长</span><br></pre></td></tr></table></figure>
-<p>因为如果要update必须要查询出对象，然后通过set方法设置参数的值，最后通过dao.update(bean); 方法更新，但是这个对象必须要有一个主键，且如果为自增长的话则必须为Long.</p>
-<h4 id="2-令人又爱又恨的查询缓存"><a href="#2-令人又爱又恨的查询缓存" class="headerlink" title="2.令人又爱又恨的查询缓存"></a>2.令人又爱又恨的查询缓存</h4><p>项目中有一个需求是需要先将一张表修改后查询出最新集合对象，但是当我先update表之后，调用query方法查询，当场就懵逼了，竟然不是最新的数据，调取出数据库的db文件查看update已经成功，可是为什么就是查询出的结果不对呢，被这个问题困扰了一个下午。</p>
-<blockquote>
-<p>几经波折，又细细的看了下类库的源码，各种谷歌百度，终于找到了问题的原因（= =！也可能是第一用，太小白了！），原来GreenDao 的Session会将第一次query的结果缓存起来，后面如果调用相同的查询语句则会直接显示缓存的对象（当我发现这个原因之后内心的OS是，原来高效的查询不是这么容易办到的，果然人生处处是坑！！！）</p>
-</blockquote>
-<p>找到原因之后要解决问题就简单了，方法有两种：<br>（1）在每次查询更新的表之前调用一下清除缓存<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mDaoSession.clear();      // 清除缓存</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/1316029-5531c7d9ba730658.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="清除缓存"></p>
-<p>（2）初始化session的时候直接使用无缓存模式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mDaoSession = mDaoMaster.newSession(IdentityScopeType.None);</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/1316029-aae644526b4dc9a7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="无缓存模式"></p>
-<h3 id="三-总结"><a href="#三-总结" class="headerlink" title="三.总结"></a>三.总结</h3><blockquote>
-<p>获取第一次使用GreenDao3.x各方面相关方法没掌握才入坑，特此记录下来方便以后出现同样问题的同学查阅</p>
-</blockquote>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">GreenDao</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">sqlite</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/05/记录一次GreenDao3-x踏坑之旅/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-MySql性能优化——基础篇" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/31/MySql性能优化——基础篇/">MySql性能优化——基础篇</a>
+    <h1 class="article-title" itemprop="name">
+      MySql性能优化——基础篇
     </h1>
   
 
@@ -370,11 +184,51 @@
 <p>这样的话可以优化只0.x秒内</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM table WHERE id BETWEEN 1000000 AND 1000010;</span><br></pre></td></tr></table></figure>
 <p>比上面那句，还要再快5至10倍 </p>
-        
-          <a class="article-more-a" href="/2016/12/31/MySql性能优化——基础篇/#more">more >></a>
-        
+<a id="more"></a>
+<h3 id="2-尽量不在sql中使用函数"><a href="#2-尽量不在sql中使用函数" class="headerlink" title="2.尽量不在sql中使用函数"></a>2.尽量不在sql中使用函数</h3><p>尽量不要在sql中使用函数，因为这样缓存是无效的</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT username FROM user WHERE signup_date &gt;= CURDATE()</span><br></pre></td></tr></table></figure>
+<h3 id="3-为你的搜索字段建立索引"><a href="#3-为你的搜索字段建立索引" class="headerlink" title="3.为你的搜索字段建立索引"></a>3.为你的搜索字段建立索引</h3><p>为你的搜索字段以及连接查询的关联字段创建索引可以大大提高搜索效率，不过如果你的搜索字段是varchar并且使用like模糊查询就没有必要使用索引了。</p>
+<h3 id="4-当判断是否存在时使用LIMIT-1"><a href="#4-当判断是否存在时使用LIMIT-1" class="headerlink" title="4.当判断是否存在时使用LIMIT 1"></a>4.当判断是否存在时使用LIMIT 1</h3><p>如果在表中只为了判断是否存在请使用limit 1,例如用户注册判断是否存在同名的用户等情况</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT 1 FROM user WHERE country = &apos;China&apos; LIMIT 1</span><br></pre></td></tr></table></figure>
+<h3 id="5-千万不要ORDER-BY-RAND"><a href="#5-千万不要ORDER-BY-RAND" class="headerlink" title="5.千万不要ORDER BY RAND()"></a>5.千万不要ORDER BY RAND()</h3><h3 id="6-请不要使用SELECT"><a href="#6-请不要使用SELECT" class="headerlink" title="6.    请不要使用SELECT *"></a>6.    请不要使用SELECT *</h3><p>使用SELECT *的弊端有两点：</p>
+<blockquote>
+<p>1.需要什么字段就查询什么字段，这样可以不需要遍历所有列<br>2.可以减少网络传输中不必要的数据</p>
+</blockquote>
+<h3 id="7-建议给每张表建一个自增长的主键ID"><a href="#7-建议给每张表建一个自增长的主键ID" class="headerlink" title="7.建议给每张表建一个自增长的主键ID"></a>7.建议给每张表建一个自增长的主键ID</h3><p>最好给每张表建一个为ID的主键列，查询，排序时会十分方便，如果知道数据量不大，ID的类型可以为SMALLINT或者更小的无符号类型</p>
+<h3 id="8-尽量使用NOT-NULL"><a href="#8-尽量使用NOT-NULL" class="headerlink" title="8.尽量使用NOT NULL"></a>8.尽量使用NOT NULL</h3><p>我们开发过程中最讨厌的就是空指针异常了，因为他真的防不胜防，所以请尽量给每一个字段加上NOT NULL，有需要的请加上默认值</p>
+<h3 id="9-把IP地址存成-UNSIGNED-INT"><a href="#9-把IP地址存成-UNSIGNED-INT" class="headerlink" title="9.把IP地址存成 UNSIGNED INT"></a>9.把IP地址存成 UNSIGNED INT</h3><p>很多程序员都会创建一个 VARCHAR(15) 字段来存放字符串形式的IP而不是整形的IP。如果你用整形来存放，只需要4个字节，并且你可以有定长的字段。而且，这会为你带来查询上的优势，尤其是当你需要使用这样的WHERE条件：IP between ip1 and ip2。</p>
+<h3 id="10-设计表的时候请垂直分割"><a href="#10-设计表的时候请垂直分割" class="headerlink" title="10.设计表的时候请垂直分割"></a>10.设计表的时候请垂直分割</h3><p>“垂直分割”是一种把数据库中的表按列变成几张表的方法，这样可以降低表的复杂度和字段的数目，不仅可以加快处理速度，也可减少数据冗余，从而达到优化的目的。</p>
+<h3 id="11-请拆分大的连接语句"><a href="#11-请拆分大的连接语句" class="headerlink" title="11.请拆分大的连接语句"></a>11.请拆分大的连接语句</h3><p>之前见过同事写的连接语句，把编译器整整暂满了10行，看起来简直蛋疼。请拆分你的连接语句，不仅可以提高执行效率而且分段查询可以减少因行锁而产生的死锁问题</p>
+<h3 id="12-选择正确的存储引擎"><a href="#12-选择正确的存储引擎" class="headerlink" title="12.选择正确的存储引擎"></a>12.选择正确的存储引擎</h3><p>MySql的存储引擎有两种：MyISAM、InnoDB</p>
+<blockquote>
+<p>1.MyISAM 适合于一些需要大量查询的应用，但其对于有大量写操作并不是很好。甚至你只是需要update一个字段，整个表都会被锁起来，而别的进程，就算是读进程都无法操作直到读操作完成。另外，MyISAM 对于 SELECT COUNT(*) 这类的计算是超快无比的。</p>
+<p>2.InnoDB 的趋势会是一个非常复杂的存储引擎，对于一些小的应用，它会比 MyISAM 还慢。他是它支持“行锁” ，于是在写操作比较多的时候，会更优秀。并且，他还支持更多的高级应用，比如：事务。</p>
+</blockquote>
+<h3 id="13-尽量少使用连接查询"><a href="#13-尽量少使用连接查询" class="headerlink" title="13.尽量少使用连接查询"></a>13.尽量少使用连接查询</h3><p>避免少使用连接查询，虽然有的同学说多次查询会增加连接次数，但是也有一个很有利的优点就是单个查询语句可以利用缓存，所以合理的拆分你的连接语句可以大大提高执行效率</p>
+
       
 
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
       
     </div>
     <div class="article-info article-info-index">
@@ -394,16 +248,84 @@
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/31/MySql性能优化——基础篇/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://lilei644.github.io/2016/12/31/MySql性能优化——基础篇/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2017/02/05/记录一次GreenDao3-x踏坑之旅/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          记录一次GreenDao3.x踏坑之旅
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/06/AndroidSpringAction/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">手把手教你绘制Android粘性果冻动画组件</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -423,175 +345,14 @@
 
 
 
-
   
-    <article id="post-AndroidSpringAction" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/06/AndroidSpringAction/">手把手教你绘制Android粘性果冻动画组件</a>
-    </h1>
   
 
-        
-        <a href="/2016/12/06/AndroidSpringAction/" class="archive-article-date">
-  	<time datetime="2016-12-06T12:46:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>利用阻尼函数以及ValueAnimator通过贝塞尔曲线绘制弹性动画的组件</p>
-<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><blockquote>
-<p>   从事移动互联网开发已经快两年了，回想当初是Android带我走进了移动端的世界，后来由于自身对用户体验比较感兴趣，发现iOS更注重对图形渲染以及动画处理，所以转身自学iOS开发，之后也发布了几个iOS的<a href="https://github.com/lilei644" target="_blank" rel="noopener">组件库</a>。但是Android进两年发展趋势猛增，在动画处理上也比以前有所改进，Android3.0之后开启了GPU硬件加速让图形渲染没以前那么卡顿，特别是5.0之后的material design更是引领潮流。所以趁最近工作不忙有时间，写了个弹性动画的<a href="https://github.com/lilei644/SpringActionMenu" target="_blank" rel="noopener">ActionMenu</a>，核心原理来自咱们iOS界有动画小王子之称的kittenyang的<a href="http://kittenyang.com/deformationandgooey/" target="_blank" rel="noopener">这篇博客</a>（特此鸣谢），废话不多说了，先上效果图（gif存在失真，实际效果更佳流畅Q弹）。</p>
-</blockquote>
-<p><img src="http://upload-images.jianshu.io/upload_images/1316029-0cc45c25def89df6.gif?imageMogr2/auto-orient/strip" alt="效果图"></p>
-        
-          <a class="article-more-a" href="/2016/12/06/AndroidSpringAction/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">animation</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/06/AndroidSpringAction/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/04/hello-world/">使用Hexo + Github搭建个人博客</a>
-    </h1>
   
 
-        
-        <a href="/2016/01/04/hello-world/" class="archive-article-date">
-  	<time datetime="2016-01-04T03:01:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! 博客是大多数技术人员用来记录开发经验的方式，下面我们使用Hexo + Github建立个人静态博客。</p>
-<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><h3 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h3><p>点击进入<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js官网</a>下载安装包,mac也可使用homebrew直接构建环境</p>
-<ul>
-<li>打开终端使用node –version查看是否安装成功
-        
-          <a class="article-more-a" href="/2016/01/04/hello-world/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">blog</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/01/04/hello-world/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
+
   
 
 
@@ -614,8 +375,8 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
