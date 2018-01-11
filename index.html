@@ -166,6 +166,99 @@ ga('send', 'pageview');
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Mysql" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/11/Mysql/">python练习示例 -- Mysql</a>
+    </h1>
+  
+
+        
+        <a href="/2018/01/11/Mysql/" class="archive-article-date">
+  	<time datetime="2018-01-11T10:00:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>python要做爬虫或者数据处理最基本的就是操作数据库，此处用mysql为例</p>
+</blockquote>
+<p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1515674374553&amp;di=689425ed2e05dfc00fe58f05088efa93&amp;imgtype=0&amp;src=http%3A%2F%2Fwww.dingzeit.com%2Fuploadfile%2F20140401163409388.png" alt="mysql"></p>
+<h3 id="工具库"><a href="#工具库" class="headerlink" title="工具库"></a>工具库</h3><ul>
+<li>pymysql</li>
+</ul>
+<h2 id="操作示例"><a href="#操作示例" class="headerlink" title="操作示例"></a>操作示例</h2><h3 id="数据库连接"><a href="#数据库连接" class="headerlink" title="数据库连接"></a>数据库连接</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 打开数据库连接</span><br><span class="line">connection = pymysql.connect(host=&apos;localhost&apos;,</span><br><span class="line">                             user=&apos;root&apos;,  # 填入用户名</span><br><span class="line">                             password=&apos;xxxx&apos;,  # 填入密码</span><br><span class="line">                             db=&apos;test&apos;,  # 需要连接的数据库</span><br><span class="line">                             charset=&apos;utf8mb4&apos;,  # 指定数据集编码，很重要</span><br><span class="line">                             cursorclass=pymysql.cursors.DictCursor)  # 这个也很有用，特别是从数据库中读数据的时候</span><br></pre></td></tr></table></figure>
+<h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cursor = connection.cursor()</span><br><span class="line">    sql = &quot;SELECT * FROM `user`&quot;</span><br><span class="line">    cursor.execute(sql)</span><br><span class="line">    result = cursor.fetchall()</span><br><span class="line">    print(result)</span><br></pre></td></tr></table></figure>
+<h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">try:</span><br><span class="line">    cursor = connection.cursor()</span><br><span class="line">    sql = &quot;INSERT INTO `user`(`name`, age) VALUES(&apos;name&apos;, 20)&quot;</span><br><span class="line">    result = cursor.execute(sql)</span><br><span class="line">    print(&quot;insert影响行数：%s&quot; % result)</span><br><span class="line">    connection.commit()</span><br><span class="line">except:</span><br><span class="line">    print(&quot;执行sql失败&quot;)</span><br><span class="line">    connection.rollback()</span><br></pre></td></tr></table></figure>
+<h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">try:</span><br><span class="line">    cursor = connection.cursor()</span><br><span class="line">    sql = &quot;UPDATE `user` SET age = 30 WHERE `name` = &apos;name&apos;&quot;</span><br><span class="line">    result = cursor.execute(sql)</span><br><span class="line">    print(&quot;update影响行数：%s&quot; % result)</span><br><span class="line">    connection.commit()</span><br><span class="line">except:</span><br><span class="line">    print(&quot;执行sql失败&quot;)</span><br><span class="line">    connection.rollback()</span><br></pre></td></tr></table></figure>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">try:</span><br><span class="line">    cursor = connection.cursor()</span><br><span class="line">    sql = &quot;DELETE FROM `user` WHERE `name` = &apos;name&apos;&quot;</span><br><span class="line">    result = cursor.execute(sql)</span><br><span class="line">    print(&quot;delete影响行数：%s&quot; % result)</span><br><span class="line">    connection.commit()</span><br><span class="line">except:</span><br><span class="line">    print(&quot;执行sql失败&quot;)</span><br><span class="line">    connection.rollback()</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
+<blockquote>
+<p><a href="https://github.com/lilei644/python-learning-example" target="_blank" rel="noopener">源码地址</a></p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">python example</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/01/11/Mysql/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-图片转字符串文本" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -205,11 +298,11 @@ ga('send', 'pageview');
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">python example</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">python example</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		
 		</ul>
@@ -852,6 +945,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">python example</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">hexo</a>
               </li>
              
@@ -860,15 +961,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">mysql</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">python example</a>
               </li>
              
               <li class="article-tag-list-item">

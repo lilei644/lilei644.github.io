@@ -6,22 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lilei644.github.io">
-  <title>记录一次GreenDao3.x踏坑之旅 | Lei&#39;s blogs</title>
+  <title>python练习示例 -- Mysql | Lei&#39;s blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="最近公司开发新项目，于是便使用GreenDao做数据持久化，毕竟第一次正式在项目中使用，特此记录下使用中碰到的两个坑。  一.前言公司准备开发一个新项目，由于项目中需要用到数据持久化，所以便开始挑选合适的方案，目前最稳定的当然是sqlite了，但是近闻realm比较火，使用起来也比较方便，所以决定大胆尝试一次。但是最终集成开发后用了两天便弃坑了，后来才发现原来网上也有大部分相同感受的人。后来决">
-<meta name="keywords" content="GreenDao,sqlite">
+  <meta name="description" content="python要做爬虫或者数据处理最基本的就是操作数据库，此处用mysql为例   工具库 pymysql  操作示例数据库连接1234567# 打开数据库连接connection = pymysql.connect(host=&amp;apos;localhost&amp;apos;,                             user=&amp;apos;root&amp;apos;,  # 填入用户名">
+<meta name="keywords" content="mysql,python example">
 <meta property="og:type" content="article">
-<meta property="og:title" content="记录一次GreenDao3.x踏坑之旅">
-<meta property="og:url" content="https://lilei644.github.io/2017/02/05/记录一次GreenDao3-x踏坑之旅/index.html">
+<meta property="og:title" content="python练习示例 -- Mysql">
+<meta property="og:url" content="https://lilei644.github.io/2018/01/11/Mysql/index.html">
 <meta property="og:site_name" content="Lei&#39;s blogs">
-<meta property="og:description" content="最近公司开发新项目，于是便使用GreenDao做数据持久化，毕竟第一次正式在项目中使用，特此记录下使用中碰到的两个坑。  一.前言公司准备开发一个新项目，由于项目中需要用到数据持久化，所以便开始挑选合适的方案，目前最稳定的当然是sqlite了，但是近闻realm比较火，使用起来也比较方便，所以决定大胆尝试一次。但是最终集成开发后用了两天便弃坑了，后来才发现原来网上也有大部分相同感受的人。后来决">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1316029-5531c7d9ba730658.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1316029-aae644526b4dc9a7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-01-04T03:22:59.666Z">
+<meta property="og:description" content="python要做爬虫或者数据处理最基本的就是操作数据库，此处用mysql为例   工具库 pymysql  操作示例数据库连接1234567# 打开数据库连接connection = pymysql.connect(host=&amp;apos;localhost&amp;apos;,                             user=&amp;apos;root&amp;apos;,  # 填入用户名">
+<meta property="og:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515674374553&di=689425ed2e05dfc00fe58f05088efa93&imgtype=0&src=http%3A%2F%2Fwww.dingzeit.com%2Fuploadfile%2F20140401163409388.png">
+<meta property="og:updated_time" content="2018-01-11T10:06:53.936Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="记录一次GreenDao3.x踏坑之旅">
-<meta name="twitter:description" content="最近公司开发新项目，于是便使用GreenDao做数据持久化，毕竟第一次正式在项目中使用，特此记录下使用中碰到的两个坑。  一.前言公司准备开发一个新项目，由于项目中需要用到数据持久化，所以便开始挑选合适的方案，目前最稳定的当然是sqlite了，但是近闻realm比较火，使用起来也比较方便，所以决定大胆尝试一次。但是最终集成开发后用了两天便弃坑了，后来才发现原来网上也有大部分相同感受的人。后来决">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1316029-5531c7d9ba730658.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="python练习示例 -- Mysql">
+<meta name="twitter:description" content="python要做爬虫或者数据处理最基本的就是操作数据库，此处用mysql为例   工具库 pymysql  操作示例数据库连接1234567# 打开数据库连接connection = pymysql.connect(host=&amp;apos;localhost&amp;apos;,                             user=&amp;apos;root&amp;apos;,  # 填入用户名">
+<meta name="twitter:image" content="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1515674374553&di=689425ed2e05dfc00fe58f05088efa93&imgtype=0&src=http%3A%2F%2Fwww.dingzeit.com%2Fuploadfile%2F20140401163409388.png">
   
     <link rel="alternative" href="/atom.xml" title="Lei&#39;s blogs" type="application/atom+xml">
   
@@ -172,20 +171,20 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-记录一次GreenDao3-x踏坑之旅" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Mysql" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      记录一次GreenDao3.x踏坑之旅
+      python练习示例 -- Mysql
     </h1>
   
 
         
-        <a href="/2017/02/05/记录一次GreenDao3-x踏坑之旅/" class="archive-article-date">
-  	<time datetime="2017-02-05T06:27:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-05</time>
+        <a href="/2018/01/11/Mysql/" class="archive-article-date">
+  	<time datetime="2018-01-11T10:00:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-11</time>
 </a>
         
       </header>
@@ -193,29 +192,20 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p> 最近公司开发新项目，于是便使用GreenDao做数据持久化，毕竟第一次正式在项目中使用，特此记录下使用中碰到的两个坑。</p>
+<p>python要做爬虫或者数据处理最基本的就是操作数据库，此处用mysql为例</p>
 </blockquote>
-<h3 id="一-前言"><a href="#一-前言" class="headerlink" title="一.前言"></a>一.前言</h3><p>公司准备开发一个新项目，由于项目中需要用到数据持久化，所以便开始挑选合适的方案，目前最稳定的当然是sqlite了，但是近闻realm比较火，使用起来也比较方便，所以决定大胆尝试一次。但是最终集成开发后用了两天便弃坑了，后来才发现原来网上也有大部分相同感受的人。<br>后来决定还是重新使用稳定的sqlite方案，就开始选择开源的ORM类库，GreenDao无论是在效率还是使用上都是较优的，所以选择了它。看了下github的主页原来版本已经到3.x的时代了，网上查阅了下相关教程原来集成和使用上也变得更便捷，于是拿起键盘就开始干了！</p>
-<h3 id="二-踏坑之旅"><a href="#二-踏坑之旅" class="headerlink" title="二.踏坑之旅"></a>二.踏坑之旅</h3><blockquote>
-<p>GreenDao3.x的具体使用我就不介绍了，网上也有很多相关教程，特此记录项目开发中碰到的两个坑</p>
-</blockquote>
-<a id="more"></a>
-<h4 id="1-一定要有一个类型为Long的主键"><a href="#1-一定要有一个类型为Long的主键" class="headerlink" title="1.一定要有一个类型为Long的主键"></a>1.一定要有一个类型为Long的主键</h4><p>如果你的对象需要用到update，那么建议你一定要设置一个Long型的主键</p>
+<p><img src="https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1515674374553&amp;di=689425ed2e05dfc00fe58f05088efa93&amp;imgtype=0&amp;src=http%3A%2F%2Fwww.dingzeit.com%2Fuploadfile%2F20140401163409388.png" alt="mysql"></p>
+<h3 id="工具库"><a href="#工具库" class="headerlink" title="工具库"></a>工具库</h3><ul>
+<li>pymysql</li>
+</ul>
+<h2 id="操作示例"><a href="#操作示例" class="headerlink" title="操作示例"></a>操作示例</h2><h3 id="数据库连接"><a href="#数据库连接" class="headerlink" title="数据库连接"></a>数据库连接</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># 打开数据库连接</span><br><span class="line">connection = pymysql.connect(host=&apos;localhost&apos;,</span><br><span class="line">                             user=&apos;root&apos;,  # 填入用户名</span><br><span class="line">                             password=&apos;xxxx&apos;,  # 填入密码</span><br><span class="line">                             db=&apos;test&apos;,  # 需要连接的数据库</span><br><span class="line">                             charset=&apos;utf8mb4&apos;,  # 指定数据集编码，很重要</span><br><span class="line">                             cursorclass=pymysql.cursors.DictCursor)  # 这个也很有用，特别是从数据库中读数据的时候</span><br></pre></td></tr></table></figure>
+<h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cursor = connection.cursor()</span><br><span class="line">    sql = &quot;SELECT * FROM `user`&quot;</span><br><span class="line">    cursor.execute(sql)</span><br><span class="line">    result = cursor.fetchall()</span><br><span class="line">    print(result)</span><br></pre></td></tr></table></figure>
+<h3 id="插入"><a href="#插入" class="headerlink" title="插入"></a>插入</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">try:</span><br><span class="line">    cursor = connection.cursor()</span><br><span class="line">    sql = &quot;INSERT INTO `user`(`name`, age) VALUES(&apos;name&apos;, 20)&quot;</span><br><span class="line">    result = cursor.execute(sql)</span><br><span class="line">    print(&quot;insert影响行数：%s&quot; % result)</span><br><span class="line">    connection.commit()</span><br><span class="line">except:</span><br><span class="line">    print(&quot;执行sql失败&quot;)</span><br><span class="line">    connection.rollback()</span><br></pre></td></tr></table></figure>
+<h3 id="修改"><a href="#修改" class="headerlink" title="修改"></a>修改</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">try:</span><br><span class="line">    cursor = connection.cursor()</span><br><span class="line">    sql = &quot;UPDATE `user` SET age = 30 WHERE `name` = &apos;name&apos;&quot;</span><br><span class="line">    result = cursor.execute(sql)</span><br><span class="line">    print(&quot;update影响行数：%s&quot; % result)</span><br><span class="line">    connection.commit()</span><br><span class="line">except:</span><br><span class="line">    print(&quot;执行sql失败&quot;)</span><br><span class="line">    connection.rollback()</span><br></pre></td></tr></table></figure>
+<h3 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">try:</span><br><span class="line">    cursor = connection.cursor()</span><br><span class="line">    sql = &quot;DELETE FROM `user` WHERE `name` = &apos;name&apos;&quot;</span><br><span class="line">    result = cursor.execute(sql)</span><br><span class="line">    print(&quot;delete影响行数：%s&quot; % result)</span><br><span class="line">    connection.commit()</span><br><span class="line">except:</span><br><span class="line">    print(&quot;执行sql失败&quot;)</span><br><span class="line">    connection.rollback()</span><br></pre></td></tr></table></figure>
+<p><br><br><br></p>
 <blockquote>
-<p>是Long不是long</p>
-</blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@Id(autoincrement = true)</span><br><span class="line">private Long id;                      // 设置id为主键并自增长</span><br></pre></td></tr></table></figure>
-<p>因为如果要update必须要查询出对象，然后通过set方法设置参数的值，最后通过dao.update(bean); 方法更新，但是这个对象必须要有一个主键，且如果为自增长的话则必须为Long.</p>
-<h4 id="2-令人又爱又恨的查询缓存"><a href="#2-令人又爱又恨的查询缓存" class="headerlink" title="2.令人又爱又恨的查询缓存"></a>2.令人又爱又恨的查询缓存</h4><p>项目中有一个需求是需要先将一张表修改后查询出最新集合对象，但是当我先update表之后，调用query方法查询，当场就懵逼了，竟然不是最新的数据，调取出数据库的db文件查看update已经成功，可是为什么就是查询出的结果不对呢，被这个问题困扰了一个下午。</p>
-<blockquote>
-<p>几经波折，又细细的看了下类库的源码，各种谷歌百度，终于找到了问题的原因（= =！也可能是第一用，太小白了！），原来GreenDao 的Session会将第一次query的结果缓存起来，后面如果调用相同的查询语句则会直接显示缓存的对象（当我发现这个原因之后内心的OS是，原来高效的查询不是这么容易办到的，果然人生处处是坑！！！）</p>
-</blockquote>
-<p>找到原因之后要解决问题就简单了，方法有两种：<br>（1）在每次查询更新的表之前调用一下清除缓存<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mDaoSession.clear();      // 清除缓存</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/1316029-5531c7d9ba730658.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="清除缓存"></p>
-<p>（2）初始化session的时候直接使用无缓存模式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mDaoSession = mDaoMaster.newSession(IdentityScopeType.None);</span><br></pre></td></tr></table></figure></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/1316029-aae644526b4dc9a7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="无缓存模式"></p>
-<h3 id="三-总结"><a href="#三-总结" class="headerlink" title="三.总结"></a>三.总结</h3><blockquote>
-<p>获取第一次使用GreenDao3.x各方面相关方法没掌握才入坑，特此记录下来方便以后出现同样问题的同学查阅</p>
+<p><a href="https://github.com/lilei644/python-learning-example" target="_blank" rel="noopener">源码地址</a></p>
 </blockquote>
 
       
@@ -251,11 +241,11 @@ ga('send', 'pageview');
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">GreenDao</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">sqlite</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">python example</a>
         		</li>
       		
 		</ul>
@@ -311,7 +301,7 @@ ga('send', 'pageview');
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://lilei644.github.io/2017/02/05/记录一次GreenDao3-x踏坑之旅/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://lilei644.github.io/2018/01/11/Mysql/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -325,18 +315,9 @@ ga('send', 'pageview');
   
 <nav id="article-nav">
   
-    <a href="/2017/03/31/jni开发入门——看我就够了/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Android Studo jni开发入门——看我就够了!
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/12/31/MySql性能优化——基础篇/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">MySql性能优化——基础篇</div>
+    <a href="/2018/01/05/图片转字符串文本/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">python练习示例 -- 图片转字符串文本</div>
       <i class="icon-circle-right"></i>
     </a>
   
