@@ -22,7 +22,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/lilei644/lilei644.github.io/master/img/image7.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/lilei644/lilei644.github.io/master/img/image5.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/lilei644/lilei644.github.io/master/img/image6.png">
-<meta property="og:updated_time" content="2018-01-20T04:46:27.692Z">
+<meta property="og:updated_time" content="2018-01-20T04:49:42.422Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="简单的爬虫解析">
 <meta name="twitter:description" content="python爬虫的基本运用，利用获取网页内容、解析、正则表达式即可抓取大部分简单的网络数据">
@@ -215,7 +215,7 @@ ga('send', 'pageview');
 <h3 id="二、抓取简单的网页数据"><a href="#二、抓取简单的网页数据" class="headerlink" title="二、抓取简单的网页数据"></a>二、抓取简单的网页数据</h3><ul>
 <li>此处以<a href="http://www.weather.com.cn/weather/101280601.shtml" target="_blank" rel="noopener">中国天气网</a>为例进行抓取一周的白天和夜晚的温度</li>
 </ul>
-<h4 id="1-获取网页所有源码内容"><a href="#1-获取网页所有源码内容" class="headerlink" title="1.获取网页所有源码内容"></a>1.获取网页所有源码内容</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 设置请求头</span><br><span class="line"># 更换一下爬虫的User-Agent，这是最常规的爬虫设置</span><br><span class="line">headers = &#123;</span><br><span class="line">    &quot;User-Agent&quot;: &apos;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) &apos;</span><br><span class="line">                  &apos;Chrome/63.0.3239.132 Safari/537.36&apos;&#125;</span><br><span class="line">html = requests.get(&quot;http://www.weather.com.cn/weather/101280601.shtml&quot;, headers=headers)</span><br><span class="line">html.encoding = &quot;utf-8&quot;</span><br><span class="line">print(html.text)</span><br></pre></td></tr></table></figure>
+<h4 id="1-获取网页所有源码内容"><a href="#1-获取网页所有源码内容" class="headerlink" title="1.获取网页所有源码内容"></a>1.获取网页所有源码内容</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 设置请求头</span><br><span class="line"># 更换一下爬虫的User-Agent，这是最常规的爬虫设置</span><br><span class="line">headers = &#123;</span><br><span class="line">    &quot;User-Agent&quot;: &apos;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.132 Safari/537.36&apos;&#125;</span><br><span class="line"></span><br><span class="line">html = requests.get(&quot;http://www.weather.com.cn/weather/101280601.shtml&quot;, headers=headers)</span><br><span class="line">html.encoding = &quot;utf-8&quot;</span><br><span class="line">print(html.text)</span><br></pre></td></tr></table></figure>
 <h4 id="2-查看所需内容的标签"><a href="#2-查看所需内容的标签" class="headerlink" title="2.查看所需内容的标签"></a>2.查看所需内容的标签</h4><ul>
 <li>由于我们需要抓取温度，则打开开发者模式，点击抓取，将鼠标放置温度处，即可获取到网页内容对应的标签</li>
 </ul>
