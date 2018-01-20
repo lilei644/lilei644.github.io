@@ -6,14 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lilei644.github.io">
-  <title>Archives: 2017 | Lei&#39;s blogs</title>
+  <title>简单的爬虫解析 | Lei&#39;s blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Lei&#39;s blogs">
-<meta property="og:url" content="https://lilei644.github.io/archives/2017/index.html">
+  <meta name="description" content="python爬虫的基本运用，利用获取网页内容、解析、正则表达式即可抓取大部分简单的网络数据">
+<meta name="keywords" content="python,爬虫">
+<meta property="og:type" content="article">
+<meta property="og:title" content="简单的爬虫解析">
+<meta property="og:url" content="https://lilei644.github.io/2018/01/20/简单的爬虫解析/index.html">
 <meta property="og:site_name" content="Lei&#39;s blogs">
+<meta property="og:description" content="python爬虫的基本运用，利用获取网页内容、解析、正则表达式即可抓取大部分简单的网络数据">
+<meta property="og:image" content="https://raw.githubusercontent.com/lilei644/lilei644.github.io/master/img/image1.png">
+<meta property="og:updated_time" content="2018-01-20T04:07:32.442Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lei&#39;s blogs">
+<meta name="twitter:title" content="简单的爬虫解析">
+<meta name="twitter:description" content="python爬虫的基本运用，利用获取网页内容、解析、正则表达式即可抓取大部分简单的网络数据">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/lilei644/lilei644.github.io/master/img/image1.png">
   
     <link rel="alternative" href="/atom.xml" title="Lei&#39;s blogs" type="application/atom+xml">
   
@@ -164,106 +171,250 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="python练习示例-简单的爬虫解析" class="article article-type-python练习示例 " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/31/jni开发入门——看我就够了/" class="archive-article-date">
-  	<time datetime="2017-03-31T12:44:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-31</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/31/jni开发入门——看我就够了/">Android Studo jni开发入门——看我就够了!</a>
+    <h1 class="article-title" itemprop="name">
+      简单的爬虫解析
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/01/20/简单的爬虫解析/" class="archive-article-date">
+  	<time datetime="2018-01-20T03:20:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>python爬虫的基本运用，利用获取网页内容、解析、正则表达式即可抓取大部分简单的网络数据</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/lilei644/lilei644.github.io/master/img/image1.png" alt="爬虫"></p>
+<a id="more"></a>
+<p>##工具库</p>
+<ul>
+<li>request – 网络请求</li>
+<li>BeautifulSoup – 标签解析</li>
+<li>re – 正则表达式</li>
+</ul>
+<p>##操作示例</p>
+<p>###一、基本技能</p>
+<blockquote>
+<p>抓取网页内容的基本技能就是会使用浏览器的开发者工具，此处使用的是Chrome，打开开发者工具，点击抓取网页标签，鼠标移动到想获取的标签内容，即可显示出当前部分html和class的标签</p>
+</blockquote>
+<p><br></p>
+<p>###二、抓取简单的网页数据</p>
+<ul>
+<li>此处以<a href="http://www.weather.com.cn/weather/101280601.shtml" target="_blank" rel="noopener">中国天气网</a>为例进行抓取一周的白天和夜晚的温度</li>
+</ul>
+<p>####1.获取网页所有源码内容</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># 设置请求头</span><br><span class="line"># 更换一下爬虫的User-Agent，这是最常规的爬虫设置</span><br><span class="line">headers = &#123;</span><br><span class="line">    &quot;User-Agent&quot;: &apos;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_2) AppleWebKit/537.36 (KHTML, like Gecko) &apos;</span><br><span class="line">                  &apos;Chrome/63.0.3239.132 Safari/537.36&apos;&#125;</span><br><span class="line">html = requests.get(&quot;http://www.weather.com.cn/weather/101280601.shtml&quot;, headers=headers)</span><br><span class="line">html.encoding = &quot;utf-8&quot;</span><br><span class="line">print(html.text)</span><br></pre></td></tr></table></figure>
+<p>####2.查看所需内容的标签</p>
+<ul>
+<li>由于我们需要抓取温度，则打开开发者模式，点击抓取，将鼠标放置温度处，即可获取到网页内容对应的标签</li>
+</ul>
+<p>####3.利用BeautifulSoup解析标签内容<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">soup = BeautifulSoup(html.text, &quot;lxml&quot;)</span><br><span class="line">light_list = soup.select(&apos;p.tem span&apos;)</span><br><span class="line">night_list = soup.select(&apos;p.tem i&apos;)</span><br><span class="line">for index in range(0, len(light_list)):</span><br><span class="line">	print(&apos;白天温度：&#123;0&#125;, 夜晚温度：&#123;1&#125;&apos;.format(light_list[index].get_text(), night_list[index].get_text()))</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li>get_text()代表抓取去除标签后的内容</li>
+<li>需注意BeautifulSoup的解析模式（当前使用的’lxml’）</li>
+</ul>
+<blockquote>
+<p>由此即可使用requests和BeautifulSoup抓取简单的网页内容</p>
+</blockquote>
+<p><br></p>
+<p>###三、利用正则表达式抓取复杂的网页数据</p>
+<ul>
+<li>此处以<a href="http://tieba.baidu.com/f?ie=utf-8&amp;kw=python3" target="_blank" rel="noopener">python3吧</a>为对象抓取每篇帖子的回复数</li>
+</ul>
+<p>####1.尝试用BeautifulSoup抓取标签内容</p>
+<ul>
+<li>浏览器开发者工具获取到回复数的标签为span.threadlist_rep_num.center_text</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">html = requests.get(&quot;http://tieba.baidu.com/f?ie=utf-8&amp;kw=python3&quot;, headers=headers)</span><br><span class="line">html.encoding = &quot;utf-8&quot;</span><br><span class="line">if html.status_code == 200:</span><br><span class="line">    soup = BeautifulSoup(html.text, &quot;lxml&quot;)</span><br><span class="line">    tag_list = soup.select(&apos;span.threadlist_rep_num.center_text&apos;)</span><br><span class="line">    print(tag_list)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>发现抓取到的内容为空</li>
+</ul>
+<p>####2.利用正则表达式解析数据</p>
+<ul>
+<li><p>正则表达式可以快速的利用正则匹配的功能将数据抓取，此处通过浏览器找到当前标签的源码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;span class=&quot;threadlist_rep_num center_text&quot; title=&quot;回复&quot;&gt;9&lt;/span&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>根据此内容写出正则匹配的语句 “(?&lt;=”回复”&gt;)\d*(?=)”，意为”回复”之后”“之前任意长度的数字</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">html = requests.get(&quot;http://tieba.baidu.com/f?ie=utf-8&amp;kw=python3&quot;, headers=headers)</span><br><span class="line">html.encoding = &quot;utf-8&quot;</span><br><span class="line">if html.status_code == 200:</span><br><span class="line">    # &lt;span class=&quot;threadlist_rep_num center_text&quot; title=&quot;回复&quot;&gt;9&lt;/span&gt;</span><br><span class="line">    tag_list = re.findall(r&apos;(?&lt;=&quot;回复&quot;&gt;)\d*(?=&lt;/span&gt;)&apos;, html.text)</span><br><span class="line">    print(tag_list)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>发现即可成功抓取到数据</li>
+</ul>
+<p><br></p>
+<blockquote>
+<p><a href="https://github.com/lilei644/python-learning-example" target="_blank" rel="noopener">源码地址</a></p>
+</blockquote>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jni</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://lilei644.github.io/2018/01/20/简单的爬虫解析/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/05/记录一次GreenDao3-x踏坑之旅/" class="archive-article-date">
-  	<time datetime="2017-02-05T06:27:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-05</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/01/11/Mysql/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">python练习示例 -- Mysql</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/05/记录一次GreenDao3-x踏坑之旅/">记录一次GreenDao3.x踏坑之旅</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">GreenDao</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">sqlite</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+    <section id="comments">
+      <div id="disqus_thread"></div>
+        <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'leisblog'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+          var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+          dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+          (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
+  
+
+  
 
 
           </div>
@@ -286,8 +437,8 @@ ga('send', 'pageview');
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
