@@ -6,21 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lilei644.github.io">
-  <title>Java 23种设计模式 | Lei&#39;s blogs</title>
+  <title>Java 设计模式(1) —— 策略模式 | Lei&#39;s blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="设计模式是人们在面对同类型软件工程设计问题所总结出的一些有用的经验。模式不是代码，而是某类问题的通用设计解决方案。 设计模式的本质目的是使软件工程在维护性、扩展性、变化性、复杂度方面成O(N) OO是原则，设计模式是具体的方法、工具">
+  <meta name="description" content="设计模式是人们在面对同类型软件工程设计问题所总结出的一些有用的经验。模式不是代码，而是某类问题的通用设计解决方案。 设计模式的本质目的是使软件工程在维护性、扩展性、变化性、复杂度方面成O(N) OO是原则，设计模式是具体的方法、工具   一、策略模式 分别封装行为接口，实现算法族，超类里放行为接口对象，在子类里具体设定行为对象。原则就是：分离变化部分，封装接口，基于接口变成各种功能。此模式让行">
 <meta name="keywords" content="java,设计模式">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java 23种设计模式">
-<meta property="og:url" content="https://lilei644.github.io/2018/05/02/Java23种设计模式/index.html">
+<meta property="og:title" content="Java 设计模式(1) —— 策略模式">
+<meta property="og:url" content="https://lilei644.github.io/2018/05/02/Java设计模式(1)——策略模式/index.html">
 <meta property="og:site_name" content="Lei&#39;s blogs">
-<meta property="og:description" content="设计模式是人们在面对同类型软件工程设计问题所总结出的一些有用的经验。模式不是代码，而是某类问题的通用设计解决方案。 设计模式的本质目的是使软件工程在维护性、扩展性、变化性、复杂度方面成O(N) OO是原则，设计模式是具体的方法、工具">
-<meta property="og:image" content="https://raw.githubusercontent.com/lilei644/lilei644.github.io/master/img/image11.png">
-<meta property="og:updated_time" content="2018-05-02T14:00:12.397Z">
+<meta property="og:description" content="设计模式是人们在面对同类型软件工程设计问题所总结出的一些有用的经验。模式不是代码，而是某类问题的通用设计解决方案。 设计模式的本质目的是使软件工程在维护性、扩展性、变化性、复杂度方面成O(N) OO是原则，设计模式是具体的方法、工具   一、策略模式 分别封装行为接口，实现算法族，超类里放行为接口对象，在子类里具体设定行为对象。原则就是：分离变化部分，封装接口，基于接口变成各种功能。此模式让行">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1316029-32f9363cd95f5c8f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-05-03T15:04:22.483Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java 23种设计模式">
-<meta name="twitter:description" content="设计模式是人们在面对同类型软件工程设计问题所总结出的一些有用的经验。模式不是代码，而是某类问题的通用设计解决方案。 设计模式的本质目的是使软件工程在维护性、扩展性、变化性、复杂度方面成O(N) OO是原则，设计模式是具体的方法、工具">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/lilei644/lilei644.github.io/master/img/image11.png">
+<meta name="twitter:title" content="Java 设计模式(1) —— 策略模式">
+<meta name="twitter:description" content="设计模式是人们在面对同类型软件工程设计问题所总结出的一些有用的经验。模式不是代码，而是某类问题的通用设计解决方案。 设计模式的本质目的是使软件工程在维护性、扩展性、变化性、复杂度方面成O(N) OO是原则，设计模式是具体的方法、工具   一、策略模式 分别封装行为接口，实现算法族，超类里放行为接口对象，在子类里具体设定行为对象。原则就是：分离变化部分，封装接口，基于接口变成各种功能。此模式让行">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1316029-32f9363cd95f5c8f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternative" href="/atom.xml" title="Lei&#39;s blogs" type="application/atom+xml">
   
@@ -171,19 +171,19 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Java23种设计模式" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-Java设计模式(1)——策略模式" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Java 23种设计模式
+      Java 设计模式(1) —— 策略模式
     </h1>
   
 
         
-        <a href="/2018/05/02/Java23种设计模式/" class="archive-article-date">
+        <a href="/2018/05/02/Java设计模式(1)——策略模式/" class="archive-article-date">
   	<time datetime="2018-05-02T13:54:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-02</time>
 </a>
         
@@ -198,20 +198,39 @@ ga('send', 'pageview');
 <li>OO是原则，设计模式是具体的方法、工具</li>
 </ol>
 </blockquote>
-<p><img src="https://raw.githubusercontent.com/lilei644/lilei644.github.io/master/img/image11.png" alt="java设计模式"></p>
-<a id="more"></a>
-<h3 id="1、策略模式"><a href="#1、策略模式" class="headerlink" title="1、策略模式"></a>1、策略模式</h3><blockquote>
+<h3 id="一、策略模式"><a href="#一、策略模式" class="headerlink" title="一、策略模式"></a>一、策略模式</h3><blockquote>
 <p>分别封装行为接口，实现算法族，超类里放行为接口对象，在子类里具体设定行为对象。原则就是：分离变化部分，封装接口，基于接口变成各种功能。此模式让行为算法的变化独立于算法的使用者</p>
 </blockquote>
-<ul>
-<li>例如：设计一个关于汽车对象模型，公共属性应放在超类里定义，而差异性的属性和方法应该定义在接口里，基于接口再去封装各个对象实现差异性的方法。汽车都是四个轮子，都能跑属于公共属性。而有的有天窗，有的没天窗，则定义一个天窗的接口，有天窗的父类对象则实现这个接口即可。</li>
-<li>优点：应对项目的拓展性，降低复杂度，分析项目变化与不变部分，提取变化部分，抽象成接口+实现。使得新增行为简单，行为类更好的复用，组合更方便，又有继承带来的复用好处</li>
-<li>注意点：<ul>
-<li>分析项目中的变化部分与不变部分</li>
-<li>多用组合少用继承，用行为类组合而不是行为的继承</li>
+<p><img src="https://upload-images.jianshu.io/upload_images/1316029-32f9363cd95f5c8f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="策略模式"></p>
+<a id="more"></a>
+<h3 id="二、示例"><a href="#二、示例" class="headerlink" title="二、示例"></a>二、示例</h3><ul>
+<li>模拟鸭子项目，鸭子会嘎嘎叫，会游泳，有不同的颜色</li>
 </ul>
-</li>
+<h4 id="1-传统模式"><a href="#1-传统模式" class="headerlink" title="1.传统模式"></a>1.传统模式</h4><p>从面向对象的角度设计，封装鸭子的超类，扩展超类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public abstract class Duck &#123;</span><br><span class="line"></span><br><span class="line">    public void Quack() &#123; </span><br><span class="line">        System.out.println(&quot;~~gaga~~&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    public abstract void display(); </span><br><span class="line">    public void swim() &#123;</span><br><span class="line">        System.out.println(&quot;~~im swim~~&quot;); &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>1、GreenHeadDuck继承Duck :</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class GreenHeadDuck extends Duck &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void display() &#123;</span><br><span class="line">        System.out.println(&quot;**GreenHead**&quot;); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、同理可有RedHeadDuck等集成Duck的父类</p>
+<p>新增需求 —— 鸭子会飞<br>OO思维里的继承方式解决方案是:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public abstract class Duck &#123; </span><br><span class="line">    ...;</span><br><span class="line">    public void Fly() &#123;</span><br><span class="line">        System.out.println(&quot;~~im fly~~&quot;); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>问题来了,这个Fly让所有子类都会飞了，这是不科学的，并不是所有的鸭子都会飞，且会飞的也飞的有快有慢。 </p>
+<p>继承的问题:对类的局部改动，尤其超类的局部改动，会影响其他部分。影响会有溢出效应。</p>
+<p>因此只能通过子类中一个个去覆盖解决，较繁琐。</p>
+<h4 id="2-使用策略模式后"><a href="#2-使用策略模式后" class="headerlink" title="2.使用策略模式后"></a>2.使用策略模式后</h4><p>1、接口:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 飞行行为接口</span><br><span class="line">public interface FlyBehavior &#123;</span><br><span class="line">    void fly();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 嘎嘎叫行为接口</span><br><span class="line">public interface QuackBehavior &#123;</span><br><span class="line">    void quack();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、好处:新增行为简单，行为类更好的复用，组合更方便。又有继承带来的复用好处</p>
+<p>重新设计的鸭子项目:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public abstract class Duck &#123; </span><br><span class="line">    FlyBehavior mFlyBehavior; </span><br><span class="line">    QuackBehavior mQuackBehavior;</span><br><span class="line"></span><br><span class="line">    public Duck()&#123; </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void Fly() &#123; </span><br><span class="line">        mFlyBehavior.fly();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void Quack() &#123;</span><br><span class="line">        mQuackBehavior.quack(); </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public abstract void display(); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class GreenHeadDuck extends Duck &#123;</span><br><span class="line"></span><br><span class="line">    public GreenHeadDuck() &#123;</span><br><span class="line">        mFlyBehavior = new GoodFlyBehavior();</span><br><span class="line">        mQuackBehavior = new GaGaQuackBehavior();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void display() &#123;...&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h3><ul>
+<li>应对项目的拓展性，降低复杂度，分析项目变化与不变部分</li>
+<li>提取变化部分，抽象成接口+实现</li>
+<li>使得新增行为简单，行为类更好的复用，组合更方便，又有继承带来的复用好处</li>
 </ul>
+<p><br></p>
+<blockquote>
+<p>Java设计模式所有<a href="https://github.com/lilei644/design-pattern-example" target="_blank" rel="noopener">示例代码</a>，持续更新中</p>
+</blockquote>
 
       
 
@@ -306,7 +325,7 @@ ga('send', 'pageview');
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://lilei644.github.io/2018/05/02/Java23种设计模式/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://lilei644.github.io/2018/05/02/Java设计模式(1)——策略模式/" alt="微信分享二维码">
     </div>
 </div>
 
