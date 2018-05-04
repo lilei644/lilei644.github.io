@@ -6,21 +6,23 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lilei644.github.io">
-  <title>Java 设计模式(1) —— 策略模式 | Lei&#39;s blogs</title>
+  <title>JVM的理解与整理 | Lei&#39;s blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="设计模式是人们在面对同类型软件工程设计问题所总结出的一些有用的经验。模式不是代码，而是某类问题的通用设计解决方案。 设计模式的本质目的是使软件工程在维护性、扩展性、变化性、复杂度方面成O(N) OO是原则，设计模式是具体的方法、工具   一、策略模式 分别封装行为接口，实现算法族，超类里放行为接口对象，在子类里具体设定行为对象。原则就是：分离变化部分，封装接口，基于接口变成各种功能。此模式让行">
-<meta name="keywords" content="java,设计模式">
+  <meta name="description" content="整理和记录JVM的组成和运行原理，JVM关于内存的管理以及GC算法，垃圾回收的等原理">
+<meta name="keywords" content="jvm,java虚拟机">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java 设计模式(1) —— 策略模式">
-<meta property="og:url" content="https://lilei644.github.io/2018/05/02/Java设计模式(1)——策略模式/index.html">
+<meta property="og:title" content="JVM的理解与整理">
+<meta property="og:url" content="https://lilei644.github.io/2018/04/21/2018-04-21/index.html">
 <meta property="og:site_name" content="Lei&#39;s blogs">
-<meta property="og:description" content="设计模式是人们在面对同类型软件工程设计问题所总结出的一些有用的经验。模式不是代码，而是某类问题的通用设计解决方案。 设计模式的本质目的是使软件工程在维护性、扩展性、变化性、复杂度方面成O(N) OO是原则，设计模式是具体的方法、工具   一、策略模式 分别封装行为接口，实现算法族，超类里放行为接口对象，在子类里具体设定行为对象。原则就是：分离变化部分，封装接口，基于接口变成各种功能。此模式让行">
-<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1316029-32f9363cd95f5c8f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-05-03T15:04:22.483Z">
+<meta property="og:description" content="整理和记录JVM的组成和运行原理，JVM关于内存的管理以及GC算法，垃圾回收的等原理">
+<meta property="og:image" content="https://raw.githubusercontent.com/lilei644/lilei644.github.io/master/img/image8.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/lilei644/lilei644.github.io/master/img/image9.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/lilei644/lilei644.github.io/master/img/image10.png">
+<meta property="og:updated_time" content="2018-04-26T10:04:32.085Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java 设计模式(1) —— 策略模式">
-<meta name="twitter:description" content="设计模式是人们在面对同类型软件工程设计问题所总结出的一些有用的经验。模式不是代码，而是某类问题的通用设计解决方案。 设计模式的本质目的是使软件工程在维护性、扩展性、变化性、复杂度方面成O(N) OO是原则，设计模式是具体的方法、工具   一、策略模式 分别封装行为接口，实现算法族，超类里放行为接口对象，在子类里具体设定行为对象。原则就是：分离变化部分，封装接口，基于接口变成各种功能。此模式让行">
-<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1316029-32f9363cd95f5c8f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta name="twitter:title" content="JVM的理解与整理">
+<meta name="twitter:description" content="整理和记录JVM的组成和运行原理，JVM关于内存的管理以及GC算法，垃圾回收的等原理">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/lilei644/lilei644.github.io/master/img/image8.png">
   
     <link rel="alternative" href="/atom.xml" title="Lei&#39;s blogs" type="application/atom+xml">
   
@@ -171,20 +173,20 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-Java设计模式(1)——策略模式" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-2018-04-21" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Java 设计模式(1) —— 策略模式
+      JVM的理解与整理
     </h1>
   
 
         
-        <a href="/2018/05/02/Java设计模式(1)——策略模式/" class="archive-article-date">
-  	<time datetime="2018-05-02T13:54:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-02</time>
+        <a href="/2018/04/21/2018-04-21/" class="archive-article-date">
+  	<time datetime="2018-04-21T04:50:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-21</time>
 </a>
         
       </header>
@@ -192,45 +194,36 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<ol>
-<li>设计模式是人们在面对同类型软件工程设计问题所总结出的一些有用的经验。模式不是代码，而是某类问题的通用设计解决方案。</li>
-<li>设计模式的本质目的是使软件工程在维护性、扩展性、变化性、复杂度方面成O(N)</li>
-<li>OO是原则，设计模式是具体的方法、工具</li>
-</ol>
+<p>整理和记录JVM的组成和运行原理，JVM关于内存的管理以及GC算法，垃圾回收的等原理</p>
 </blockquote>
-<h3 id="一、策略模式"><a href="#一、策略模式" class="headerlink" title="一、策略模式"></a>一、策略模式</h3><blockquote>
-<p>分别封装行为接口，实现算法族，超类里放行为接口对象，在子类里具体设定行为对象。原则就是：分离变化部分，封装接口，基于接口变成各种功能。此模式让行为算法的变化独立于算法的使用者</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/1316029-32f9363cd95f5c8f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="策略模式"></p>
+<p><img src="https://raw.githubusercontent.com/lilei644/lilei644.github.io/master/img/image8.png" alt="JVM"></p>
 <a id="more"></a>
-<h3 id="二、示例"><a href="#二、示例" class="headerlink" title="二、示例"></a>二、示例</h3><ul>
-<li>模拟鸭子项目，鸭子会嘎嘎叫，会游泳，有不同的颜色</li>
-</ul>
-<h4 id="1-传统模式"><a href="#1-传统模式" class="headerlink" title="1.传统模式"></a>1.传统模式</h4><p>从面向对象的角度设计，封装鸭子的超类，扩展超类</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public abstract class Duck &#123;</span><br><span class="line"></span><br><span class="line">    public void Quack() &#123; </span><br><span class="line">        System.out.println(&quot;~~gaga~~&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    public abstract void display(); </span><br><span class="line">    public void swim() &#123;</span><br><span class="line">        System.out.println(&quot;~~im swim~~&quot;); &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>1、GreenHeadDuck继承Duck :</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class GreenHeadDuck extends Duck &#123;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void display() &#123;</span><br><span class="line">        System.out.println(&quot;**GreenHead**&quot;); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>2、同理可有RedHeadDuck等集成Duck的父类</p>
-<p>新增需求 —— 鸭子会飞<br>OO思维里的继承方式解决方案是:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">public abstract class Duck &#123; </span><br><span class="line">    ...;</span><br><span class="line">    public void Fly() &#123;</span><br><span class="line">        System.out.println(&quot;~~im fly~~&quot;); </span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-<p>问题来了,这个Fly让所有子类都会飞了，这是不科学的，并不是所有的鸭子都会飞，且会飞的也飞的有快有慢。 </p>
-<p>继承的问题:对类的局部改动，尤其超类的局部改动，会影响其他部分。影响会有溢出效应。</p>
-<p>因此只能通过子类中一个个去覆盖解决，较繁琐。</p>
-<h4 id="2-使用策略模式后"><a href="#2-使用策略模式后" class="headerlink" title="2.使用策略模式后"></a>2.使用策略模式后</h4><p>1、接口:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">// 飞行行为接口</span><br><span class="line">public interface FlyBehavior &#123;</span><br><span class="line">    void fly();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 嘎嘎叫行为接口</span><br><span class="line">public interface QuackBehavior &#123;</span><br><span class="line">    void quack();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>2、好处:新增行为简单，行为类更好的复用，组合更方便。又有继承带来的复用好处</p>
-<p>重新设计的鸭子项目:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">public abstract class Duck &#123; </span><br><span class="line">    FlyBehavior mFlyBehavior; </span><br><span class="line">    QuackBehavior mQuackBehavior;</span><br><span class="line"></span><br><span class="line">    public Duck()&#123; </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void Fly() &#123; </span><br><span class="line">        mFlyBehavior.fly();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void Quack() &#123;</span><br><span class="line">        mQuackBehavior.quack(); </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public abstract void display(); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">public class GreenHeadDuck extends Duck &#123;</span><br><span class="line"></span><br><span class="line">    public GreenHeadDuck() &#123;</span><br><span class="line">        mFlyBehavior = new GoodFlyBehavior();</span><br><span class="line">        mQuackBehavior = new GaGaQuackBehavior();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void display() &#123;...&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h3><ul>
-<li>应对项目的拓展性，降低复杂度，分析项目变化与不变部分</li>
-<li>提取变化部分，抽象成接口+实现</li>
-<li>使得新增行为简单，行为类更好的复用，组合更方便，又有继承带来的复用好处</li>
-</ul>
-<p><br></p>
+<h3 id="一、内存概述"><a href="#一、内存概述" class="headerlink" title="一、内存概述"></a>一、内存概述</h3><h4 id="1-内存划分"><a href="#1-内存划分" class="headerlink" title="1.内存划分"></a>1.内存划分</h4><p>虚拟机规范中，将内存划分为六大部分，分别是PC寄存器、JAVA虚拟机栈、JAVA堆、方法区、运行时常量池以及本地方法栈。</p>
+<p><img src="https://raw.githubusercontent.com/lilei644/lilei644.github.io/master/img/image9.png" alt="内存划分"></p>
+<h4 id="2-内存区域详解"><a href="#2-内存区域详解" class="headerlink" title="2.内存区域详解"></a>2.内存区域详解</h4><p>1、PC寄存器（线程独有）：全称是程序计数寄存器，它记载着每一个线程当前运行的JAVA方法的地址，如果是当前执行的是本地方法，则程序计数器会是一个空地址。它的作用就是用来支持多线程，线程的阻塞、恢复、挂起等一系列操作，直观的想象一下，要是没有记住每个线程当前运行的位置，又如何恢复呢。依据这一点，每一个线程都有一个PC寄存器，也就是说PC寄存器是线程独有的。<br><br><br>2、JAVA虚拟机栈（线程独有）：JAVA虚拟机栈是在创建线程的同时创建的，用于存储栈帧，JAVA虚拟机栈也是线程独有的。<br>栈帧：简单点说，可以解释为是一个方法运行时，临时数据的存储区域，具体点说，它里面包括了数据和部分的过程结果，与此同时，它又肩负着处理方法返回值、动态链接以及异常分派的任务。栈帧是随着方法的创建而创建，随着方法的结束而销毁，如果方法抛出异常，也算方法结束。然而在每一个栈帧中，都有着自己的局部变量表以及操作数栈以及对当前类的运行时常量池的引用。<br>局部变量表：它是一个方法局部变量的列表，是在编译时期就写入了class文件当中。简单的理解，可以将它理解为一个对象数组，而里面按照索引0到length-1分别对应于每一个局部变量，特别的，如果是实例方法的局部变量表，第0个局部变量会是一个指向当前实例的引用，也就是this关键字，其余的局部变量则从索引1开始。<br>操作数栈：它是一个后进先出（LIFO）栈，而它的长度也是在编译时期就写入了class文件当中，是固定的。它的作用就是提供字节码指令操作变量计算的空间，比如简单的，对于int a=9这句话来说，就需要先将9压入操作数栈，再将9赋给a这个变量。<br><br><br>3、JAVA堆（全局共享）：这一部分是JAVA内存中最重要的一部分，之所以说是最重要的一部分，并不是因为它的重要性，而是指作为开发人员最应该关注的一部分。它随着JAVA虚拟机的启动创建，储存着所有对象实例以及数组对象，而且内置了“自动内存管理系统”，也就是我们常说的垃圾搜集器（GC）。JAVA堆中的内存释放是不受开发人员控制的，完全由JAVA虚拟机一手操办。对于JAVA虚拟机如何实现垃圾搜集器，JAVA虚拟机规范没有明确的规定，也正因如此，我们平时使用的JAVA虚拟机中提供了许多种垃圾搜集器，它们采用不同的算法以及实现方式，已满足多方面的性能需求。<br><br><br>4、方法区（全局共享）：方法区也是堆的一个组成部分，它主要存储的是运行时常量池、字段信息、方法信息、构造方法与普通函数的字节码内容以及一些特殊方法。它与JAVA堆的区别除了存储的信息与JAVA堆不一样之外，最大的区别就是这一部分JAVA虚拟机规范不强制要求实现自动内存管理系统（GC）。<br><br><br>5、本地方法栈（线程独有）：本地方法栈是一个传统的栈，它用来支持native方法的执行。如果JAVA虚拟机是使用的其它语言实现指令集解释器的时候，也会用到本地方法栈。如果前面这两种都未发生，也就是说如果JAVA虚拟机不依赖于本地方法栈，而且JAVA虚拟机也不支持native方法，则不需要本地方法栈。而如果需要的话，则本地方法栈也是随每一个线程的启动而创建的。<br><br></p>
 <blockquote>
-<p>Java设计模式所有<a href="https://github.com/lilei644/design-pattern-example" target="_blank" rel="noopener">示例代码</a>，持续更新中</p>
+<p>上面五个内存区域，除了PC寄存器之外，其余四个一般情况下，都要求JAVA虚拟机实现提供给客户调节大小的参数，也就是我们常用的Xms、Xmx等等。</p>
 </blockquote>
+<h4 id="3-内存区域说明"><a href="#3-内存区域说明" class="headerlink" title="3.内存区域说明"></a>3.内存区域说明</h4><p>　　内存管理分为内存分配和内存释放，看一下上面的五个内存区域，其实可以大致分为两部分，一部分是全局共享，一部分是线程独有。<br><br>　　对于线程独有的这部分内存，都是随着线程的启动而创建，而当线程被销毁时，内存也就随之释放。这一部分内存，不需要垃圾搜集器的管理，而是JAVA虚拟机来主动管理，每当一个线程被创建的时候，JAVA虚拟机就会为其分配相应的PC寄存器和JAVA虚拟机栈，如果需要的话，还会有本地方法栈。相应的，当一个线程被销毁的时候，JAVA虚拟机也会将这个线程所占有的内存全部释放。<br><br>　　相对于线程独有的那部分内存，全局共享的这部分内存更加难以处理，不过这只是针对于虚拟机的实现来说，因为这一部分内存是要实现自动内存管理系统（GC）的。<br><br>　　全局共享的这部分内存（以下简称堆），内存分配主要是由程序员显示的使用new关键字来触发的，至于new出来的这部分内存在哪分配，如何分配，则是JAVA虚拟机来决定。而这部分内存的释放，则是由自动内存管理系统（以下简称GC）来管理的。<br><br>　　通常情况下，堆内存分配是要依赖于GC的策略与实现的，在分配的时候，就要考虑好到时候如何回收这部分内存。也是正因为如此，对于内存分配这一部分的讲解来说，我们必须得先了解内存是如何被回收的，才能更好的理解内存要怎么被分配。<br><br><br></p>
+<h3 id="二、-GC简介"><a href="#二、-GC简介" class="headerlink" title="二、 GC简介"></a>二、 GC简介</h3><h4 id="1-GC主要解决的问题"><a href="#1-GC主要解决的问题" class="headerlink" title="1.GC主要解决的问题"></a>1.GC主要解决的问题</h4><ul>
+<li>哪些对象可以被回收</li>
+<li>何时回收这些对象</li>
+<li>采用什么样的方式回收</li>
+</ul>
+<h4 id="2-GC策略采用的何种算法"><a href="#2-GC策略采用的何种算法" class="headerlink" title="2.GC策略采用的何种算法"></a>2.GC策略采用的何种算法</h4><h5 id="2-1-引用计数法"><a href="#2-1-引用计数法" class="headerlink" title="2.1 引用计数法"></a>2.1 引用计数法</h5><p>有关上面所提到的三个问题，其实最主要的一个问题就是第一个，也就是哪些对象才是可以回收的。<br><br>有一种比较简单直观的办法，它的效率较高，被称作引用计数算法。但是这个算法有一个致命的缺陷，那就是对于循环引用的对象无法进行回收。<br><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">public class Object &#123;</span><br><span class="line"></span><br><span class="line">    Object field = null;</span><br><span class="line">    </span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Thread thread = new Thread(new Runnable() &#123;</span><br><span class="line">            public void run() &#123;</span><br><span class="line">                Object objectA = new Object();</span><br><span class="line">                Object objectB = new Object();//1</span><br><span class="line">                objectA.field = objectB;</span><br><span class="line">                objectB.field = objectA;//2</span><br><span class="line">                //to do something</span><br><span class="line">                objectA = null;</span><br><span class="line">                objectB = null;//3</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        thread.start();</span><br><span class="line">        while (true);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>　　这段代码看起来有点刻意为之，但其实在实际编程过程当中，是经常出现的，比如两个一对一关系的数据库对象，各自保持着对方的引用。最后一个无限循环只是为了保持JVM不退出，没什么实际意义。<br>　　对于我们现在使用的GC来说，当thread线程运行结束后，会将objectA和objectB全部作为待回收的对象。而如果我们的GC采用上面所说的引用计数算法，则这两个对象永远不会被回收，即便我们在使用后显示的将对象归为空值也毫无作用。<br>　　在代码中标注了1、2、3三个数字，当第1个地方的语句执行完以后，两个对象的引用计数全部为1。当第2个地方的语句执行完以后，两个对象的引用计数就全部变成了2。当第3个地方的语句执行完以后，也就是将二者全部归为空值以后，二者的引用计数仍然为1。根据引用计数算法的回收规则，引用计数没有归0的时候是不会被回收的。</p>
+<h5 id="2-2-根搜索算法"><a href="#2-2-根搜索算法" class="headerlink" title="2.2 根搜索算法"></a>2.2 根搜索算法</h5><p>由于引用计数算法的缺陷，所以JVM一般会采用一种新的算法，叫做根搜索算法。它的处理方式就是，设立若干种根对象，当任何一个根对象到某一个对象均不可达时，则认为这个对象是可以被回收的。</p>
+<p><img src="https://raw.githubusercontent.com/lilei644/lilei644.github.io/master/img/image10.png" alt="根搜索算法"></p>
+<p>就拿上图来说，ObjectD和ObjectE是互相关联的，但是由于GC roots到这两个对象不可达，所以最终D和E还是会被当做GC的对象，上图若是采用引用计数法，则A-E五个对象都不会被回收。</p>
+<p>说到GC roots（GC根），在JAVA语言中，可以当做GC roots的对象有以下几种：</p>
+<ul>
+<li>1、虚拟机栈中的引用的对象。</li>
+<li>2、方法区中的类静态属性引用的对象。</li>
+<li>3、方法区中的常量引用的对象。</li>
+<li>4、本地方法栈中JNI的引用的对象。<br>第一和第四种都是指的方法的本地变量表，第二种表达的意思比较清晰，第三种主要指的是声明为final的常量值。</li>
+</ul>
+<h4 id="3-垃圾收集算法"><a href="#3-垃圾收集算法" class="headerlink" title="3.垃圾收集算法"></a>3.垃圾收集算法</h4><p>根搜索算法解决的是垃圾搜集的基本问题，也就是上面提到的第一个问题，也是最关键的问题，就是哪些对象可以被回收。</p>
+<p>不过垃圾收集显然还需要解决后两个问题，什么时候回收以及如何回收。在根搜索算法的基础上，现代虚拟机的实现当中，垃圾搜集的算法主要有三种，分别是标记-清除算法、复制算法、标记-整理算法。这三种算法都扩充了根搜索算法，不过它们理解起来还是非常好理解的。</p>
 
       
 
@@ -244,11 +237,11 @@ ga('send', 'pageview');
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">java虚拟机</a>
         		</li>
       		
 		</ul>
@@ -304,7 +297,7 @@ ga('send', 'pageview');
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://lilei644.github.io/2018/05/02/Java设计模式(1)——策略模式/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://lilei644.github.io/2018/04/21/2018-04-21/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -318,18 +311,18 @@ ga('send', 'pageview');
   
 <nav id="article-nav">
   
-    <a href="/2018/05/04/Java设计模式(2)——观察者模式/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2018/05/02/2018-05-02/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          Java 设计模式(2) —— 观察者模式
+          Java 设计模式(1) —— 策略模式
         
       </div>
     </a>
   
   
-    <a href="/2018/04/21/JVM的理解与整理/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">JVM的理解与整理</div>
+    <a href="/2018/01/20/2018-01-20/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">python练习示例 -- 简单的爬虫解析</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -368,7 +361,7 @@ ga('send', 'pageview');
 <script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-  id: "https://lilei644.github.io/2018/05/02/Java设计模式(1)——策略模式/",
+  id: "https://lilei644.github.io/2018/04/21/2018-04-21/",
   owner: 'lilei644',
   repo: 'lilei644.github.io',
   oauth: {
