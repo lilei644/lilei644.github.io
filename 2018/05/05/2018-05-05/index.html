@@ -6,14 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lilei644.github.io">
-  <title>Tag: java | Lei&#39;s blogs</title>
+  <title>Java 设计模式(3) —— 装饰者模式 | Lei&#39;s blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Lei&#39;s blogs">
-<meta property="og:url" content="https://lilei644.github.io/tags/java/index.html">
+  <meta name="description" content="一、装饰者模式  将原始对象进行装饰封装，动态的将新功能附加到对象上。在对象功能扩展方面，它比继承更有弹性">
+<meta name="keywords" content="java,设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 设计模式(3) —— 装饰者模式">
+<meta property="og:url" content="https://lilei644.github.io/2018/05/05/2018-05-05/index.html">
 <meta property="og:site_name" content="Lei&#39;s blogs">
+<meta property="og:description" content="一、装饰者模式  将原始对象进行装饰封装，动态的将新功能附加到对象上。在对象功能扩展方面，它比继承更有弹性">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1316029-4adb76fc5aff3dd2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-05-05T17:46:26.506Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lei&#39;s blogs">
+<meta name="twitter:title" content="Java 设计模式(3) —— 装饰者模式">
+<meta name="twitter:description" content="一、装饰者模式  将原始对象进行装饰封装，动态的将新功能附加到对象上。在对象功能扩展方面，它比继承更有弹性">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1316029-4adb76fc5aff3dd2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternative" href="/atom.xml" title="Lei&#39;s blogs" type="application/atom+xml">
   
@@ -164,36 +171,79 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-2018-05-05" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Java 设计模式(3) —— 装饰者模式
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/05/2018-05-05/" class="archive-article-date">
+
+        
+        <a href="/2018/05/05/2018-05-05/" class="archive-article-date">
   	<time datetime="2018-05-05T15:59:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-05</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/05/2018-05-05/">Java 设计模式(3) —— 装饰者模式</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一、装饰者模式"><a href="#一、装饰者模式" class="headerlink" title="一、装饰者模式"></a>一、装饰者模式</h3><blockquote>
+<p> 将原始对象进行装饰封装，动态的将新功能附加到对象上。在对象功能扩展方面，它比继承更有弹性</p>
+</blockquote>
+<p><img src="https://upload-images.jianshu.io/upload_images/1316029-4adb76fc5aff3dd2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="装饰者模式"></p>
+<a id="more"></a>
+<h3 id="二、示例"><a href="#二、示例" class="headerlink" title="二、示例"></a>二、示例</h3><ul>
+<li>咖啡馆订单项目，咖啡馆的咖啡种类有多种，可以添加的配料也有多种，不同的咖啡可以与配料进行任意搭配组合下单。要得到组合出的饮料价格和描述。</li>
+</ul>
+<h4 id="1-传统模式"><a href="#1-传统模式" class="headerlink" title="1.传统模式"></a>1.传统模式</h4><p>1)、咖啡种类:Espresso、ShortBlack、LongBlack、Decaf </p>
+<p>2)、调料:Milk、Soy、Chocolate</p>
+<p>从面向对象的角度设计，封装一个饮料的对象，附上所有的属性(咖啡种类和配料)，以及方法，通过不同的对象进行继承，每一个对象根据不同的属性值重写必要的方法(计算价格，获取咖啡描述)</p>
+<p>1.饮料对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 饮料的超类，封装基本方法和定义抽象方法</span><br><span class="line"> */</span><br><span class="line">public abstract class Drink &#123;</span><br><span class="line"></span><br><span class="line">	public String description=&quot;&quot;;</span><br><span class="line">	private float price=0f;</span><br><span class="line">	</span><br><span class="line">	</span><br><span class="line">	public void setDescription(String description)</span><br><span class="line">	&#123;</span><br><span class="line">		this.description=description;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	public String getDescription()</span><br><span class="line">	&#123;</span><br><span class="line">		return description+&quot;-&quot;+this.getPrice();</span><br><span class="line">	&#125;</span><br><span class="line">	public float getPrice()</span><br><span class="line">	&#123;</span><br><span class="line">		return price;</span><br><span class="line">	&#125;</span><br><span class="line">	public void setPrice(float price)</span><br><span class="line">	&#123;</span><br><span class="line">		this.price=price;</span><br><span class="line">	&#125;</span><br><span class="line">	public abstract float cost();</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>传统模式存在的问题：</p>
+<ul>
+<li><p>若新增一种咖啡种类或者调料需要将每一个对象都接入新的组合</p>
+</li>
+<li><p>若一个调料添加多次，则无法实现</p>
+</li>
+</ul>
+<h4 id="2-使用装饰者模式后"><a href="#2-使用装饰者模式后" class="headerlink" title="2.使用装饰者模式后"></a>2.使用装饰者模式后</h4><p>装饰者模式就像打包一个快递 </p>
+<p>1)、主体:陶瓷、衣服</p>
+<p>2)、包装:报纸填充、塑料泡沫、纸板、木板</p>
+<p>1、定义装饰者类:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 自定义装饰者，也继承饮料的超类</span><br><span class="line"> */</span><br><span class="line">public class Decorator extends Drink &#123;</span><br><span class="line"></span><br><span class="line">    private Drink Obj;</span><br><span class="line"></span><br><span class="line">    // 自身引入超类的对象</span><br><span class="line">    public Decorator(Drink Obj) &#123;</span><br><span class="line">        this.Obj = Obj;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    // 自定义方法，可利用递归计算价格的总和</span><br><span class="line">    @Override</span><br><span class="line">    public float cost() &#123;</span><br><span class="line">        return super.getPrice() + Obj.cost();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public String getDescription() &#123;</span><br><span class="line">        return super.description + &quot;-&quot; + super.getPrice() + &quot;&amp;&amp;&quot; + Obj.getDescription();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2、被装饰者继承装饰者类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public class Chocolate extends Decorator &#123;</span><br><span class="line"></span><br><span class="line">	public Chocolate(Drink Obj) &#123;		</span><br><span class="line">		super(Obj);</span><br><span class="line">		super.setDescription(&quot;Chocolate&quot;);</span><br><span class="line">		super.setPrice(3.0f);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3、被装饰过得对象则可以任意组合搭配</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Drink order;</span><br><span class="line">order=new Decaf();</span><br><span class="line"></span><br><span class="line">// 任意搭配，自定义添加组合方式</span><br><span class="line">// 选好一份咖啡后添加一次牛奶，两次巧克力</span><br><span class="line">// 用装饰者将对象包装起来，在装饰者内自定义新的方法逻辑，不影响老的对象</span><br><span class="line">order=new LongBlack();</span><br><span class="line">order=new Milk(order);</span><br><span class="line">order=new Chocolate(order);</span><br><span class="line">order=new Chocolate(order);</span><br></pre></td></tr></table></figure>
+<h3 id="三、Java内置的装饰者"><a href="#三、Java内置的装饰者" class="headerlink" title="三、Java内置的装饰者"></a>三、Java内置的装饰者</h3><p>1、Java内典型的装饰者案例</p>
+<ul>
+<li>InputStream</li>
+<li>FilterInputStream</li>
+</ul>
+<p>2、自定义一层IO流内的装饰者</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 自定义IO流的一层装饰者，重新定义read方法，将读取到的数据转成大写</span><br><span class="line"> * 装饰之后方法可任意嵌套，灵活修改</span><br><span class="line"> */</span><br><span class="line">public class UpperCaseInputStream extends FilterInputStream &#123;</span><br><span class="line"></span><br><span class="line">    protected UpperCaseInputStream(InputStream in) &#123;</span><br><span class="line">        super(in);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int read() throws IOException &#123;</span><br><span class="line">        int c = super.read();</span><br><span class="line">        return c == -1 ? c : Character.toUpperCase((char) (c));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public int read(byte[] b, int offset, int len) throws IOException &#123;</span><br><span class="line">        int result = super.read(b, offset, len);</span><br><span class="line">        for (int i = 0; i &lt; result; i++) &#123;</span><br><span class="line">            b[i] = (byte) Character.toUpperCase((char) (b[i]));</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        return result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h3><ul>
+<li>通过装饰者模式可以实现对象之间的解耦</li>
+<li>将对象进行装饰包装，当有新的需求时可直接在装饰的对象上进行操作，自定义性强，灵活</li>
+<li>开放 — 关闭原则的设计意义，开放新的装饰者方法，关闭内部单独的模块对象</li>
+</ul>
+<p><br></p>
+<blockquote>
+<p>Java设计模式所有<a href="https://github.com/lilei644/design-pattern-example" target="_blank" rel="noopener">示例代码</a>，持续更新中</p>
+</blockquote>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -209,103 +259,122 @@ ga('send', 'pageview');
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://lilei644.github.io/2018/05/05/2018-05-05/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/04/2018-05-04/" class="archive-article-date">
-  	<time datetime="2018-05-04T13:43:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-04</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/05/04/2018-05-04/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java 设计模式(2) —— 观察者模式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/04/2018-05-04/">Java 设计模式(2) —— 观察者模式</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/02/2018-05-02/" class="archive-article-date">
-  	<time datetime="2018-05-02T13:54:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/02/2018-05-02/">Java 设计模式(1) —— 策略模式</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "https://lilei644.github.io/2018/05/05/2018-05-05/",
+  owner: 'lilei644',
+  repo: 'lilei644.github.io',
+  oauth: {
+    client_id: '6bcff90c95dab647eace',
+    client_secret: '186ae7e79b8b65f90b28a2b15683bfa5fb82a3c8',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+  
 
 
           </div>
@@ -328,9 +397,9 @@ ga('send', 'pageview');
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

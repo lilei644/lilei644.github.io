@@ -166,6 +166,89 @@ ga('send', 'pageview');
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-2018-05-05" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/05/05/2018-05-05/">Java 设计模式(3) —— 装饰者模式</a>
+    </h1>
+  
+
+        
+        <a href="/2018/05/05/2018-05-05/" class="archive-article-date">
+  	<time datetime="2018-05-05T15:59:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一、装饰者模式"><a href="#一、装饰者模式" class="headerlink" title="一、装饰者模式"></a>一、装饰者模式</h3><blockquote>
+<p> 将原始对象进行装饰封装，动态的将新功能附加到对象上。在对象功能扩展方面，它比继承更有弹性</p>
+</blockquote>
+<p><img src="https://upload-images.jianshu.io/upload_images/1316029-4adb76fc5aff3dd2.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="装饰者模式"></p>
+        
+          <a class="article-more-a" href="/2018/05/05/2018-05-05/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/05/05/2018-05-05/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-2018-05-04" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -896,91 +979,6 @@ ga('send', 'pageview');
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2017/02/05/2017-02-05/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2016-12-31" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/31/2016-12-31/">MySql性能优化——基础篇</a>
-    </h1>
-  
-
-        
-        <a href="/2016/12/31/2016-12-31/" class="archive-article-date">
-  	<time datetime="2016-12-31T09:48:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>记录工作中累计的sql正确的使用方式，从sql语句上优化mysql性能</p>
-</blockquote>
-<h3 id="1-分页"><a href="#1-分页" class="headerlink" title="1.分页"></a>1.分页</h3><p>mysql的limit语法跟sqlserver的top比起来真的是好用太多，特别是在分页上基本是想要什么就取什么，那么当单标数据量达到百万以上时应该怎样正确的使用分页呢？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM table ORDER BY id LIMIT 1000000, 10;</span><br></pre></td></tr></table></figure>
-<p>这是大部分分页的方式，然而当数据量超过百万甚至千万时耗时大概十几秒甚至几十秒！</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM table WHERE id &gt;= (SELECT id FROM table LIMIT 1000000, 1) LIMIT 10;</span><br></pre></td></tr></table></figure>
-<p>这样的话可以优化只0.x秒内</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM table WHERE id BETWEEN 1000000 AND 1000010;</span><br></pre></td></tr></table></figure>
-<p>比上面那句，还要再快5至10倍 </p>
-        
-          <a class="article-more-a" href="/2016/12/31/2016-12-31/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/31/2016-12-31/">展开全文 >></a>
         </p>
       
 
