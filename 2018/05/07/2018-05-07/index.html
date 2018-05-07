@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Lei&#39;s blogs">
 <meta property="og:description" content="一、工厂模式  简单工厂模式 工厂方法模式 抽象工厂模式">
 <meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1316029-74202daa19a32c25.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:updated_time" content="2018-05-07T13:45:03.877Z">
+<meta property="og:updated_time" content="2018-05-07T13:52:17.002Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 设计模式(5) —— 工厂模式">
 <meta name="twitter:description" content="一、工厂模式  简单工厂模式 工厂方法模式 抽象工厂模式">
@@ -208,7 +208,7 @@ ga('send', 'pageview');
 <h3 id="三、简单工厂模式"><a href="#三、简单工厂模式" class="headerlink" title="三、简单工厂模式"></a>三、简单工厂模式</h3><blockquote>
 <p>定义了一个创建对象的类，由这个类来封装实例化对象的行为</p>
 </blockquote>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 简单工厂模式，将生产方法抽离出单独的类进行生产</span><br><span class="line"> */</span><br><span class="line">public class SimplePizzaFactory &#123;</span><br><span class="line"></span><br><span class="line">	public Pizza CreatePizza(String ordertype) &#123;</span><br><span class="line">		Pizza pizza = null;</span><br><span class="line"></span><br><span class="line">		if (ordertype.equals(&quot;cheese&quot;)) &#123;</span><br><span class="line">			pizza = new CheesePizza();</span><br><span class="line">		&#125; else if (ordertype.equals(&quot;greek&quot;)) &#123;</span><br><span class="line">			pizza = new GreekPizza();</span><br><span class="line">		&#125; else if (ordertype.equals(&quot;pepper&quot;)) &#123;</span><br><span class="line">			pizza = new PepperPizza();</span><br><span class="line">		&#125;</span><br><span class="line">		return pizza;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">将生产方法单独用一个类处理，进行简单的模块分离</span><br><span class="line"></span><br><span class="line">缺点：不利于拓展多个不同的工厂方法</span><br><span class="line"></span><br><span class="line">### 四、工厂方法模式</span><br><span class="line"></span><br><span class="line">&gt; 定义了一个创建对象的抽象方法，由子类决定要实例化的类。</span><br><span class="line"></span><br><span class="line">披萨项目中，若在各地开了分店，但是每个地区的人喜好不同，因此就得区分不同的工厂进行生产。</span><br><span class="line"></span><br><span class="line">* 利用工厂方法模式将对象的实例化抽象到了子类，利用对象之间的继承关系实现差异的工厂方法</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 简单工厂模式，将生产方法抽离出单独的类进行生产</span><br><span class="line"> */</span><br><span class="line">public class SimplePizzaFactory &#123;</span><br><span class="line"></span><br><span class="line">	public Pizza CreatePizza(String ordertype) &#123;</span><br><span class="line">		Pizza pizza = null;</span><br><span class="line"></span><br><span class="line">		if (ordertype.equals(&quot;cheese&quot;)) &#123;</span><br><span class="line">			pizza = new CheesePizza();</span><br><span class="line">		&#125; else if (ordertype.equals(&quot;greek&quot;)) &#123;</span><br><span class="line">			pizza = new GreekPizza();</span><br><span class="line">		&#125; else if (ordertype.equals(&quot;pepper&quot;)) &#123;</span><br><span class="line">			pizza = new PepperPizza();</span><br><span class="line">		&#125;</span><br><span class="line">		return pizza;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">将生产方法单独用一个类处理，进行简单的模块分离</span><br><span class="line"></span><br><span class="line">缺点：不利于拓展多个不同的工厂方法</span><br><span class="line"></span><br><span class="line">### 四、工厂方法模式</span><br><span class="line"></span><br><span class="line">&gt; 定义了一个创建对象的抽象方法，由子类决定要实例化的类。</span><br><span class="line"></span><br><span class="line">披萨项目中，若在各地开了分店，但是每个地区的人喜好不同，因此就得区分不同的工厂进行生产。</span><br><span class="line"></span><br><span class="line">* 利用工厂方法模式将对象的实例化抽象到了子类，利用对象之间的继承关系实现差异的工厂方法</span><br></pre></td></tr></table></figure>
 <p>/**</p>
 <ul>
 <li><p>工厂方法对象，给不同的工厂继承<br>*/<br>public abstract class OrderPizza {</p>
@@ -242,7 +242,8 @@ do {
 </code></pre><p> }</p>
 </li>
 </ul>
-<p>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>/**</p>
 <ul>
 <li><p>伦敦工厂，继承工厂方法对象<br>*/<br>public class LDOrderPizza extends OrderPizza {</p>
@@ -258,7 +259,8 @@ return pizza;
 </code></pre><p> }</p>
 </li>
 </ul>
-<p>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>/**</p>
 <ul>
 <li><p>纽约工厂，继承工厂方法对象<br>*/<br>public class NYOrderPizza extends OrderPizza {</p>
@@ -276,12 +278,13 @@ return pizza;
 </ul>
 <p>}</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">需要使用哪种工厂就初始化哪种</span><br></pre></td></tr></table></figure>
-<p>OrderPizza mOrderPizza = new NYOrderPizza();<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">缺点：继承关系使对象之间的依赖性较高</span><br><span class="line"></span><br><span class="line">### 五、抽象工厂模式</span><br><span class="line"></span><br><span class="line">&gt; 定义了一个接口用于创建相关或有依赖关系的对象族，而无需明确</span><br><span class="line">指定具体类</span><br><span class="line"></span><br><span class="line">1.定义一个工厂的接口方法</span><br></pre></td></tr></table></figure></p>
+<p>OrderPizza mOrderPizza = new NYOrderPizza();</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">缺点：继承关系使对象之间的依赖性较高</span><br><span class="line"></span><br><span class="line">### 五、抽象工厂模式</span><br><span class="line"></span><br><span class="line">&gt; 定义了一个接口用于创建相关或有依赖关系的对象族，而无需明确</span><br><span class="line">指定具体类</span><br><span class="line"></span><br><span class="line">1.定义一个工厂的接口方法</span><br></pre></td></tr></table></figure>
 <p>/**</p>
 <ul>
-<li>工厂方法的抽象接口<br>*/<br>public interface AbsFactory {<br> public Pizza CreatePizza(String ordertype) ;<br>}<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2.各工厂实现工厂方法</span><br></pre></td></tr></table></figure>
-</li>
+<li>工厂方法的抽象接口<br>*/<br>public interface AbsFactory {<br> public Pizza CreatePizza(String ordertype) ;<br>}</li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2.各工厂实现工厂方法</span><br></pre></td></tr></table></figure>
 <p>/**</p>
 <ul>
 <li><p>伦敦工厂实现抽象方法<br>*/<br>public class LDFactory implements AbsFactory {</p>
@@ -295,9 +298,9 @@ if (ordertype.equals(&quot;cheese&quot;)) {
 }
 return pizza;
 </code></pre><p> }<br>}</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3.利用抽象接口在统一订单对象中进行方法调用</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3.利用抽象接口在统一订单对象中进行方法调用</span><br></pre></td></tr></table></figure>
 <p>/**</p>
 <ul>
 <li><p>抽象工厂模式，直接利用抽象工厂进行对象生产<br>*/<br>public class OrderPizza {</p>
@@ -345,9 +348,10 @@ do {
 <li><p>引用工厂的时候直接引用接口对象<br>*/<br>public class PizzaStroe {<br> public static void main(String[] args) {</p>
 <pre><code>OrderPizza mOrderPizza;
 mOrderPizza=new    OrderPizza(new LDFactory());
-</code></pre><p> }<br>}<br>```</p>
+</code></pre><p> }<br>} </p>
 </li>
 </ul>
+<p>```</p>
 <p>优点：利用接口进行方法抽象，对象之间耦合度较低，又可实现同种方法内部不同的处理方式。</p>
 <ul>
 <li>依赖抽象原则<ul>
