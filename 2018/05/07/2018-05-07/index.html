@@ -6,14 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lilei644.github.io">
-  <title>Lei&#39;s blogs</title>
+  <title>Java 设计模式(5) —— 工厂模式 | Lei&#39;s blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Lei&#39;s blogs">
-<meta property="og:url" content="https://lilei644.github.io/page/2/index.html">
+  <meta name="description" content="一、工厂模式  简单工厂模式 工厂方法模式 抽象工厂模式">
+<meta name="keywords" content="java,设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 设计模式(5) —— 工厂模式">
+<meta property="og:url" content="https://lilei644.github.io/2018/05/07/2018-05-07/index.html">
 <meta property="og:site_name" content="Lei&#39;s blogs">
+<meta property="og:description" content="一、工厂模式  简单工厂模式 工厂方法模式 抽象工厂模式">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1316029-74202daa19a32c25.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-05-07T13:45:03.877Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lei&#39;s blogs">
+<meta name="twitter:title" content="Java 设计模式(5) —— 工厂模式">
+<meta name="twitter:description" content="一、工厂模式  简单工厂模式 工厂方法模式 抽象工厂模式">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1316029-74202daa19a32c25.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternative" href="/atom.xml" title="Lei&#39;s blogs" type="application/atom+xml">
   
@@ -164,377 +171,197 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-2017-03-31" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-2018-05-07" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/03/31/2017-03-31/">Android Studo jni开发入门——看我就够了!</a>
+    <h1 class="article-title" itemprop="name">
+      Java 设计模式(5) —— 工厂模式
     </h1>
   
 
         
-        <a href="/2017/03/31/2017-03-31/" class="archive-article-date">
-  	<time datetime="2017-03-31T12:44:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-31</time>
+        <a href="/2018/05/07/2018-05-07/" class="archive-article-date">
+  	<time datetime="2018-05-07T13:14:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-07</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>此贴记录一下Android Studio 进行jni开发的基础配置以及入门教程，想当初使用eclipse配置ndk环境都难，现在基本都向AS转型，特此给需要帮助的新手村的同学们少走弯路☺</p>
-</blockquote>
-<h2 id="一、环境配置"><a href="#一、环境配置" class="headerlink" title="一、环境配置"></a>一、环境配置</h2><p>主要需要配置的就是NDK（Native Development Kit），现在Android studio很便利，可以一键下载：<br>file → setting → 按截图找到如下路径 → 选择NDK → 确定应用下载</p>
-<p>  <img src="http://upload-images.jianshu.io/upload_images/1316029-293070fc3c2ac350.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="NDK安装"></p>
+        <h3 id="一、工厂模式"><a href="#一、工厂模式" class="headerlink" title="一、工厂模式"></a>一、工厂模式</h3><blockquote>
 <ul>
-<li>安装完成以后就可以开撸了</li>
+<li>简单工厂模式</li>
+<li>工厂方法模式</li>
+<li>抽象工厂模式</li>
 </ul>
-        
-          <a class="article-more-a" href="/2017/03/31/2017-03-31/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jni</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/03/31/2017-03-31/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2017-02-05" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/02/05/2017-02-05/">记录一次GreenDao3.x踏坑之旅</a>
-    </h1>
-  
-
-        
-        <a href="/2017/02/05/2017-02-05/" class="archive-article-date">
-  	<time datetime="2017-02-05T06:27:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p> 最近公司开发新项目，于是便使用GreenDao做数据持久化，毕竟第一次正式在项目中使用，特此记录下使用中碰到的两个坑。</p>
 </blockquote>
-<h3 id="一-前言"><a href="#一-前言" class="headerlink" title="一.前言"></a>一.前言</h3><p>公司准备开发一个新项目，由于项目中需要用到数据持久化，所以便开始挑选合适的方案，目前最稳定的当然是sqlite了，但是近闻realm比较火，使用起来也比较方便，所以决定大胆尝试一次。但是最终集成开发后用了两天便弃坑了，后来才发现原来网上也有大部分相同感受的人。<br>后来决定还是重新使用稳定的sqlite方案，就开始选择开源的ORM类库，GreenDao无论是在效率还是使用上都是较优的，所以选择了它。看了下github的主页原来版本已经到3.x的时代了，网上查阅了下相关教程原来集成和使用上也变得更便捷，于是拿起键盘就开始干了！</p>
-<h3 id="二-踏坑之旅"><a href="#二-踏坑之旅" class="headerlink" title="二.踏坑之旅"></a>二.踏坑之旅</h3><blockquote>
-<p>GreenDao3.x的具体使用我就不介绍了，网上也有很多相关教程，特此记录项目开发中碰到的两个坑</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1316029-74202daa19a32c25.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="工厂模式"></p>
+<a id="more"></a>
+<h3 id="二、示例"><a href="#二、示例" class="headerlink" title="二、示例"></a>二、示例</h3><p>披萨项目：有一家披萨店，有很多种口味的披萨，但是这些披萨除了准备工作不同，后续的烘焙，切割，打包等方法都是相同的</p>
+<p>用传统的面向对象模式，则在用户订单类中根据不同的订单要求，生产出不同的披萨</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 披萨抽象对象，实现公共方法，抽象差异化的方法</span><br><span class="line"> */</span><br><span class="line">public abstract class Pizza &#123;</span><br><span class="line">    protected String name;</span><br><span class="line"></span><br><span class="line">    public abstract void prepare();</span><br><span class="line"></span><br><span class="line">    public void bake() &#123;</span><br><span class="line">        System.out.println(name + &quot; baking;&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void cut() &#123;</span><br><span class="line">        System.out.println(name + &quot; cutting;&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void box() &#123;</span><br><span class="line">        System.out.println(name + &quot; boxing;&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setname(String name) &#123;</span><br><span class="line">        this.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 披萨订单类，OO模式，统一在订单类中进行分类生产</span><br><span class="line"> */</span><br><span class="line">public class OrderPizza &#123;</span><br><span class="line"></span><br><span class="line">	public OrderPizza() &#123;</span><br><span class="line">		Pizza pizza = null;</span><br><span class="line">		String ordertype;</span><br><span class="line"></span><br><span class="line">		do &#123;</span><br><span class="line">			ordertype = gettype();</span><br><span class="line"></span><br><span class="line">			if (ordertype.equals(&quot;cheese&quot;)) &#123;</span><br><span class="line">				pizza = new CheesePizza();</span><br><span class="line">			&#125; else if (ordertype.equals(&quot;greek&quot;)) &#123;</span><br><span class="line">				pizza = new GreekPizza();</span><br><span class="line">			&#125; else if (ordertype.equals(&quot;pepper&quot;)) &#123;</span><br><span class="line">				pizza = new PepperPizza();</span><br><span class="line">			&#125; else if (ordertype.equals(&quot;chinese&quot;)) &#123;</span><br><span class="line">				pizza = new ChinesePizza();</span><br><span class="line">			&#125; else &#123;</span><br><span class="line">				break;</span><br><span class="line">			&#125;</span><br><span class="line">			pizza.prepare();</span><br><span class="line">			pizza.bake();</span><br><span class="line">			pizza.cut();</span><br><span class="line">			pizza.box();</span><br><span class="line">		&#125; while (true);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	private String gettype() &#123;</span><br><span class="line">		try &#123;</span><br><span class="line">			BufferedReader strin = new BufferedReader(new InputStreamReader(</span><br><span class="line">					System.in));</span><br><span class="line">			System.out.println(&quot;input pizza type:&quot;);</span><br><span class="line">			String str = strin.readLine();</span><br><span class="line"></span><br><span class="line">			return str;</span><br><span class="line">		&#125; catch (IOException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">			return &quot;&quot;;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>缺点：无清晰的模块分离，生产与使用方法混在一起</p>
+<h3 id="三、简单工厂模式"><a href="#三、简单工厂模式" class="headerlink" title="三、简单工厂模式"></a>三、简单工厂模式</h3><blockquote>
+<p>定义了一个创建对象的类，由这个类来封装实例化对象的行为</p>
 </blockquote>
-        
-          <a class="article-more-a" href="/2017/02/05/2017-02-05/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">GreenDao</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">sqlite</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/02/05/2017-02-05/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2016-12-31" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/31/2016-12-31/">MySql性能优化——基础篇</a>
-    </h1>
-  
-
-        
-        <a href="/2016/12/31/2016-12-31/" class="archive-article-date">
-  	<time datetime="2016-12-31T09:48:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>记录工作中累计的sql正确的使用方式，从sql语句上优化mysql性能</p>
-</blockquote>
-<h3 id="1-分页"><a href="#1-分页" class="headerlink" title="1.分页"></a>1.分页</h3><p>mysql的limit语法跟sqlserver的top比起来真的是好用太多，特别是在分页上基本是想要什么就取什么，那么当单标数据量达到百万以上时应该怎样正确的使用分页呢？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM table ORDER BY id LIMIT 1000000, 10;</span><br></pre></td></tr></table></figure>
-<p>这是大部分分页的方式，然而当数据量超过百万甚至千万时耗时大概十几秒甚至几十秒！</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM table WHERE id &gt;= (SELECT id FROM table LIMIT 1000000, 1) LIMIT 10;</span><br></pre></td></tr></table></figure>
-<p>这样的话可以优化只0.x秒内</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM table WHERE id BETWEEN 1000000 AND 1000010;</span><br></pre></td></tr></table></figure>
-<p>比上面那句，还要再快5至10倍 </p>
-        
-          <a class="article-more-a" href="/2016/12/31/2016-12-31/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/31/2016-12-31/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2016-12-06" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/12/06/2016-12-06/">手把手教你绘制Android粘性果冻动画组件</a>
-    </h1>
-  
-
-        
-        <a href="/2016/12/06/2016-12-06/" class="archive-article-date">
-  	<time datetime="2016-12-06T12:46:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-06</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>利用阻尼函数以及ValueAnimator通过贝塞尔曲线绘制弹性动画的组件</p>
-<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><blockquote>
-<p>   从事移动互联网开发已经快两年了，回想当初是Android带我走进了移动端的世界，后来由于自身对用户体验比较感兴趣，发现iOS更注重对图形渲染以及动画处理，所以转身自学iOS开发，之后也发布了几个iOS的<a href="https://github.com/lilei644" target="_blank" rel="noopener">组件库</a>。但是Android进两年发展趋势猛增，在动画处理上也比以前有所改进，Android3.0之后开启了GPU硬件加速让图形渲染没以前那么卡顿，特别是5.0之后的material design更是引领潮流。所以趁最近工作不忙有时间，写了个弹性动画的<a href="https://github.com/lilei644/SpringActionMenu" target="_blank" rel="noopener">ActionMenu</a>，核心原理来自咱们iOS界有动画小王子之称的kittenyang的<a href="http://kittenyang.com/deformationandgooey/" target="_blank" rel="noopener">这篇博客</a>（特此鸣谢），废话不多说了，先上效果图（gif存在失真，实际效果更佳流畅Q弹）。</p>
-</blockquote>
-<p><img src="http://upload-images.jianshu.io/upload_images/1316029-0cc45c25def89df6.gif?imageMogr2/auto-orient/strip" alt="效果图"></p>
-        
-          <a class="article-more-a" href="/2016/12/06/2016-12-06/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">animation</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/12/06/2016-12-06/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2016-01-04" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/01/04/2016-01-04/">使用Hexo + Github搭建个人博客</a>
-    </h1>
-  
-
-        
-        <a href="/2016/01/04/2016-01-04/" class="archive-article-date">
-  	<time datetime="2016-01-04T03:01:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! 博客是大多数技术人员用来记录开发经验的方式，下面我们使用Hexo + Github建立个人静态博客。</p>
-<h2 id="环境配置"><a href="#环境配置" class="headerlink" title="环境配置"></a>环境配置</h2><h3 id="安装Node-js"><a href="#安装Node-js" class="headerlink" title="安装Node.js"></a>安装Node.js</h3><p>点击进入<a href="https://nodejs.org/en/" target="_blank" rel="noopener">Node.js官网</a>下载安装包,mac也可使用homebrew直接构建环境</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 简单工厂模式，将生产方法抽离出单独的类进行生产</span><br><span class="line"> */</span><br><span class="line">public class SimplePizzaFactory &#123;</span><br><span class="line"></span><br><span class="line">	public Pizza CreatePizza(String ordertype) &#123;</span><br><span class="line">		Pizza pizza = null;</span><br><span class="line"></span><br><span class="line">		if (ordertype.equals(&quot;cheese&quot;)) &#123;</span><br><span class="line">			pizza = new CheesePizza();</span><br><span class="line">		&#125; else if (ordertype.equals(&quot;greek&quot;)) &#123;</span><br><span class="line">			pizza = new GreekPizza();</span><br><span class="line">		&#125; else if (ordertype.equals(&quot;pepper&quot;)) &#123;</span><br><span class="line">			pizza = new PepperPizza();</span><br><span class="line">		&#125;</span><br><span class="line">		return pizza;</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">将生产方法单独用一个类处理，进行简单的模块分离</span><br><span class="line"></span><br><span class="line">缺点：不利于拓展多个不同的工厂方法</span><br><span class="line"></span><br><span class="line">### 四、工厂方法模式</span><br><span class="line"></span><br><span class="line">&gt; 定义了一个创建对象的抽象方法，由子类决定要实例化的类。</span><br><span class="line"></span><br><span class="line">披萨项目中，若在各地开了分店，但是每个地区的人喜好不同，因此就得区分不同的工厂进行生产。</span><br><span class="line"></span><br><span class="line">* 利用工厂方法模式将对象的实例化抽象到了子类，利用对象之间的继承关系实现差异的工厂方法</span><br></pre></td></tr></table></figure>
+<p>/**</p>
 <ul>
-<li>打开终端使用node –version查看是否安装成功
-        
-          <a class="article-more-a" href="/2016/01/04/2016-01-04/#more">more >></a>
-        
+<li><p>工厂方法对象，给不同的工厂继承<br>*/<br>public abstract class OrderPizza {</p>
+<p> public OrderPizza() {</p>
+<pre><code>Pizza pizza = null;
+String ordertype;
+
+do {
+    ordertype = gettype();
+    pizza = createPizza(ordertype);
+
+    pizza.prepare();
+    pizza.bake();
+    pizza.cut();
+    pizza.box();
+} while (true);
+</code></pre><p> }</p>
+<p> abstract Pizza createPizza(String ordertype);</p>
+<p> private String gettype() {</p>
+<pre><code>try {
+    BufferedReader strin = new BufferedReader(new InputStreamReader(
+            System.in));
+    System.out.println(&quot;input pizza type:&quot;);
+    String str = strin.readLine();
+
+    return str;
+} catch (IOException e) {
+    e.printStackTrace();
+    return &quot;&quot;;
+}
+</code></pre><p> }</p>
+</li>
+</ul>
+<p>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>/**</p>
+<ul>
+<li><p>伦敦工厂，继承工厂方法对象<br>*/<br>public class LDOrderPizza extends OrderPizza {</p>
+<p> @Override<br> Pizza createPizza(String ordertype) {</p>
+<pre><code>Pizza pizza = null;
+
+if (ordertype.equals(&quot;cheese&quot;)) {
+    pizza = new LDCheesePizza();
+} else if (ordertype.equals(&quot;pepper&quot;)) {
+    pizza = new LDPepperPizza();
+}
+return pizza;
+</code></pre><p> }</p>
+</li>
+</ul>
+<p>}<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure></p>
+<p>/**</p>
+<ul>
+<li><p>纽约工厂，继承工厂方法对象<br>*/<br>public class NYOrderPizza extends OrderPizza {</p>
+<p> @Override<br> Pizza createPizza(String ordertype) {</p>
+<pre><code>Pizza pizza = null;
+
+if (ordertype.equals(&quot;cheese&quot;)) {
+    pizza = new NYCheesePizza();
+} else if (ordertype.equals(&quot;pepper&quot;)) {
+    pizza = new NYPepperPizza();
+}
+return pizza;
+</code></pre><p> }</p>
+</li>
+</ul>
+<p>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">需要使用哪种工厂就初始化哪种</span><br></pre></td></tr></table></figure>
+<p>OrderPizza mOrderPizza = new NYOrderPizza();<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">缺点：继承关系使对象之间的依赖性较高</span><br><span class="line"></span><br><span class="line">### 五、抽象工厂模式</span><br><span class="line"></span><br><span class="line">&gt; 定义了一个接口用于创建相关或有依赖关系的对象族，而无需明确</span><br><span class="line">指定具体类</span><br><span class="line"></span><br><span class="line">1.定义一个工厂的接口方法</span><br></pre></td></tr></table></figure></p>
+<p>/**</p>
+<ul>
+<li>工厂方法的抽象接口<br>*/<br>public interface AbsFactory {<br> public Pizza CreatePizza(String ordertype) ;<br>}<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">2.各工厂实现工厂方法</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>/**</p>
+<ul>
+<li><p>伦敦工厂实现抽象方法<br>*/<br>public class LDFactory implements AbsFactory {</p>
+<p> @Override<br> public Pizza CreatePizza(String ordertype) {</p>
+<pre><code>Pizza pizza = null;
+
+if (ordertype.equals(&quot;cheese&quot;)) {
+    pizza = new LDCheesePizza();
+} else if (ordertype.equals(&quot;pepper&quot;)) {
+    pizza = new LDPepperPizza();
+}
+return pizza;
+</code></pre><p> }<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">3.利用抽象接口在统一订单对象中进行方法调用</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>/**</p>
+<ul>
+<li><p>抽象工厂模式，直接利用抽象工厂进行对象生产<br>*/<br>public class OrderPizza {</p>
+<p> // 抽象接口<br> AbsFactory mFactory;</p>
+<p> public OrderPizza(AbsFactory mFactory) {</p>
+<pre><code>setFactory(mFactory);
+</code></pre><p> }</p>
+<p> public void setFactory(AbsFactory mFactory) {</p>
+<pre><code>Pizza pizza = null;
+String ordertype;
+
+this.mFactory = mFactory;
+
+do {
+    ordertype = gettype();
+    pizza = mFactory.CreatePizza(ordertype);
+    if (pizza != null) {
+        pizza.prepare();
+        pizza.bake();
+        pizza.cut();
+        pizza.box();
+    }
+
+} while (true);
+</code></pre><p> }</p>
+<p> private String gettype() {</p>
+<pre><code>try {
+    BufferedReader strin = new BufferedReader(new InputStreamReader(
+            System.in));
+    System.out.println(&quot;input pizza type:&quot;);
+    String str = strin.readLine();
+
+    return str;
+} catch (IOException e) {
+    e.printStackTrace();
+    return &quot;&quot;;
+}
+</code></pre><p> }<br>}</p>
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">4.使用哪种工厂就进行哪种工厂的初始化</span><br></pre></td></tr></table></figure>
+<p>/**</p>
+<ul>
+<li>抽象工厂模式，不同的工厂实现不同的生产方法</li>
+<li><p>引用工厂的时候直接引用接口对象<br>*/<br>public class PizzaStroe {<br> public static void main(String[] args) {</p>
+<pre><code>OrderPizza mOrderPizza;
+mOrderPizza=new    OrderPizza(new LDFactory());
+</code></pre><p> }<br>}<br>```</p>
+</li>
+</ul>
+<p>优点：利用接口进行方法抽象，对象之间耦合度较低，又可实现同种方法内部不同的处理方式。</p>
+<ul>
+<li>依赖抽象原则<ul>
+<li>变量不要持有具体类的引用</li>
+<li>不要让类继承自具体类，要继承自抽象类或接口</li>
+<li>不要覆盖基类中已实现的方法</li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+<blockquote>
+<p>Java设计模式所有<a href="https://github.com/lilei644/design-pattern-example" target="_blank" rel="noopener">示例代码</a>，持续更新中</p>
+</blockquote>
+
       
 
       
@@ -547,11 +374,11 @@ ga('send', 'pageview');
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">blog</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
         		</li>
       		
 		</ul>
@@ -560,16 +387,75 @@ ga('send', 'pageview');
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/01/04/2016-01-04/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://lilei644.github.io/2018/05/07/2018-05-07/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2018/05/06/2018-05-06/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java 设计模式(4) —— 单例模式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -589,12 +475,30 @@ ga('send', 'pageview');
 
 
 
+  
+  
+  
 
   
+
   
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
-    </nav>
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "https://lilei644.github.io/2018/05/07/2018-05-07/",
+  owner: 'lilei644',
+  repo: 'lilei644.github.io',
+  oauth: {
+    client_id: '6bcff90c95dab647eace',
+    client_secret: '186ae7e79b8b65f90b28a2b15683bfa5fb82a3c8',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
   
 
 
@@ -617,8 +521,8 @@ ga('send', 'pageview');
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
