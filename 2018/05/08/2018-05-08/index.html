@@ -6,14 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lilei644.github.io">
-  <title>Archives | Lei&#39;s blogs</title>
+  <title>Java 设计模式(6) —— 命令模式 | Lei&#39;s blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Lei&#39;s blogs">
-<meta property="og:url" content="https://lilei644.github.io/archives/page/2/index.html">
+  <meta name="description" content="一、命令模式  将请求、命令、动作等封装成对象，这样可以让项目使用这些对象来参数化其他对象。使得命令的请求者和执行者解耦">
+<meta name="keywords" content="java,设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 设计模式(6) —— 命令模式">
+<meta property="og:url" content="https://lilei644.github.io/2018/05/08/2018-05-08/index.html">
 <meta property="og:site_name" content="Lei&#39;s blogs">
+<meta property="og:description" content="一、命令模式  将请求、命令、动作等封装成对象，这样可以让项目使用这些对象来参数化其他对象。使得命令的请求者和执行者解耦">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1316029-1a0b79206e996c34.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-05-08T13:11:45.128Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lei&#39;s blogs">
+<meta name="twitter:title" content="Java 设计模式(6) —— 命令模式">
+<meta name="twitter:description" content="一、命令模式  将请求、命令、动作等封装成对象，这样可以让项目使用这些对象来参数化其他对象。使得命令的请求者和执行者解耦">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1316029-1a0b79206e996c34.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternative" href="/atom.xml" title="Lei&#39;s blogs" type="application/atom+xml">
   
@@ -164,289 +171,196 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-2018-05-08" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/04/2018-01-04/" class="archive-article-date">
-  	<time datetime="2018-01-04T06:02:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-04</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/04/2018-01-04/">十五分钟让你了解Python基本语法</a>
+    <h1 class="article-title" itemprop="name">
+      Java 设计模式(6) —— 命令模式
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/05/08/2018-05-08/" class="archive-article-date">
+  	<time datetime="2018-05-08T12:22:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-08</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一、命令模式"><a href="#一、命令模式" class="headerlink" title="一、命令模式"></a>一、命令模式</h3><blockquote>
+<p> 将请求、命令、动作等封装成对象，这样可以让项目使用这些对象来<br>参数化其他对象。使得命令的请求者和执行者解耦</p>
+</blockquote>
+<p><img src="https://upload-images.jianshu.io/upload_images/1316029-1a0b79206e996c34.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="命令模式"></p>
+<a id="more"></a>
+<h3 id="二、示例"><a href="#二、示例" class="headerlink" title="二、示例"></a>二、示例</h3><p>家电自动化遥控器API项目：智能遥控器上有多个开关按钮，可是实现不同家电的控制，也可对新家电进行接入拓展</p>
+<p>如果用传统面向对象的模式，则是定义一个遥控的对象，在对象内进行每个按钮的监听，分别判断进行相应的处理</p>
+<p>1.电灯对象，控制开关</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 电灯对象</span><br><span class="line"> */</span><br><span class="line">public class Light &#123;</span><br><span class="line"></span><br><span class="line">    String loc = &quot;&quot;;</span><br><span class="line"></span><br><span class="line">    public Light(String loc) &#123;</span><br><span class="line">        this.loc = loc;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void On() &#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(loc + &quot; On&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void Off() &#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(loc + &quot; Off&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.收音机对象，控制开关和音量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 收音机对象</span><br><span class="line"> */</span><br><span class="line">public class Stereo &#123;</span><br><span class="line">	static int volume = 0;</span><br><span class="line"></span><br><span class="line">	public void On() &#123;</span><br><span class="line">		System.out.println(&quot;Stereo On&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void Off() &#123;</span><br><span class="line">		System.out.println(&quot;Stereo Off&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void SetCd() &#123;</span><br><span class="line">		System.out.println(&quot;Stereo SetCd&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void SetVol(int vol) &#123;</span><br><span class="line">		volume = vol;</span><br><span class="line">		System.out.println(&quot;Stereo volume=&quot; + volume);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public int GetVol() &#123;</span><br><span class="line">		return volume;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void Start() &#123;</span><br><span class="line">		System.out.println(&quot;Stereo Start&quot;);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3.遥控器对象，进行判断处理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 面向对象模式，遥控对象根据按钮的序号进行相应的处理</span><br><span class="line"> */</span><br><span class="line">public class TraditionControl implements Control &#123;</span><br><span class="line">	Light light;</span><br><span class="line">	Stereo stereo;</span><br><span class="line"></span><br><span class="line">	public TraditionControl(Light light, Stereo stereo) &#123;</span><br><span class="line">		this.light = light;</span><br><span class="line">		this.stereo = stereo;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public void onButton(int slot) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">		switch (slot) &#123;</span><br><span class="line">		case 0:</span><br><span class="line">			light.On();</span><br><span class="line">			break;</span><br><span class="line">		case 1:</span><br><span class="line">			stereo.On();</span><br><span class="line">			break;</span><br><span class="line">		case 2:</span><br><span class="line">			int vol = stereo.GetVol();</span><br><span class="line">			if (vol &lt; 11) &#123;</span><br><span class="line">				stereo.SetVol(++vol);</span><br><span class="line">			&#125;</span><br><span class="line">			break;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public void offButton(int slot) &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">		switch (slot) &#123;</span><br><span class="line">		case 0:</span><br><span class="line">			light.Off();</span><br><span class="line">			break;</span><br><span class="line">		case 1:</span><br><span class="line">			stereo.Off();</span><br><span class="line">			break;</span><br><span class="line">		case 2:</span><br><span class="line">			int vol = stereo.GetVol();</span><br><span class="line">			if (vol &gt; 0) &#123;</span><br><span class="line">				stereo.SetVol(--vol);</span><br><span class="line">			&#125;</span><br><span class="line">			break;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public void undoButton() &#123;</span><br><span class="line">		// TODO Auto-generated method stub</span><br><span class="line">		</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>缺点：所有操作均在遥控对象内控制，耦合度太高，且如果新增或删减电器则会对整个控制对象进行改动，不利于维护</p>
+<h3 id="三、命令模式的实现"><a href="#三、命令模式的实现" class="headerlink" title="三、命令模式的实现"></a>三、命令模式的实现</h3><p>1.定义统一的命令方法接口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 命令模式，命令方法接口</span><br><span class="line"> */</span><br><span class="line">public interface Command &#123;</span><br><span class="line">	public void execute();</span><br><span class="line">	public void undo();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.创建各自不同的命令对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 命令模式，电灯打开的命令操作</span><br><span class="line"> */</span><br><span class="line">public class LightOnCommand implements Command &#123;</span><br><span class="line">    private Light light;</span><br><span class="line"></span><br><span class="line">    public LightOnCommand(Light light) &#123;</span><br><span class="line">        this.light = light;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void execute() &#123;</span><br><span class="line">        light.On();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void undo() &#123;</span><br><span class="line">        light.Off();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 命令模式，电灯关闭的命令操作</span><br><span class="line"> */</span><br><span class="line">public class LightOffCommand implements Command &#123;</span><br><span class="line">	private Light light;</span><br><span class="line">	public LightOffCommand(Light light)</span><br><span class="line">	&#123;</span><br><span class="line">		this.light=light;</span><br><span class="line">	&#125;</span><br><span class="line">	@Override</span><br><span class="line">	public void execute() &#123;</span><br><span class="line">		light.Off();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public void undo() &#123;</span><br><span class="line">		light.On();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3.遥控器对象对各命令进行抽象处理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 命令模式，所有响应均可抽象成命令，调用时直接调用命令执行方法即可</span><br><span class="line"> */</span><br><span class="line">public class CommandModeControl implements Control &#123;</span><br><span class="line">    private Command[] onCommands;</span><br><span class="line">    private Command[] offCommands;</span><br><span class="line"></span><br><span class="line">    public CommandModeControl() &#123;</span><br><span class="line">        onCommands = new Command[5];</span><br><span class="line">        offCommands = new Command[5];</span><br><span class="line"></span><br><span class="line">        Command noCommand = new NoCommand();</span><br><span class="line"></span><br><span class="line">        for (int i = 0, len = onCommands.length; i &lt; len; i++) &#123;</span><br><span class="line">            onCommands[i] = noCommand;</span><br><span class="line">            offCommands[i] = noCommand;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void setCommand(int slot, Command onCommand, Command offCommand) &#123;</span><br><span class="line">        onCommands[slot] = onCommand;</span><br><span class="line">        offCommands[slot] = offCommand;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    // 开</span><br><span class="line">    @Override</span><br><span class="line">    public void onButton(int slot) &#123;</span><br><span class="line">        onCommands[slot].execute();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 关</span><br><span class="line">    @Override</span><br><span class="line">    public void offButton(int slot) &#123;</span><br><span class="line">        offCommands[slot].execute();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // 返回</span><br><span class="line">    @Override</span><br><span class="line">    public void undoButton() &#123;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4.新增和删减电器时传入相应的实体类进行命令的初始化</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 命令模式，便于拓展</span><br><span class="line"> */</span><br><span class="line">public class ControlTest &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        CommandModeControl control = new CommandModeControl();</span><br><span class="line">        Light bedroomlight = new Light(&quot;BedRoom&quot;);</span><br><span class="line">        Light kitchlight = new Light(&quot;Kitch&quot;);</span><br><span class="line">        Stereo stereo = new Stereo();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        LightOnCommand bedroomlighton = new LightOnCommand(bedroomlight);</span><br><span class="line">        LightOffCommand bedroomlightoff = new LightOffCommand(bedroomlight);</span><br><span class="line">        LightOnCommand kitchlighton = new LightOnCommand(kitchlight);</span><br><span class="line">        LightOffCommand kitchlightoff = new LightOffCommand(kitchlight);</span><br><span class="line"></span><br><span class="line">        StereoOnCommand stereoOn = new StereoOnCommand(stereo);</span><br><span class="line">        StereoOffCommand stereoOff = new StereoOffCommand(stereo);</span><br><span class="line">        StereoAddVolCommand stereoaddvol = new StereoAddVolCommand(stereo);</span><br><span class="line">        StereoSubVolCommand stereosubvol = new StereoSubVolCommand(stereo);</span><br><span class="line"></span><br><span class="line">        control.setCommand(0, bedroomlighton, bedroomlightoff);</span><br><span class="line">        control.setCommand(1, kitchlighton, kitchlightoff);</span><br><span class="line">        control.setCommand(2, stereoOn, stereoOff);</span><br><span class="line">        control.setCommand(3, stereoaddvol, stereosubvol);</span><br><span class="line"></span><br><span class="line">        control.onButton(0);</span><br><span class="line">        control.offButton(0);</span><br><span class="line">        control.onButton(1);</span><br><span class="line">        control.offButton(1);</span><br><span class="line">        control.onButton(2);</span><br><span class="line">        control.onButton(3);</span><br><span class="line"></span><br><span class="line">        control.offButton(3);</span><br><span class="line">        control.offButton(2);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>优点：</p>
+<ul>
+<li>命令之间相互分离，互不影响，也便于新命令的接入和删除。</li>
+<li>即使新增返回按钮，和组合按钮等功能，也易于拓展且不影响其它命令。</li>
+</ul>
+<p><br></p>
+<blockquote>
+<p>Java设计模式所有<a href="https://github.com/lilei644/design-pattern-example" target="_blank" rel="noopener">示例代码</a>，持续更新中</p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/31/2017-03-31/" class="archive-article-date">
-  	<time datetime="2017-03-31T12:44:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/31/2017-03-31/">Android Studo jni开发入门——看我就够了!</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jni</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/05/2017-02-05/" class="archive-article-date">
-  	<time datetime="2017-02-05T06:27:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/05/2017-02-05/">记录一次GreenDao3.x踏坑之旅</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">GreenDao</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">sqlite</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
+
       
+
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/31/2016-12-31/" class="archive-article-date">
-  	<time datetime="2016-12-31T09:48:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/31/2016-12-31/">MySql性能优化——基础篇</a>
-    </h1>
-  
+      </div>
+    </span>
+  </div>
+</div>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://lilei644.github.io/2018/05/08/2018-05-08/" alt="微信分享二维码">
+    </div>
+</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/06/2016-12-06/" class="archive-article-date">
-  	<time datetime="2016-12-06T12:46:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-06</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/05/07/2018-05-07/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java 设计模式(5) —— 工厂模式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/06/2016-12-06/">手把手教你绘制Android粘性果冻动画组件</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">animation</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/01/04/2016-01-04/" class="archive-article-date">
-  	<time datetime="2016-01-04T03:01:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/01/04/2016-01-04/">使用Hexo + Github搭建个人博客</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">blog</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
-    </nav>
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "https://lilei644.github.io/2018/05/08/2018-05-08/",
+  owner: 'lilei644',
+  repo: 'lilei644.github.io',
+  oauth: {
+    client_id: '6bcff90c95dab647eace',
+    client_secret: '186ae7e79b8b65f90b28a2b15683bfa5fb82a3c8',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
   
 
 
@@ -470,8 +384,8 @@ ga('send', 'pageview');
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
