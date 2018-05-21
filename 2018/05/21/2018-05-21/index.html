@@ -6,14 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lilei644.github.io">
-  <title>Archives: 2018/5 | Lei&#39;s blogs</title>
+  <title>Java 图的最短路径dijstra(迪杰斯特拉)算法和拓扑排序 | Lei&#39;s blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Lei&#39;s blogs">
-<meta property="og:url" content="https://lilei644.github.io/archives/2018/05/page/2/index.html">
+  <meta name="description" content="一、图的最短路径 从某顶点出发，沿图的边到达另一顶点所经过的路径中，各边上权值之和最小的一条路径叫做最短路径">
+<meta name="keywords" content="java,数据结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 图的最短路径dijstra(迪杰斯特拉)算法和拓扑排序">
+<meta property="og:url" content="https://lilei644.github.io/2018/05/21/2018-05-21/index.html">
 <meta property="og:site_name" content="Lei&#39;s blogs">
+<meta property="og:description" content="一、图的最短路径 从某顶点出发，沿图的边到达另一顶点所经过的路径中，各边上权值之和最小的一条路径叫做最短路径">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1316029-bdc40ab620fba7f4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1316029-ae397c819a60f860.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1316029-d0e4a354627d3228.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1316029-cc7f4164693cd3dc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-05-21T13:37:14.351Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lei&#39;s blogs">
+<meta name="twitter:title" content="Java 图的最短路径dijstra(迪杰斯特拉)算法和拓扑排序">
+<meta name="twitter:description" content="一、图的最短路径 从某顶点出发，沿图的边到达另一顶点所经过的路径中，各边上权值之和最小的一条路径叫做最短路径">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1316029-bdc40ab620fba7f4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternative" href="/atom.xml" title="Lei&#39;s blogs" type="application/atom+xml">
   
@@ -164,36 +174,89 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-2018-05-21" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java 图的最短路径dijstra(迪杰斯特拉)算法和拓扑排序
+    </h1>
+  
+
+        
+        <a href="/2018/05/21/2018-05-21/" class="archive-article-date">
+  	<time datetime="2018-05-21T10:21:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-21</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一、图的最短路径"><a href="#一、图的最短路径" class="headerlink" title="一、图的最短路径"></a>一、图的最短路径</h3><blockquote>
+<p>从某顶点出发，沿图的边到达另一顶点所经过的路径中，各边上权值之和最小的一条路径叫做最短路径</p>
+</blockquote>
+<a id="more"></a>
+<p><img src="https://upload-images.jianshu.io/upload_images/1316029-bdc40ab620fba7f4.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图的最短路径"></p>
+<p>图的最短路径有许多重要的应用。</p>
+<p>例如：上图中v0-v8有9个点，可以看做不同的地点，现在要规划出v0到其它某个点地点的最短路线规划</p>
+<blockquote>
+<p>构建最短路径中比较常见的一种算法即为dijstra(迪杰斯特拉)算法</p>
+</blockquote>
+<h3 id="二、dijstra-迪杰斯特拉-算法"><a href="#二、dijstra-迪杰斯特拉-算法" class="headerlink" title="二、dijstra(迪杰斯特拉)算法"></a>二、dijstra(迪杰斯特拉)算法</h3><p>算法思路：</p>
+<ol>
+<li>dijstra算法思路有点类似前一篇文章中的prim算法，先构建图的邻接矩阵，然后定义一个临时的一维数组，一维数组用来存储v0到每个顶点的最短路径</li>
+<li>将一维数组初始化成v0到每个顶点的值。其次定义另外一个数组用来存储已经访问过的顶点</li>
+<li>在临时一维数组中找到未被访问且最短的一条路径</li>
+<li>将找到最短路径的顶点与该顶点可访问边进行遍历，若最短路径与边之和小于一维数组中存储的最短路径，则将这个和覆盖成这个顶点的最短路径</li>
+<li>循环3，4直至遍历完所有顶点为止</li>
+</ol>
+<ul>
+<li>构建邻接矩阵</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">// 初始化图</span><br><span class="line">int[] graph0 = new int[]&#123;0, 1, 5, MAX_WEIGHT, MAX_WEIGHT, MAX_WEIGHT, MAX_WEIGHT, MAX_WEIGHT, MAX_WEIGHT&#125;;</span><br><span class="line">int[] graph1 = new int[]&#123;1, 0, 3, 7, 5, MAX_WEIGHT, MAX_WEIGHT, MAX_WEIGHT, MAX_WEIGHT&#125;;</span><br><span class="line">int[] graph2 = new int[]&#123;5, 3, 0, MAX_WEIGHT, 1, 7, MAX_WEIGHT, MAX_WEIGHT, MAX_WEIGHT&#125;;</span><br><span class="line">int[] graph3 = new int[]&#123;MAX_WEIGHT, 7, MAX_WEIGHT, 0, 2, MAX_WEIGHT, 3, MAX_WEIGHT, MAX_WEIGHT&#125;;</span><br><span class="line">int[] graph4 = new int[]&#123;MAX_WEIGHT, 5, 1, 2, 0, 3, 6, 9, MAX_WEIGHT&#125;;</span><br><span class="line">int[] graph5 = new int[]&#123;MAX_WEIGHT, MAX_WEIGHT, 7, MAX_WEIGHT, 3, 0, MAX_WEIGHT, 5, MAX_WEIGHT&#125;;</span><br><span class="line">int[] graph6 = new int[]&#123;MAX_WEIGHT, MAX_WEIGHT, MAX_WEIGHT, 3, 6, MAX_WEIGHT, 0, 2, 7&#125;;</span><br><span class="line">int[] graph7 = new int[]&#123;MAX_WEIGHT, MAX_WEIGHT, MAX_WEIGHT, MAX_WEIGHT, 9, 5, 2, 0, 4&#125;;</span><br><span class="line">int[] graph8 = new int[]&#123;MAX_WEIGHT, MAX_WEIGHT, MAX_WEIGHT, MAX_WEIGHT, MAX_WEIGHT, MAX_WEIGHT, 5, 4, 0&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>算法代码</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 图的最短路径(图中两个顶点的最短距离)，迪杰斯特拉算法</span><br><span class="line"> * 算法思想：类似prim算法，定义一个一维数组，用来存储V0到某点的最短路径</span><br><span class="line"> */</span><br><span class="line">public void shortestPathDijstra() &#123;</span><br><span class="line"></span><br><span class="line">    // 定义一维数组用来存储V0到每个点的最短路径，找到比原来更短的则直接覆盖</span><br><span class="line">    int[] paths = new int[vertexSize];</span><br><span class="line"></span><br><span class="line">    // 先将数组初始化</span><br><span class="line">    System.arraycopy(matrix[0], 0, paths, 0, vertexSize);</span><br><span class="line"></span><br><span class="line">    isVisited[0] = true;</span><br><span class="line">    for (int i = 1; i &lt; vertexSize; i++) &#123;</span><br><span class="line"></span><br><span class="line">        // 在已经存在的路径中找到一条未被访问且最短的路径</span><br><span class="line">        int min = MAX_WEIGHT;</span><br><span class="line">        int minIndex = -1;</span><br><span class="line">        for (int j = 1; j &lt; vertexSize; j++) &#123;</span><br><span class="line">            if (!isVisited[j] &amp;&amp; paths[j] &lt; min) &#123;</span><br><span class="line">                min = paths[j];</span><br><span class="line">                minIndex = j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (minIndex == -1) &#123;</span><br><span class="line">            continue;</span><br><span class="line">        &#125;</span><br><span class="line">        isVisited[minIndex] = true;</span><br><span class="line"></span><br><span class="line">        // 找到的最短路径节点的可使用边中，判断是否比已经存在的最短路径短，是则进行覆盖</span><br><span class="line">        for (int k = 1; k &lt; vertexSize; k++) &#123;</span><br><span class="line">            if (!isVisited[k] &amp;&amp; (min + matrix[minIndex][k] &lt; paths[k])) &#123;</span><br><span class="line">                paths[k] = min + matrix[minIndex][k];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    for (int i = 1; i &lt; vertexSize; i++) &#123;</span><br><span class="line">        System.out.println(&quot;V0到V&quot; + i + &quot;的最短路径为：&quot; + paths[i]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>即可得到v0到每个点的最短路径的值</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/1316029-ae397c819a60f860.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="dijstra最短路径"></p>
+<h3 id="三、拓扑排序"><a href="#三、拓扑排序" class="headerlink" title="三、拓扑排序"></a>三、拓扑排序</h3><blockquote>
+<p>对一个有向无环图(Directed Acyclic Graph简称DAG)G进行拓扑排序，是将G中所有顶点排成一个线性序列，使得图中任意一对顶点u和v，若边(u,v)∈E(G)，则u在线性序列中出现在v之前。通常，这样的线性序列称为满足拓扑次序(Topological Order)的序列，简称拓扑序列。</p>
+<p>简单的说，由某个集合上的一个偏序得到该集合上的一个全序，这个操作称之为拓扑排序。</p>
+</blockquote>
+<p>对以下有向图进行拓扑排序，顶点可以看待成每项不同的任务，有的任务可以直接执行，例如v0、v1、v3，有的任务得等到上级任务全部执行完成才可执行，例如v4必须等到v0和v1都完成之后才可执行</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1316029-d0e4a354627d3228.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="拓扑排序"></p>
+<p>排序思路：</p>
+<ol>
+<li>观察可以发现顶点入度为0则代表可以直接执行</li>
+<li>完成一个任务之后可消除出度的边，即他的next节点则少了一个入度</li>
+<li>带next节点入度也为0之后就可执行</li>
+<li>循环1，2，3遍历完所有的顶点即可排序完成</li>
+</ol>
+<p>排序代码：</p>
+<ul>
+<li>构建每个顶点的邻接表</li>
+</ul>
+<p><img src="https://upload-images.jianshu.io/upload_images/1316029-cc7f4164693cd3dc.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="拓扑排序邻接点"></p>
+<ul>
+<li>算法代码</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 拓扑排序</span><br><span class="line"> * 思路：定义一个栈，存放入度为0的节点，入度为0则代表可以执行，执行之后则出度的那个节点就减少一个入度，循环直至栈为空</span><br><span class="line"> */</span><br><span class="line">private void topologicaSort() &#123;</span><br><span class="line">    Stack&lt;Integer&gt; stack = new Stack&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    // 先将入度为0 的节点压入栈中</span><br><span class="line">    for (int i = 0; i &lt; adjList.length; i++) &#123;</span><br><span class="line">        if (adjList[i].in == 0) &#123;</span><br><span class="line">            stack.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    int count = 0;</span><br><span class="line">    // 循环出栈输出，直至栈为空</span><br><span class="line">    while (!stack.isEmpty()) &#123;</span><br><span class="line">        int index = stack.pop();</span><br><span class="line">        System.out.println(&quot;顶点：&quot; + adjList[index].data);</span><br><span class="line">        count++;</span><br><span class="line">        for (EdgeNode edgeNode = adjList[index].firstEdge; edgeNode != null; edgeNode = edgeNode.next) &#123;</span><br><span class="line">            if (--adjList[edgeNode.adjVert].in == 0) &#123;</span><br><span class="line">                // 若输出之后的顶点入度也没0，则压入栈中</span><br><span class="line">                stack.push(edgeNode.adjVert);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (count != numVertexes) &#123;</span><br><span class="line">        System.out.println(&quot;拓扑排序失败！！！！&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p><a href="https://github.com/lilei644/datastructure-learning-example" target="_blank" rel="noopener">源码地址</a></p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/05/2018-05-05/" class="archive-article-date">
-  	<time datetime="2018-05-05T15:59:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/05/2018-05-05/">Java 设计模式(3) —— 装饰者模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -203,112 +266,127 @@ ga('send', 'pageview');
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://lilei644.github.io/2018/05/21/2018-05-21/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/04/2018-05-04/" class="archive-article-date">
-  	<time datetime="2018-05-04T13:43:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-04</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/05/18/2018-05-18/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java 图的最小生成树 — prim算法和kruskal算法</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/04/2018-05-04/">Java 设计模式(2) —— 观察者模式</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/02/2018-05-02/" class="archive-article-date">
-  	<time datetime="2018-05-02T13:54:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/02/2018-05-02/">Java 设计模式(1) —— 策略模式</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/2018/05/">&laquo; Prev</a><a class="page-number" href="/archives/2018/05/">1</a><span class="page-number current">2</span>
-    </nav>
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "https://lilei644.github.io/2018/05/21/2018-05-21/",
+  owner: 'lilei644',
+  repo: 'lilei644.github.io',
+  oauth: {
+    client_id: '6bcff90c95dab647eace',
+    client_secret: '186ae7e79b8b65f90b28a2b15683bfa5fb82a3c8',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
   
 
 
@@ -332,8 +410,8 @@ ga('send', 'pageview');
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
