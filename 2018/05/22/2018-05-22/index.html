@@ -6,14 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lilei644.github.io">
-  <title>Lei&#39;s blogs</title>
+  <title>Java 设计模式(12) —— 状态模式 | Lei&#39;s blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Lei&#39;s blogs">
-<meta property="og:url" content="https://lilei644.github.io/index.html">
+  <meta name="description" content="一、状态模式  能根据内部状态的变化，改变对象的行为，看起来好像修改了类">
+<meta name="keywords" content="java,设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 设计模式(12) —— 状态模式">
+<meta property="og:url" content="https://lilei644.github.io/2018/05/22/2018-05-22/index.html">
 <meta property="og:site_name" content="Lei&#39;s blogs">
+<meta property="og:description" content="一、状态模式  能根据内部状态的变化，改变对象的行为，看起来好像修改了类">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1316029-29e8af36082313cb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-05-22T15:17:17.653Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lei&#39;s blogs">
+<meta name="twitter:title" content="Java 设计模式(12) —— 状态模式">
+<meta name="twitter:description" content="一、状态模式  能根据内部状态的变化，改变对象的行为，看起来好像修改了类">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1316029-29e8af36082313cb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternative" href="/atom.xml" title="Lei&#39;s blogs" type="application/atom+xml">
   
@@ -164,16 +171,14 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-2018-05-22" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-2018-05-22" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/22/2018-05-22/">Java 设计模式(12) —— 状态模式</a>
+    <h1 class="article-title" itemprop="name">
+      Java 设计模式(12) —— 状态模式
     </h1>
   
 
@@ -190,758 +195,93 @@ ga('send', 'pageview');
 <p> 能根据内部状态的变化，改变对象的行为，看起来好像修改了类</p>
 </blockquote>
 <p><img src="https://upload-images.jianshu.io/upload_images/1316029-29e8af36082313cb.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="状态模式"></p>
-        
-          <a class="article-more-a" href="/2018/05/22/2018-05-22/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/22/2018-05-22/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2018-05-21" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/21/2018-05-21/">Java 图的最短路径dijstra(迪杰斯特拉)算法和拓扑排序</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/21/2018-05-21/" class="archive-article-date">
-  	<time datetime="2018-05-21T10:21:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一、图的最短路径"><a href="#一、图的最短路径" class="headerlink" title="一、图的最短路径"></a>一、图的最短路径</h3><blockquote>
-<p>从某顶点出发，沿图的边到达另一顶点所经过的路径中，各边上权值之和最小的一条路径叫做最短路径</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2018/05/21/2018-05-21/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/21/2018-05-21/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2018-05-18" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/18/2018-05-18/">Java 图的最小生成树 — prim算法和kruskal算法</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/18/2018-05-18/" class="archive-article-date">
-  	<time datetime="2018-05-18T05:02:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>一个有 n 个结点的连通图的生成树是原图的极小连通子图，且包含原图中的所有 n 个结点，并且有保持图连通的权值和边最小</p>
-</blockquote>
-        
-          <a class="article-more-a" href="/2018/05/18/2018-05-18/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/18/2018-05-18/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2018-05-16" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/16/2018-05-16/">Java 设计模式(11) —— 组合模式</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/16/2018-05-16/" class="archive-article-date">
-  	<time datetime="2018-05-16T14:01:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一、组合模式"><a href="#一、组合模式" class="headerlink" title="一、组合模式"></a>一、组合模式</h3><blockquote>
-<p> 将对象聚合成树形结构来表现“整体/部分”的层次结构</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/1316029-9e93154fc90af975.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="组合模式"></p>
-        
-          <a class="article-more-a" href="/2018/05/16/2018-05-16/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/16/2018-05-16/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2018-05-14" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/14/2018-05-14/">Java 设计模式(10) —— 迭代器模式</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/14/2018-05-14/" class="archive-article-date">
-  	<time datetime="2018-05-14T14:46:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一、迭代器模式"><a href="#一、迭代器模式" class="headerlink" title="一、迭代器模式"></a>一、迭代器模式</h3><blockquote>
-<p> 提供一种方法顺序访问一个聚合对象中的各个对象</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/1316029-e8a0f6f53bab2a8f.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="迭代器模式"></p>
-        
-          <a class="article-more-a" href="/2018/05/14/2018-05-14/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/14/2018-05-14/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2018-05-13" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/13/2018-05-13/">Java 设计模式(9) —— 模板模式</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/13/2018-05-13/" class="archive-article-date">
-  	<time datetime="2018-05-13T12:50:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一、模板模式"><a href="#一、模板模式" class="headerlink" title="一、模板模式"></a>一、模板模式</h3><blockquote>
-<p> 封装了一个算法步骤，并允许子类为一个或多个步骤方法提供实现。模板模式可以使子类在不改变算法结构的情况下，重新定义算法中的某些步骤。</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/1316029-a78d44b4b8fd17a9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="模板模式"></p>
-        
-          <a class="article-more-a" href="/2018/05/13/2018-05-13/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/13/2018-05-13/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2018-05-10" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/10/2018-05-10/">Java 设计模式(8) —— 外观模式</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/10/2018-05-10/" class="archive-article-date">
-  	<time datetime="2018-05-10T12:22:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一、外观模式"><a href="#一、外观模式" class="headerlink" title="一、外观模式"></a>一、外观模式</h3><blockquote>
-<p> 提供一个统一的接口，来访问子系统中一群功能相关接口外观模式定义了一个高层接口，让子系统更容易使用</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/1316029-b13b2e0f5aabfd5e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="外观模式"></p>
-        
-          <a class="article-more-a" href="/2018/05/10/2018-05-10/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/10/2018-05-10/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2018-05-09" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/09/2018-05-09/">Java 设计模式(7) —— 适配器模式</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/09/2018-05-09/" class="archive-article-date">
-  	<time datetime="2018-05-09T13:22:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一、适配器模式"><a href="#一、适配器模式" class="headerlink" title="一、适配器模式"></a>一、适配器模式</h3><blockquote>
-<p> 将一个类的接口转换成另一种接口，让原本接口不兼容的类可以兼容</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/1316029-f18853a6e3d7f918.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="适配器模式"></p>
-        
-          <a class="article-more-a" href="/2018/05/09/2018-05-09/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/09/2018-05-09/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2018-05-08" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/08/2018-05-08/">Java 设计模式(6) —— 命令模式</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/08/2018-05-08/" class="archive-article-date">
-  	<time datetime="2018-05-08T12:22:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一、命令模式"><a href="#一、命令模式" class="headerlink" title="一、命令模式"></a>一、命令模式</h3><blockquote>
-<p> 将请求、命令、动作等封装成对象，这样可以让项目使用这些对象来<br>参数化其他对象。使得命令的请求者和执行者解耦</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/1316029-1a0b79206e996c34.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="命令模式"></p>
-        
-          <a class="article-more-a" href="/2018/05/08/2018-05-08/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/08/2018-05-08/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2018-05-07" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/07/2018-05-07/">Java 设计模式(5) —— 工厂模式</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/07/2018-05-07/" class="archive-article-date">
-  	<time datetime="2018-05-07T13:14:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一、工厂模式"><a href="#一、工厂模式" class="headerlink" title="一、工厂模式"></a>一、工厂模式</h3><blockquote>
+<a id="more"></a>
+<h3 id="二、示例"><a href="#二、示例" class="headerlink" title="二、示例"></a>二、示例</h3><p>智能糖果机：需要设计一款自助购买的糖果机，糖果机的状态有</p>
 <ul>
-<li>简单工厂模式</li>
-<li>工厂方法模式</li>
-<li>抽象工厂模式</li>
+<li>准备使用（接下来可投入硬币）</li>
+<li>投入硬币（接下来可摇动把手或者退出硬币）</li>
+<li>售出糖果（接下来可恢复使用或者售罄）</li>
+<li>售罄状态</li>
 </ul>
+<p>使用传统的面向对象模式，只需定义一个糖果机的对象，内部根据不同的状态进行不同的操作处理</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 面向对象模式，糖果机</span><br><span class="line"> */</span><br><span class="line">public class CandyMachine &#123;</span><br><span class="line"></span><br><span class="line">    final static int SoldOutState = 0;          // 售罄状态</span><br><span class="line">    final static int OnReadyState = 1;          // 准备售出状态</span><br><span class="line">    final static int HasCoin = 2;               // 已经投了硬币的状态</span><br><span class="line">    final static int SoldState = 3;             // 售出状态</span><br><span class="line"></span><br><span class="line">    private int state = SoldOutState;</span><br><span class="line">    private int count = 0;                      // 内部糖果的剩余数量</span><br><span class="line"></span><br><span class="line">    public CandyMachine(int count) &#123;</span><br><span class="line">        this.count = count;</span><br><span class="line">        if (count &gt; 0) &#123;</span><br><span class="line">            state = OnReadyState;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 投入硬币，如果糖果机状态是准备售出，则可以摇动把手购买糖果，其他的状态则无法使用</span><br><span class="line">     */</span><br><span class="line">    public void insertCoin() &#123;</span><br><span class="line">        switch (state) &#123;</span><br><span class="line">            case SoldOutState:</span><br><span class="line">                System.out.println(&quot;you can&apos;t insert coin,the machine sold out!&quot;);</span><br><span class="line">                break;</span><br><span class="line">            case OnReadyState:</span><br><span class="line">                state = HasCoin;</span><br><span class="line">                System.out</span><br><span class="line">                        .println(&quot;you have inserted a coin,next,please turn crank!&quot;);</span><br><span class="line">                break;</span><br><span class="line">            case HasCoin:</span><br><span class="line">                System.out.println(&quot;you can&apos;t insert another coin!&quot;);</span><br><span class="line"></span><br><span class="line">                break;</span><br><span class="line">            case SoldState:</span><br><span class="line">                System.out.println(&quot;please wait!we are giving you a candy!&quot;);</span><br><span class="line"></span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 如果已经投入硬币之后则可以选择退出硬币</span><br><span class="line">     */</span><br><span class="line">    public void returnCoin() &#123;</span><br><span class="line">        switch (state) &#123;</span><br><span class="line">            case SoldOutState:</span><br><span class="line">                System.out</span><br><span class="line">                        .println(&quot;you can&apos;t return,you haven&apos;t inserted a coin yet!&quot;);</span><br><span class="line">                break;</span><br><span class="line">            case OnReadyState:</span><br><span class="line">                System.out.println(&quot;you haven&apos;t inserted a coin yet!&quot;);</span><br><span class="line">                break;</span><br><span class="line">            case HasCoin:</span><br><span class="line"></span><br><span class="line">                System.out.println(&quot;coin return!&quot;);</span><br><span class="line">                state = OnReadyState;</span><br><span class="line"></span><br><span class="line">                break;</span><br><span class="line">            case SoldState:</span><br><span class="line">                System.out.println(&quot;sorry,you already have turned the crank!&quot;);</span><br><span class="line"></span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 如果已经投入硬币则可以摇动把手</span><br><span class="line">     */</span><br><span class="line">    public void turnCrank() &#123;</span><br><span class="line">        switch (state) &#123;</span><br><span class="line">            case SoldOutState:</span><br><span class="line">                System.out.println(&quot;you turned,but there are no candies!&quot;);</span><br><span class="line">                break;</span><br><span class="line">            case OnReadyState:</span><br><span class="line">                System.out.println(&quot;you turned,but you haven&apos;t inserted a coin!&quot;);</span><br><span class="line">                break;</span><br><span class="line">            case HasCoin:</span><br><span class="line">                System.out.println(&quot;crank turn...!&quot;);</span><br><span class="line">                state = SoldState;</span><br><span class="line">                dispense();</span><br><span class="line">                break;</span><br><span class="line">            case SoldState:</span><br><span class="line">                System.out.println(&quot;we are giving you a candy,turning another get nothing,!&quot;);</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 掉出糖果</span><br><span class="line">     */</span><br><span class="line">    private void dispense() &#123;</span><br><span class="line">        count--;</span><br><span class="line">        System.out.println(&quot;a candy rolling out!&quot;);</span><br><span class="line">        if (count &gt; 0) &#123;</span><br><span class="line">            state = OnReadyState;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            System.out.println(&quot;Oo,out of candies&quot;);</span><br><span class="line">            state = SoldOutState;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void printstate() &#123;</span><br><span class="line"></span><br><span class="line">        switch (state) &#123;</span><br><span class="line">            case SoldOutState:</span><br><span class="line">                System.out.println(&quot;***SoldOutState***&quot;);</span><br><span class="line">                break;</span><br><span class="line">            case OnReadyState:</span><br><span class="line">                System.out.println(&quot;***OnReadyState***&quot;);</span><br><span class="line">                break;</span><br><span class="line">            case HasCoin:</span><br><span class="line">                System.out.println(&quot;***HasCoin***&quot;);</span><br><span class="line"></span><br><span class="line">                break;</span><br><span class="line">            case SoldState:</span><br><span class="line">                System.out.println(&quot;***SoldState***&quot;);</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>缺点：各种行为耦合度较高，不利于新需求的拓展</p>
+<h3 id="三、状态模式改进"><a href="#三、状态模式改进" class="headerlink" title="三、状态模式改进"></a>三、状态模式改进</h3><p>虽然传统的面向对象模式也可满足功能，但是若新增需求则不利于拓展。加入此项目新增一个幸运者的功能，售出糖果的时候有一定几率成为幸运者掉出两颗糖果。</p>
+<p>若满足该功能，则需在原本完成的糖果机代码中修改，则易造成其他不必要的bug，则引出状态模式：</p>
+<ul>
+<li>定义一个状态接口，接口定义需要处理的方法</li>
+<li>定义不同状态的接口对象，对象内实现不同状态对不同操作的处理</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 状态模式，统一的状态接口，接口内实现不同状态下不同的处理行为</span><br><span class="line"> */</span><br><span class="line">public interface State &#123;</span><br><span class="line"></span><br><span class="line">    // 投入硬币</span><br><span class="line">    public void insertCoin();</span><br><span class="line"></span><br><span class="line">    // 退出硬币</span><br><span class="line">    public void returnCoin();</span><br><span class="line"></span><br><span class="line">    // 摇动把手</span><br><span class="line">    public void turnCrank();</span><br><span class="line"></span><br><span class="line">    // 掉出糖果</span><br><span class="line">    public void dispense();</span><br><span class="line"></span><br><span class="line">    // 打印当前状态</span><br><span class="line">    public void printstate();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 状态模式，新增的幸运者状态，出糖果的时候有一定概率出两颗</span><br><span class="line"> */</span><br><span class="line">public class WinnerState implements State &#123;</span><br><span class="line"></span><br><span class="line">    private CandyMachine mCandyMachine;</span><br><span class="line"></span><br><span class="line">    public WinnerState(CandyMachine mCandyMachine) &#123;</span><br><span class="line">        this.mCandyMachine = mCandyMachine;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void insertCoin() &#123;</span><br><span class="line">        System.out.println(&quot;please wait!we are giving you a candy!&quot;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void returnCoin() &#123;</span><br><span class="line">        System.out.println(&quot;you haven&apos;t inserted a coin yet!&quot;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void turnCrank() &#123;</span><br><span class="line">        System.out.println(&quot;we are giving you a candy,turning another get nothing,!&quot;);</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void dispense() &#123;</span><br><span class="line">        mCandyMachine.releaseCandy();</span><br><span class="line">        if (mCandyMachine.getCount() == 0) &#123;</span><br><span class="line">            mCandyMachine.setState(mCandyMachine.mSoldOutState);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            System.out.println(&quot;you are a winner!you get another candy!&quot;);</span><br><span class="line">            mCandyMachine.releaseCandy();</span><br><span class="line">            if (mCandyMachine.getCount() &gt; 0) &#123;</span><br><span class="line">                mCandyMachine.setState(mCandyMachine.mOnReadyState);</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                System.out.println(&quot;Oo,out of candies&quot;);</span><br><span class="line">                mCandyMachine.setState(mCandyMachine.mSoldOutState);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void printstate() &#123;</span><br><span class="line">        System.out.println(&quot;***WinnerState***&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">```</span><br></pre></td></tr></table></figure>
+<p>/**</p>
+<ul>
+<li><p>状态模式，糖果机内只定义状态接口对象，在接口内部给糖果机的状态赋值<br>*/<br>public class CandyMachine {</p>
+<p> State mSoldOutState;<br> State mOnReadyState;<br> State mHasCoin;<br> State mSoldState;<br> State mWinnerState;<br> private State state;<br> private int count = 0;</p>
+<p> public CandyMachine(int count) {</p>
+<pre><code>this.count = count;
+mSoldOutState = new SoldOutState(this);
+mOnReadyState = new OnReadyState(this);
+mHasCoin = new HasCoin(this);
+mSoldState = new SoldState(this);
+mWinnerState = new WinnerState(this);
+if (count &gt; 0) {
+    state = mOnReadyState;
+} else {
+    state = mSoldOutState;
+}
+</code></pre><p> }</p>
+<p> public void setState(State state) {</p>
+<pre><code>this.state = state;
+</code></pre><p> }</p>
+<p> /**</p>
+<ul>
+<li><p>糖果机的一切状态都直接调用状态接口内部的方法<br>*/<br>public void insertCoin() {<br> state.insertCoin();<br>}</p>
+<p>public void returnCoin() {<br> state.returnCoin();<br>}</p>
+<p>public void turnCrank() {<br> state.turnCrank();<br> state.dispense();<br>}</p>
+<p>void releaseCandy() {<br> if (count &gt; 0) {</p>
+<pre><code>count = count - 1;
+System.out.println(&quot;a candy rolling out!&quot;);
+</code></pre><p> }</p>
+<p>}</p>
+<p>public int getCount() {<br> return count;<br>}</p>
+<p>public void printstate() {<br> state.printstate();<br>}<br>}</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+<p>/**</p>
+<ul>
+<li>状态模式，通过定义一个状态接口，接口内实现不同状态下不同的处理方式</li>
+<li>则调用处理方式时直接调用状态接口对象的实现方法</li>
+<li><p>使用状态模式可以是不同状态接互不影响，也可便于新增多种状态类型的需求<br>*/<br>public class MainTest {<br> public static void main(String[] args) {</p>
+<pre><code>CandyMachine mCandyMachine = new CandyMachine(6);
+
+mCandyMachine.printstate();
+
+mCandyMachine.insertCoin();
+mCandyMachine.printstate();
+
+mCandyMachine.turnCrank();
+
+mCandyMachine.printstate();
+
+mCandyMachine.insertCoin();
+mCandyMachine.printstate();
+
+mCandyMachine.turnCrank();
+
+mCandyMachine.printstate();
+</code></pre><p> }<br>}<br>```</p>
+</li>
+</ul>
+<h3 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h3><p>在很多情况下，一个对象的行为取决于一个或多个动态变化的属性，这样的属性叫做状态，这样的对象叫做有状态的(stateful)对象，这样的对象状态是从事先定义好的一系列值中取出的。当一个这样的对象与外部事件产生互动时，其内部状态就会改变，从而使得系统的行为也随之发生变化。</p>
+<p><br></p>
+<blockquote>
+<p>Java设计模式所有<a href="https://github.com/lilei644/design-pattern-example" target="_blank" rel="noopener">示例代码</a>，持续更新中</p>
 </blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/1316029-74202daa19a32c25.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="工厂模式"></p>
-        
-          <a class="article-more-a" href="/2018/05/07/2018-05-07/#more">more >></a>
-        
+
       
 
       
@@ -967,16 +307,75 @@ ga('send', 'pageview');
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/07/2018-05-07/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://lilei644.github.io/2018/05/22/2018-05-22/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2018/05/21/2018-05-21/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java 图的最短路径dijstra(迪杰斯特拉)算法和拓扑排序</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -996,12 +395,30 @@ ga('send', 'pageview');
 
 
 
+  
+  
+  
 
   
+
   
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "https://lilei644.github.io/2018/05/22/2018-05-22/",
+  owner: 'lilei644',
+  repo: 'lilei644.github.io',
+  oauth: {
+    client_id: '6bcff90c95dab647eace',
+    client_secret: '186ae7e79b8b65f90b28a2b15683bfa5fb82a3c8',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
   
 
 
@@ -1024,8 +441,8 @@ ga('send', 'pageview');
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
