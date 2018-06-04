@@ -6,14 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lilei644.github.io">
-  <title>Archives | Lei&#39;s blogs</title>
+  <title>Java 设计模式(18) —— 蝇量模式(享元模式) | Lei&#39;s blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Lei&#39;s blogs">
-<meta property="og:url" content="https://lilei644.github.io/archives/page/3/index.html">
+  <meta name="description" content="一、蝇量模式  通过共享的方式高效地支持大量细粒度的对象。">
+<meta name="keywords" content="java,设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 设计模式(18) —— 蝇量模式(享元模式)">
+<meta property="og:url" content="https://lilei644.github.io/2018/06/04/2018-06-04/index.html">
 <meta property="og:site_name" content="Lei&#39;s blogs">
+<meta property="og:description" content="一、蝇量模式  通过共享的方式高效地支持大量细粒度的对象。">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1316029-045a0d5f5b62dba5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-06-04T01:03:47.042Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lei&#39;s blogs">
+<meta name="twitter:title" content="Java 设计模式(18) —— 蝇量模式(享元模式)">
+<meta name="twitter:description" content="一、蝇量模式  通过共享的方式高效地支持大量细粒度的对象。">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1316029-045a0d5f5b62dba5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternative" href="/atom.xml" title="Lei&#39;s blogs" type="application/atom+xml">
   
@@ -164,36 +171,74 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-2018-06-04" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/02/2018-05-02/" class="archive-article-date">
-  	<time datetime="2018-05-02T13:54:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-02</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/02/2018-05-02/">Java 设计模式(1) —— 策略模式</a>
+    <h1 class="article-title" itemprop="name">
+      Java 设计模式(18) —— 蝇量模式(享元模式)
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/06/04/2018-06-04/" class="archive-article-date">
+  	<time datetime="2018-06-04T00:26:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一、蝇量模式"><a href="#一、蝇量模式" class="headerlink" title="一、蝇量模式"></a>一、蝇量模式</h3><blockquote>
+<p> 通过共享的方式高效地支持大量细粒度的对象。</p>
+</blockquote>
+<p><img src="https://upload-images.jianshu.io/upload_images/1316029-045a0d5f5b62dba5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="蝇量模式"></p>
+<a id="more"></a>
+<h3 id="二、示例"><a href="#二、示例" class="headerlink" title="二、示例"></a>二、示例</h3><p>景观设计软件项目：现在有一个设计景观展示的项目，项目内部已经有的对象有树，树的属性有年龄，x、y的坐标。现在要表示成一个森林，则需要通过大量的树模拟成森林</p>
+<p>每一颗树的属性和方法都是相同的，只是值不同</p>
+<p>传统方法就是定义大量的树对象，当成森林使用时则循环遍历每一颗树的内部方法就行。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 传统模式，树的对象，包含树的x,y坐标和年龄</span><br><span class="line"> */</span><br><span class="line">public class Tree &#123;</span><br><span class="line">    private int xCoord, yCoord, age;</span><br><span class="line"></span><br><span class="line">    public Tree(int xCoord, int yCoord, int age) &#123;</span><br><span class="line">        this.xCoord = xCoord;</span><br><span class="line">        this.yCoord = yCoord;</span><br><span class="line">        this.age = age;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void display() &#123;</span><br><span class="line">        // System.out.print(&quot;x&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 测试传统模式，一个对象一个类，用到时循环遍历</span><br><span class="line"> */</span><br><span class="line">public class TreesTest &#123;</span><br><span class="line"></span><br><span class="line">	private int length = 10000000;</span><br><span class="line">	private Tree[] treelst = new Tree[length];</span><br><span class="line"></span><br><span class="line">	public TreesTest() &#123;</span><br><span class="line">		for (int i = 0; i &lt; length; i++) &#123;</span><br><span class="line">			treelst[i] = new Tree((int) (Math.random() * length),</span><br><span class="line">					(int) (Math.random() * length),</span><br><span class="line">					(int) (Math.random() * length) % 5);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void display() &#123;</span><br><span class="line">		for (int i = 0, len = treelst.length; i &lt; len; i++) &#123;</span><br><span class="line">			treelst[i].display();</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 传统模式，将树定义成单个对象，模拟森林时则直接通过遍历遍历一个个的对象，占用内存较大，耗时较长</span><br><span class="line"> */</span><br><span class="line">public class MainTest &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        showMemInfo();</span><br><span class="line">        TreesTest mTreesTest;</span><br><span class="line">        mTreesTest = new TreesTest();</span><br><span class="line"></span><br><span class="line">        showMemInfo();</span><br><span class="line">        mTreesTest.display();</span><br><span class="line">        showMemInfo();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void showMemInfo() &#123;</span><br><span class="line">        // 最大内存：</span><br><span class="line">        long max = Runtime.getRuntime().maxMemory();</span><br><span class="line">        // 分配内存：</span><br><span class="line">        long total = Runtime.getRuntime().totalMemory();</span><br><span class="line">        // 已分配内存中的剩余空间 ：</span><br><span class="line">        long free = Runtime.getRuntime().freeMemory();</span><br><span class="line">        // 已占用的内存：</span><br><span class="line">        long used = total - free;</span><br><span class="line"></span><br><span class="line">        System.out.println(&quot;最大内存 = &quot; + max);</span><br><span class="line">        System.out.println(&quot;已分配内存 = &quot; + total);</span><br><span class="line">        System.out.println(&quot;已分配内存中的剩余空间 = &quot; + free);</span><br><span class="line">        System.out.println(&quot;已用内存 = &quot; + used);</span><br><span class="line">        System.out.println(&quot;时间 = &quot; + System.currentTimeMillis());</span><br><span class="line">        System.out.println();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>虽然这种方式也可以实现需求，但是由于树的对象数量较大，则运行时占用内存更高，耗时较长</p>
+<h3 id="三、蝇量模式"><a href="#三、蝇量模式" class="headerlink" title="三、蝇量模式"></a>三、蝇量模式</h3><p>由于每一个树对象的属性和方法都是相同的，只是属性的值不同。则可以蝇量模式，定义一个树的管理者对象，内部定义多个集合来存储所有树的单个属性，则当成森林调用时只用调用这个管理者对象即可</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 蝇量模式，重新定义一个对象模拟森林，在对象内部用集合重新定义多个树对象的属性</span><br><span class="line"> */</span><br><span class="line">public class TreeManager &#123;</span><br><span class="line"></span><br><span class="line">    private int length = 10000000;</span><br><span class="line">    int[] xArray = new int[length], yArray = new int[length],</span><br><span class="line">            AgeArray = new int[length];</span><br><span class="line"></span><br><span class="line">    private TreeFlyWeight mTreeFlyWeight;</span><br><span class="line"></span><br><span class="line">    public TreeManager() &#123;</span><br><span class="line"></span><br><span class="line">        mTreeFlyWeight = new TreeFlyWeight();</span><br><span class="line">        for (int i = 0; i &lt; length; i++) &#123;</span><br><span class="line"></span><br><span class="line">            xArray[i] = (int) (Math.random() * length);</span><br><span class="line">            yArray[i] = (int) (Math.random() * length);</span><br><span class="line">            AgeArray[i] = (int) (Math.random() * length) % 5;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void displayTrees() &#123;</span><br><span class="line"></span><br><span class="line">        for (int i = 0; i &lt; length; i++) &#123;</span><br><span class="line">            mTreeFlyWeight.display(xArray[i], yArray[i], AgeArray[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 蝇量模式，定义新的对象将树对象的各属性内部定义成集合，则调用时只用调用这一个对象即可</span><br><span class="line"> * 占用内存更少，耗时更短</span><br><span class="line"> */</span><br><span class="line">public class MainTest &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">        showMemInfo();</span><br><span class="line"></span><br><span class="line">        TreeManager mTreeManager;</span><br><span class="line">        mTreeManager = new TreeManager();</span><br><span class="line"></span><br><span class="line">        showMemInfo();</span><br><span class="line">        mTreeManager.displayTrees();</span><br><span class="line">        showMemInfo();</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void showMemInfo() &#123;</span><br><span class="line">        // 已分配内存中的剩余空间 ：</span><br><span class="line">        long free = Runtime.getRuntime().freeMemory();</span><br><span class="line">        // 分配内存：</span><br><span class="line">        long total = Runtime.getRuntime().totalMemory();</span><br><span class="line">        // 最大内存：</span><br><span class="line">        long max = Runtime.getRuntime().maxMemory();</span><br><span class="line">        // 已占用的内存：</span><br><span class="line"></span><br><span class="line">        long used = total - free;</span><br><span class="line"></span><br><span class="line">        System.out.println(&quot;最大内存 = &quot; + max);</span><br><span class="line">        System.out.println(&quot;已分配内存 = &quot; + total);</span><br><span class="line">        System.out.println(&quot;已分配内存中的剩余空间 = &quot; + free);</span><br><span class="line">        System.out.println(&quot;已用内存 = &quot; + used);</span><br><span class="line">        System.out.println(&quot;时间 = &quot; + System.currentTimeMillis());</span><br><span class="line">        System.out.println();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h3><ul>
+<li><p>优点：</p>
+<ul>
+<li>减少运行时的对象实例个数，节省创建开销和内存</li>
+<li>将许多“虚拟”对象的状态集中管理</li>
+</ul>
+</li>
+<li><p>缺点：</p>
+<ul>
+<li>系统设计更加复杂</li>
+<li>需要专门维护对象的外部状态</li>
+</ul>
+</li>
+<li><p>适用场合：</p>
+<ul>
+<li>需要大量细粒度对象</li>
+<li>这些对象的外部状态不多</li>
+<li>按照内部状态分成几个组，每一个组都仅用一个蝇量对象代替</li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+<blockquote>
+<p>Java设计模式所有<a href="https://github.com/lilei644/design-pattern-example" target="_blank" rel="noopener">示例代码</a>，持续更新中</p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -209,412 +254,121 @@ ga('send', 'pageview');
 		</ul>
 	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/21/2018-04-21/" class="archive-article-date">
-  	<time datetime="2018-04-21T04:50:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/21/2018-04-21/">JVM的理解与整理</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">java虚拟机</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/20/2018-01-20/" class="archive-article-date">
-  	<time datetime="2018-01-20T03:20:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/20/2018-01-20/">python练习示例 -- 简单的爬虫解析</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/11/2018-01-11/" class="archive-article-date">
-  	<time datetime="2018-01-11T10:00:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/11/2018-01-11/">python练习示例 -- Mysql</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">python example</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/05/2018-01-05/" class="archive-article-date">
-  	<time datetime="2018-01-05T01:33:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/05/2018-01-05/">python练习示例 -- 图片转字符串文本</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">python example</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/04/2018-01-04/" class="archive-article-date">
-  	<time datetime="2018-01-04T06:02:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/04/2018-01-04/">十五分钟让你了解Python基本语法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
+
       
+
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/31/2017-03-31/" class="archive-article-date">
-  	<time datetime="2017-03-31T12:44:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/31/2017-03-31/">Android Studo jni开发入门——看我就够了!</a>
-    </h1>
-  
+      </div>
+    </span>
+  </div>
+</div>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jni</a>
-        		</li>
-      		
-		</ul>
-	</div>
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://lilei644.github.io/2018/06/04/2018-06-04/" alt="微信分享二维码">
+    </div>
+</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/05/2017-02-05/" class="archive-article-date">
-  	<time datetime="2017-02-05T06:27:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-05</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/06/01/2018-06-01/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java 9种排序算法详解和示例汇总</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/05/2017-02-05/">记录一次GreenDao3.x踏坑之旅</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">GreenDao</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">sqlite</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/31/2016-12-31/" class="archive-article-date">
-  	<time datetime="2016-12-31T09:48:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/31/2016-12-31/">MySql性能优化——基础篇</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/06/2016-12-06/" class="archive-article-date">
-  	<time datetime="2016-12-06T12:46:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/06/2016-12-06/">手把手教你绘制Android粘性果冻动画组件</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">animation</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/2/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/page/4/">4</a><a class="extend next" rel="next" href="/archives/page/4/">Next &raquo;</a>
-    </nav>
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "https://lilei644.github.io/2018/06/04/2018-06-04/",
+  owner: 'lilei644',
+  repo: 'lilei644.github.io',
+  oauth: {
+    client_id: '6bcff90c95dab647eace',
+    client_secret: '186ae7e79b8b65f90b28a2b15683bfa5fb82a3c8',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
   
 
 
@@ -638,8 +392,8 @@ ga('send', 'pageview');
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
