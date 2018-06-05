@@ -6,14 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lilei644.github.io">
-  <title>Archives | Lei&#39;s blogs</title>
+  <title>Java 设计模式(19) —— 解释器模式 | Lei&#39;s blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Lei&#39;s blogs">
-<meta property="og:url" content="https://lilei644.github.io/archives/index.html">
+  <meta name="description" content="一、解释器模式  定义一个语法, 定义一个解释器，该解释器处理该语法句子。将某些复杂问题，表达为某种语法规则，然后构建解释器来解释处理这类句子。">
+<meta name="keywords" content="java,设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 设计模式(19) —— 解释器模式">
+<meta property="og:url" content="https://lilei644.github.io/2018/06/05/2018-06-05/index.html">
 <meta property="og:site_name" content="Lei&#39;s blogs">
+<meta property="og:description" content="一、解释器模式  定义一个语法, 定义一个解释器，该解释器处理该语法句子。将某些复杂问题，表达为某种语法规则，然后构建解释器来解释处理这类句子。">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1316029-f89b1d52bf542774.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1316029-5164bd6a550fb658.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-06-05T01:16:44.620Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lei&#39;s blogs">
+<meta name="twitter:title" content="Java 设计模式(19) —— 解释器模式">
+<meta name="twitter:description" content="一、解释器模式  定义一个语法, 定义一个解释器，该解释器处理该语法句子。将某些复杂问题，表达为某种语法规则，然后构建解释器来解释处理这类句子。">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1316029-f89b1d52bf542774.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternative" href="/atom.xml" title="Lei&#39;s blogs" type="application/atom+xml">
   
@@ -164,36 +172,93 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-2018-06-05" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      Java 设计模式(19) —— 解释器模式
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/06/05/2018-06-05/" class="archive-article-date">
+
+        
+        <a href="/2018/06/05/2018-06-05/" class="archive-article-date">
   	<time datetime="2018-06-05T00:48:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-05</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/06/05/2018-06-05/">Java 设计模式(19) —— 解释器模式</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一、解释器模式"><a href="#一、解释器模式" class="headerlink" title="一、解释器模式"></a>一、解释器模式</h3><blockquote>
+<p> 定义一个语法, 定义一个解释器，该解释器处理该语法句子。将某些复杂问题，表达为某种语法规则，然后构建解释器来解释处理这类句子。</p>
+</blockquote>
+<p><img src="https://upload-images.jianshu.io/upload_images/1316029-f89b1d52bf542774.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="解释器模式"></p>
+<a id="more"></a>
+<h3 id="二、示例"><a href="#二、示例" class="headerlink" title="二、示例"></a>二、示例</h3><p>数据分析项目：现在有大量的数据需要进行分析统计，统计过程中不同的需求则要根据不同的运算方法所得，按照传统的方法则需要每有一种分析需求，就制定一套解析方法，较繁琐不利于维护</p>
+<p>则引用解释器模式，外部直接输入数据集合和加减乘除的运算方式，解释器进行自动解析即可</p>
+<ul>
+<li>计算模型按正常算术方式书写，解释器处理语法逻辑</li>
+<li>计算模型里有两种表达式：变量数据和计算符</li>
+<li>用逆波兰算法分析算式语法</li>
+<li>用解释器模式处理数据</li>
+</ul>
+<p>1.计算表达式的抽象类，用HashMap存储所有要计算的变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 解释器模式，抽象表达式，HashMap存储运算的具体数据</span><br><span class="line"> */</span><br><span class="line">public abstract class AbstractExpresstion &#123;</span><br><span class="line">	public abstract Float interpreter(HashMap&lt;String, Float&gt; var);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.定义变量表达式代表运算中的所有变量</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 解释器模式，变量表达式，代表所有操作的数字</span><br><span class="line"> */</span><br><span class="line">public class VarExpresstion extends AbstractExpresstion &#123;</span><br><span class="line">    private String key;</span><br><span class="line"></span><br><span class="line">    public VarExpresstion(String _key) &#123;</span><br><span class="line">        this.key = _key;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Float interpreter(HashMap&lt;String, Float&gt; var) &#123;</span><br><span class="line">        return var.get(this.key);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3.定义运算符表达式的超类，并定义加减乘除各项表达式的解释器模型</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 解释器模式，运算符相关的表达式，每种运算符操作都是两个数据</span><br><span class="line"> */</span><br><span class="line">public abstract class SymbolExpresstion extends AbstractExpresstion &#123;</span><br><span class="line">    protected AbstractExpresstion left;</span><br><span class="line">    protected AbstractExpresstion right;</span><br><span class="line"></span><br><span class="line">    public SymbolExpresstion(AbstractExpresstion _left,</span><br><span class="line">                             AbstractExpresstion _right) &#123;</span><br><span class="line">        this.left = _left;</span><br><span class="line"></span><br><span class="line">        this.right = _right;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 解释器模式，相加的表达式</span><br><span class="line"> */</span><br><span class="line">public class AddExpresstion extends SymbolExpresstion &#123;</span><br><span class="line"></span><br><span class="line">    public AddExpresstion(AbstractExpresstion _left, AbstractExpresstion _right) &#123;</span><br><span class="line">        super(_left, _right);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Float interpreter(HashMap&lt;String, Float&gt; var) &#123;</span><br><span class="line">        return super.left.interpreter(var) + super.right.interpreter(var);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 解释器模式，相减的表达式</span><br><span class="line"> */</span><br><span class="line">public class SubExpresstion extends SymbolExpresstion &#123;</span><br><span class="line"></span><br><span class="line">    public SubExpresstion(AbstractExpresstion _left, AbstractExpresstion _right) &#123;</span><br><span class="line">        super(_left, _right);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Float interpreter(HashMap&lt;String, Float&gt; var) &#123;</span><br><span class="line">        return super.left.interpreter(var) - super.right.interpreter(var);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 解释器模式，相乘的表达式</span><br><span class="line"> */</span><br><span class="line">public class MultiExpresstion extends SymbolExpresstion &#123;</span><br><span class="line"></span><br><span class="line">    public MultiExpresstion(AbstractExpresstion _left,</span><br><span class="line">                            AbstractExpresstion _right) &#123;</span><br><span class="line">        super(_left, _right);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Float interpreter(HashMap&lt;String, Float&gt; var) &#123;</span><br><span class="line">        return super.left.interpreter(var) * super.right.interpreter(var);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 解释器模式，相除的表达式</span><br><span class="line"> */</span><br><span class="line">public class DivExpresstion extends SymbolExpresstion &#123;</span><br><span class="line"></span><br><span class="line">    public DivExpresstion(AbstractExpresstion _left, AbstractExpresstion _right) &#123;</span><br><span class="line">        super(_left, _right);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public Float interpreter(HashMap&lt;String, Float&gt; var) &#123;</span><br><span class="line">        return super.left.interpreter(var) / super.right.interpreter(var);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4.设计计算方法，用HashMap引入需要计算的数据，让用户自定义输入运算方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 解释器模式，计算器方法，对数据进行加减乘除的运算</span><br><span class="line"> */</span><br><span class="line">public class Calculator &#123;</span><br><span class="line"></span><br><span class="line">    public Calculator() &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        // 随机生成需要运算3组数据，每组6个</span><br><span class="line">        float[][] dataSource = new float[3][6];</span><br><span class="line">        System.out.println(&quot;data source:&quot;);</span><br><span class="line">        for (int i = 0; i &lt; 3; i++) &#123;</span><br><span class="line">            for (int j = 0; j &lt; 6; j++) &#123;</span><br><span class="line">                dataSource[i][j] = (float) (Math.random() * 100);</span><br><span class="line">                System.out.print(dataSource[i][j] + &quot;,&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(&quot;;&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        try &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">            // 让用户自定义输入各数据运算的规则</span><br><span class="line">            System.out.println(&quot;Input a expression:&quot;);</span><br><span class="line">            BufferedReader is = new BufferedReader(new InputStreamReader(</span><br><span class="line">                    System.in));</span><br><span class="line">            for (; ; ) &#123;</span><br><span class="line">                String input = new String();</span><br><span class="line">                input = is.readLine().trim();</span><br><span class="line">                if (input.equals(&quot;q&quot;))</span><br><span class="line">                    break;</span><br><span class="line">                else &#123;</span><br><span class="line">                    RPN boya = new RPN(input);</span><br><span class="line">                    HashMap&lt;String, Float&gt; var;</span><br><span class="line"></span><br><span class="line">                    // 用abcdef代表存储在HashMap中数据的key</span><br><span class="line">                    for (int i = 0; i &lt; 3; i++) &#123;</span><br><span class="line">                        var = new HashMap&lt;String, Float&gt;();</span><br><span class="line">                        var.put(&quot;a&quot;, dataSource[i][0]);</span><br><span class="line">                        var.put(&quot;b&quot;, dataSource[i][1]);</span><br><span class="line">                        var.put(&quot;c&quot;, dataSource[i][2]);</span><br><span class="line">                        var.put(&quot;d&quot;, dataSource[i][3]);</span><br><span class="line">                        var.put(&quot;e&quot;, dataSource[i][4]);</span><br><span class="line">                        var.put(&quot;f&quot;, dataSource[i][5]);</span><br><span class="line"></span><br><span class="line">                        boya.getResult(var);</span><br><span class="line"></span><br><span class="line">                    &#125;</span><br><span class="line"></span><br><span class="line">                &#125;</span><br><span class="line">                System.out.println(&quot;Input another expression or input &apos;q&apos; to quit:&quot;);</span><br><span class="line">            &#125;</span><br><span class="line">            is.close();</span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">            System.out.println(&quot;Wrong input!!!&quot;);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>5.运行结果</p>
+<p><img src="https://upload-images.jianshu.io/upload_images/1316029-5164bd6a550fb658.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="计算数据解析"></p>
+<p>以上则根据解释器模式将模型分成了变量表达式和运算表达式两种，并对各表达式进行了解释器模型的定义，用递归的原理实现了数据的循环运算。则可以实现用户自定义数据的运算方式得出统计结果</p>
+<h3 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h3><ul>
+<li><p>优点：</p>
+<ul>
+<li>容易修改，修改语法规则只要修改相应非终结符即可</li>
+<li>扩展方便，扩展语法，只要增加非终结符类即可</li>
+</ul>
+</li>
+<li><p>缺点：</p>
+<ul>
+<li>对于复杂语法的表示会产生复杂的类层次结构，不便管理和维护</li>
+<li>解释器采用递归方式，效率会受影响</li>
+</ul>
+</li>
+<li><p>注意事项：</p>
+<ul>
+<li>尽量不要在重要的模块中使用解释器模式</li>
+<li>解释器模式在实际的系统开发中使用的非常少</li>
+<li>可以考虑一下Expression4J、MESP、Jep等开源的解析工具包</li>
+</ul>
+</li>
+<li><p>适用场合：</p>
+<ul>
+<li>当你有一个简单语法，而且效率不是问题的时候</li>
+<li>一些数据分析工具、报表设计工具、科学计算工具等</li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+<blockquote>
+<p>Java设计模式所有<a href="https://github.com/lilei644/design-pattern-example" target="_blank" rel="noopener">示例代码</a>，持续更新中</p>
+</blockquote>
 
-        <div class="article-info info-on-right">
-          
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -209,400 +274,121 @@ ga('send', 'pageview');
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://lilei644.github.io/2018/06/05/2018-06-05/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/06/04/2018-06-04/" class="archive-article-date">
-  	<time datetime="2018-06-04T00:26:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-04</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/06/04/2018-06-04/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java 设计模式(18) —— 蝇量模式(享元模式)</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/06/04/2018-06-04/">Java 设计模式(18) —— 蝇量模式(享元模式)</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/06/01/2018-06-01/" class="archive-article-date">
-  	<time datetime="2018-06-01T12:05:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-01</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/06/01/2018-06-01/">Java 9种排序算法详解和示例汇总</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/30/2018-05-30/" class="archive-article-date">
-  	<time datetime="2018-05-30T12:49:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-30</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/30/2018-05-30/">Java 设计模式(17) —— 责任链模式</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/29/2018-05-29/" class="archive-article-date">
-  	<time datetime="2018-05-29T12:19:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-29</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/29/2018-05-29/">Java 设计模式(16) —— 生成器模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/28/2018-05-28/" class="archive-article-date">
-  	<time datetime="2018-05-28T13:16:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-28</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/28/2018-05-28/">Java 设计模式(15) —— 桥接模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/26/2018-05-26/" class="archive-article-date">
-  	<time datetime="2018-05-26T13:19:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/26/2018-05-26/">Java 设计模式(14) —— 复合模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/24/2018-05-24/" class="archive-article-date">
-  	<time datetime="2018-05-24T13:59:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/24/2018-05-24/">Java 设计模式(13) —— 代理模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/22/2018-05-22/" class="archive-article-date">
-  	<time datetime="2018-05-22T15:02:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-22</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/22/2018-05-22/">Java 设计模式(12) —— 状态模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/21/2018-05-21/" class="archive-article-date">
-  	<time datetime="2018-05-21T10:21:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/21/2018-05-21/">Java 图的最短路径dijstra(迪杰斯特拉)算法和拓扑排序</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><a class="page-number" href="/archives/page/4/">4</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "https://lilei644.github.io/2018/06/05/2018-06-05/",
+  owner: 'lilei644',
+  repo: 'lilei644.github.io',
+  oauth: {
+    client_id: '6bcff90c95dab647eace',
+    client_secret: '186ae7e79b8b65f90b28a2b15683bfa5fb82a3c8',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
   
 
 
@@ -626,8 +412,8 @@ ga('send', 'pageview');
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
