@@ -6,14 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lilei644.github.io">
-  <title>Archives | Lei&#39;s blogs</title>
+  <title>Java 设计模式(20) —— 中介者模式 | Lei&#39;s blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Lei&#39;s blogs">
-<meta property="og:url" content="https://lilei644.github.io/archives/page/3/index.html">
+  <meta name="description" content="一、中介者模式  用一个中介对象来封装一系列的对象交互。中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互">
+<meta name="keywords" content="java,设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 设计模式(20) —— 中介者模式">
+<meta property="og:url" content="https://lilei644.github.io/2018/06/12/2018-06-05的副本/index.html">
 <meta property="og:site_name" content="Lei&#39;s blogs">
+<meta property="og:description" content="一、中介者模式  用一个中介对象来封装一系列的对象交互。中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1316029-5ae354f4e53c6f69.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-06-12T00:48:30.063Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lei&#39;s blogs">
+<meta name="twitter:title" content="Java 设计模式(20) —— 中介者模式">
+<meta name="twitter:description" content="一、中介者模式  用一个中介对象来封装一系列的对象交互。中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1316029-5ae354f4e53c6f69.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternative" href="/atom.xml" title="Lei&#39;s blogs" type="application/atom+xml">
   
@@ -164,36 +171,82 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-2018-06-05的副本" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/05/2018-05-05/" class="archive-article-date">
-  	<time datetime="2018-05-05T15:59:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-05</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/05/2018-05-05/">Java 设计模式(3) —— 装饰者模式</a>
+    <h1 class="article-title" itemprop="name">
+      Java 设计模式(20) —— 中介者模式
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/06/12/2018-06-05的副本/" class="archive-article-date">
+  	<time datetime="2018-06-12T00:25:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一、中介者模式"><a href="#一、中介者模式" class="headerlink" title="一、中介者模式"></a>一、中介者模式</h3><blockquote>
+<p> 用一个中介对象来封装一系列的对象交互。中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互</p>
+</blockquote>
+<p><img src="https://upload-images.jianshu.io/upload_images/1316029-5ae354f4e53c6f69.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="中介者模式"></p>
+<a id="more"></a>
+<h3 id="二、示例"><a href="#二、示例" class="headerlink" title="二、示例"></a>二、示例</h3><p>智能家居项目：现在要设计一套智能家居系统，家里有闹钟、咖啡机、窗帘、电视。当早晨闹钟响起之后要控制咖啡机自动煮咖啡，咖啡煮好之后窗帘要自动打开，电视机也打开开始播放新闻</p>
+<p>用传统模式规划此项目的话是通过对象之间的彼此控制，用闹钟控制咖啡机，用咖啡机控制窗帘和电视。虽然传统模式也可以实现功能，但是各组件之间相互依赖性较高，且不利于新电器的增加，网状结构较复杂</p>
+<p>引入中介者模式，定义一个中介者，连接各个组件，各组件的功能全部通过中介者控制，则每个组件只需与中介者通信即可，且利于组件的增加和减少</p>
+<p>1.定义中介者的接口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 中介者模式，中介者的接口，用于注册加入中介，发送消息和接收消息</span><br><span class="line"> */</span><br><span class="line">public interface Mediator &#123;</span><br><span class="line">    public abstract void Register(String colleagueName, Colleague colleague);</span><br><span class="line"></span><br><span class="line">    public abstract void GetMessage(int stateChange, String colleagueName);</span><br><span class="line"></span><br><span class="line">    public abstract void SendMessage();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.定义各组件实现的抽象类</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 中介者模式，各组件实现的抽象类</span><br><span class="line"> */</span><br><span class="line">public abstract class Colleague &#123;</span><br><span class="line">    private Mediator mediator;</span><br><span class="line">    public String name;</span><br><span class="line"></span><br><span class="line">    public Colleague(Mediator mediator, String name) &#123;</span><br><span class="line"></span><br><span class="line">        this.mediator = mediator;</span><br><span class="line">        this.name = name;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public Mediator GetMediator() &#123;</span><br><span class="line">        return this.mediator;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public abstract void SendMessage(int stateChange);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3.各组件实现抽象类的抽象方法和自己实现的功能方法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 中介者模式，闹钟对象，属于中介者控制的组件</span><br><span class="line"> */</span><br><span class="line">public class Alarm extends Colleague &#123;</span><br><span class="line"></span><br><span class="line">	public Alarm(Mediator mediator, String name) &#123;</span><br><span class="line">		super(mediator, name);</span><br><span class="line">		mediator.Register(name, this);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void SendAlarm(int stateChange) &#123;</span><br><span class="line">		SendMessage(stateChange);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public void SendMessage(int stateChange) &#123;</span><br><span class="line">		this.GetMediator().GetMessage(stateChange, this.name);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 中介者模式，咖啡机对象，属于中介者控制的组件</span><br><span class="line"> */</span><br><span class="line">public class CoffeeMachine extends Colleague &#123;</span><br><span class="line"></span><br><span class="line">    public CoffeeMachine(Mediator mediator, String name) &#123;</span><br><span class="line">        super(mediator, name);</span><br><span class="line">        mediator.Register(name, this);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void SendMessage(int stateChange) &#123;</span><br><span class="line">        this.GetMediator().GetMessage(stateChange, this.name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void StartCoffee() &#123;</span><br><span class="line">        System.out.println(&quot;It&apos;s time to startcoffee!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void FinishCoffee() &#123;</span><br><span class="line"></span><br><span class="line">        System.out.println(&quot;After 5 minutes!&quot;);</span><br><span class="line">        System.out.println(&quot;Coffee is ok!&quot;);</span><br><span class="line">        SendMessage(0);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 中介者模式，窗帘对象，属于中介者控制的组件</span><br><span class="line"> */</span><br><span class="line">public class Curtains extends Colleague &#123;</span><br><span class="line"></span><br><span class="line">	public Curtains(Mediator mediator, String name) &#123;</span><br><span class="line">		super(mediator, name);</span><br><span class="line">		mediator.Register(name, this);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public void SendMessage(int stateChange) &#123;</span><br><span class="line">		this.GetMediator().GetMessage(stateChange, this.name);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void UpCurtains() &#123;</span><br><span class="line">		System.out.println(&quot;I am holding Up Curtains!&quot;);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 中介者模式，电视机对象，属于中介者控制的组件</span><br><span class="line"> */</span><br><span class="line">public class TV extends Colleague &#123;</span><br><span class="line"></span><br><span class="line">    public TV(Mediator mediator, String name) &#123;</span><br><span class="line">        super(mediator, name);</span><br><span class="line">        mediator.Register(name, this);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void SendMessage(int stateChange) &#123;</span><br><span class="line">        this.GetMediator().GetMessage(stateChange, this.name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void StartTv() &#123;</span><br><span class="line">        System.out.println(&quot;It&apos;s time to StartTv!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public void StopTv() &#123;</span><br><span class="line">        System.out.println(&quot;StopTv!&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4.定义中介者，用于集中管控所有组件之间的功能</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 中介者模式，中介者，用于集中管理所有的组件控制，协调各组件的功能</span><br><span class="line"> */</span><br><span class="line">public class ConcreteMediator implements Mediator &#123;</span><br><span class="line">    private HashMap&lt;String, Colleague&gt; colleagueMap;</span><br><span class="line">    private HashMap&lt;String, String&gt; interMap;</span><br><span class="line"></span><br><span class="line">    public ConcreteMediator() &#123;</span><br><span class="line">        colleagueMap = new HashMap&lt;String, Colleague&gt;();</span><br><span class="line">        interMap = new HashMap&lt;String, String&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void Register(String colleagueName, Colleague colleague) &#123;</span><br><span class="line">        colleagueMap.put(colleagueName, colleague);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        if (colleague instanceof Alarm) &#123;</span><br><span class="line">            interMap.put(&quot;Alarm&quot;, colleagueName);</span><br><span class="line">        &#125; else if (colleague instanceof CoffeeMachine) &#123;</span><br><span class="line">            interMap.put(&quot;CoffeeMachine&quot;, colleagueName);</span><br><span class="line">        &#125; else if (colleague instanceof TV) &#123;</span><br><span class="line">            interMap.put(&quot;TV&quot;, colleagueName);</span><br><span class="line">        &#125; else if (colleague instanceof Curtains) &#123;</span><br><span class="line">            interMap.put(&quot;Curtains&quot;, colleagueName);</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void GetMessage(int stateChange, String colleagueName) &#123;</span><br><span class="line"></span><br><span class="line">        if (colleagueMap.get(colleagueName) instanceof Alarm) &#123;</span><br><span class="line">            if (stateChange == 0) &#123;</span><br><span class="line">                ((CoffeeMachine) (colleagueMap.get(interMap</span><br><span class="line">                        .get(&quot;CoffeeMachine&quot;)))).StartCoffee();</span><br><span class="line">                ((TV) (colleagueMap.get(interMap.get(&quot;TV&quot;)))).StartTv();</span><br><span class="line">            &#125; else if (stateChange == 1) &#123;</span><br><span class="line">                ((TV) (colleagueMap.get(interMap.get(&quot;TV&quot;)))).StopTv();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125; else if (colleagueMap.get(colleagueName) instanceof CoffeeMachine) &#123;</span><br><span class="line">            ((Curtains) (colleagueMap.get(interMap.get(&quot;Curtains&quot;))))</span><br><span class="line">                    .UpCurtains();</span><br><span class="line"></span><br><span class="line">        &#125; else if (colleagueMap.get(colleagueName) instanceof TV) &#123;</span><br><span class="line"></span><br><span class="line">        &#125; else if (colleagueMap.get(colleagueName) instanceof Curtains) &#123;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void SendMessage() &#123;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>5.组件调用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 中介者模式：用一个中介对象来封装一系列的对象交互</span><br><span class="line"> */</span><br><span class="line">public class MainTest &#123;</span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">        // 定义闹钟，咖啡机，窗帘，电视等组件，用中介者集中管控</span><br><span class="line">        Mediator mediator = new ConcreteMediator();</span><br><span class="line">        Alarm mAlarm = new Alarm(mediator, &quot;mAlarm&quot;);</span><br><span class="line">        CoffeeMachine mCoffeeMachine = new CoffeeMachine(mediator,</span><br><span class="line">                &quot;mCoffeeMachine&quot;);</span><br><span class="line">        Curtains mCurtains = new Curtains(mediator, &quot;mCurtains&quot;);</span><br><span class="line">        TV mTV = new TV(mediator, &quot;mTV&quot;);</span><br><span class="line">        mAlarm.SendAlarm(0);</span><br><span class="line">        mCoffeeMachine.FinishCoffee();</span><br><span class="line">        mAlarm.SendAlarm(1);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>根据以上中介者模式的设计方式可以实现各组件只需发送修改自己的状态即可，剩下的控制全由中介者负责，降低各组件之间的耦合度，利于拓展。</p>
+<h3 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h3><ul>
+<li><p>优点：</p>
+<ul>
+<li>通过将对象彼此解耦，可以增加对象的复用性</li>
+<li>通过将控制逻辑集中，可以简化系统维护</li>
+<li>可以让对象之间所传递的消息变得简单而且大幅减少</li>
+<li>提高系统的灵活性，使得系统易于扩展和维护</li>
+</ul>
+</li>
+<li><p>缺点：</p>
+<ul>
+<li>中介者承担了较多的责任，一旦中介者出现了问题，整个系统就会受到影响</li>
+<li>如果设计不当，中介者对象本身变得过于复杂</li>
+</ul>
+</li>
+<li><p>适用场合：</p>
+<ul>
+<li>一组对象之间的通信方式比较复杂，导致相互依赖，结构混乱</li>
+<li>一个对象引用很多其他对象并直接与这些对象通信，导致难以复用该对象</li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+<blockquote>
+<p>Java设计模式所有<a href="https://github.com/lilei644/design-pattern-example" target="_blank" rel="noopener">示例代码</a>，持续更新中</p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -209,406 +262,121 @@ ga('send', 'pageview');
 		</ul>
 	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/04/2018-05-04/" class="archive-article-date">
-  	<time datetime="2018-05-04T13:43:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/04/2018-05-04/">Java 设计模式(2) —— 观察者模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/02/2018-05-02/" class="archive-article-date">
-  	<time datetime="2018-05-02T13:54:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/02/2018-05-02/">Java 设计模式(1) —— 策略模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/21/2018-04-21/" class="archive-article-date">
-  	<time datetime="2018-04-21T04:50:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/21/2018-04-21/">JVM的理解与整理</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">java虚拟机</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/20/2018-01-20/" class="archive-article-date">
-  	<time datetime="2018-01-20T03:20:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/20/2018-01-20/">python练习示例 -- 简单的爬虫解析</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/11/2018-01-11/" class="archive-article-date">
-  	<time datetime="2018-01-11T10:00:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/11/2018-01-11/">python练习示例 -- Mysql</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">python example</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/05/2018-01-05/" class="archive-article-date">
-  	<time datetime="2018-01-05T01:33:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/05/2018-01-05/">python练习示例 -- 图片转字符串文本</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">python example</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/04/2018-01-04/" class="archive-article-date">
-  	<time datetime="2018-01-04T06:02:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/04/2018-01-04/">十五分钟让你了解Python基本语法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
+
       
+
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/03/31/2017-03-31/" class="archive-article-date">
-  	<time datetime="2017-03-31T12:44:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-03-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/03/31/2017-03-31/">Android Studo jni开发入门——看我就够了!</a>
-    </h1>
-  
+      </div>
+    </span>
+  </div>
+</div>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jni</a>
-        		</li>
-      		
-		</ul>
-	</div>
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://lilei644.github.io/2018/06/12/2018-06-05的副本/" alt="微信分享二维码">
+    </div>
+</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/05/2017-02-05/" class="archive-article-date">
-  	<time datetime="2017-02-05T06:27:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-05</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/06/05/2018-06-05/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java 设计模式(19) —— 解释器模式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/05/2017-02-05/">记录一次GreenDao3.x踏坑之旅</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">GreenDao</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">sqlite</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/2/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/page/4/">4</a><a class="extend next" rel="next" href="/archives/page/4/">Next &raquo;</a>
-    </nav>
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "https://lilei644.github.io/2018/06/12/2018-06-05的副本/",
+  owner: 'lilei644',
+  repo: 'lilei644.github.io',
+  oauth: {
+    client_id: '6bcff90c95dab647eace',
+    client_secret: '186ae7e79b8b65f90b28a2b15683bfa5fb82a3c8',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
   
 
 
@@ -632,8 +400,8 @@ ga('send', 'pageview');
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
