@@ -6,14 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lilei644.github.io">
-  <title>Archives | Lei&#39;s blogs</title>
+  <title>Java 设计模式(21) —— 备忘录模式 | Lei&#39;s blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Lei&#39;s blogs">
-<meta property="og:url" content="https://lilei644.github.io/archives/page/4/index.html">
+  <meta name="description" content="一、备忘录模式  在不破坏封装的前提下，存储关键对象的重要状态，从而可以在将来把对象还原到存储的那个状态">
+<meta name="keywords" content="java,设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 设计模式(21) —— 备忘录模式">
+<meta property="og:url" content="https://lilei644.github.io/2018/06/13/2018-06-13/index.html">
 <meta property="og:site_name" content="Lei&#39;s blogs">
+<meta property="og:description" content="一、备忘录模式  在不破坏封装的前提下，存储关键对象的重要状态，从而可以在将来把对象还原到存储的那个状态">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1316029-a8a2fc9589b188c6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-06-13T00:45:36.723Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lei&#39;s blogs">
+<meta name="twitter:title" content="Java 设计模式(21) —— 备忘录模式">
+<meta name="twitter:description" content="一、备忘录模式  在不破坏封装的前提下，存储关键对象的重要状态，从而可以在将来把对象还原到存储的那个状态">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1316029-a8a2fc9589b188c6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternative" href="/atom.xml" title="Lei&#39;s blogs" type="application/atom+xml">
   
@@ -164,199 +171,205 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-2018-06-13" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2017" class="archive-year">2017</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2017/02/05/2017-02-05/" class="archive-article-date">
-  	<time datetime="2017-02-05T06:27:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-05</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2017/02/05/2017-02-05/">记录一次GreenDao3.x踏坑之旅</a>
+    <h1 class="article-title" itemprop="name">
+      Java 设计模式(21) —— 备忘录模式
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2018/06/13/2018-06-13/" class="archive-article-date">
+  	<time datetime="2018-06-13T00:22:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-13</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="一、备忘录模式"><a href="#一、备忘录模式" class="headerlink" title="一、备忘录模式"></a>一、备忘录模式</h3><blockquote>
+<p> 在不破坏封装的前提下，存储关键对象的重要状态，从而可以在将来把对象还原到存储的那个状态</p>
+</blockquote>
+<p><img src="https://upload-images.jianshu.io/upload_images/1316029-a8a2fc9589b188c6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="备忘录模式"></p>
+<a id="more"></a>
+<h3 id="二、示例"><a href="#二、示例" class="headerlink" title="二、示例"></a>二、示例</h3><p>游戏进度保存：游戏开发过程中需要对人物的属性进行缓存，例如血量、经验值等等，但是一个大的项目中时多人协同开发，每个开发人员完成不同的功能时需要保存不同的属性，并且保存的数据格式不同</p>
+<p>为了解决多人协同开发，且每个开发者保存的数据属性，格式都不相同的缓存数据的问题，引入备忘录模式</p>
+<p>备忘录模式通过定义一个统一的备忘录对象，用来存储和读取缓存信息，并定义一个统一的接口，开发人员将保存的对象都实现该接口即可实现统一的读取操作</p>
+<p>1.定义备忘录对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 备忘录模式，开发人员使用的存储方法，用来保存和返回外部开发人员需要缓存的数据</span><br><span class="line"> */</span><br><span class="line">public class MementoCaretaker &#123;</span><br><span class="line">    private HashMap&lt;String, MementoIF&gt; mementomap;</span><br><span class="line"></span><br><span class="line">    public MementoCaretaker() &#123;</span><br><span class="line">        mementomap = new HashMap&lt;String, MementoIF&gt;();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public MementoIF retrieveMemento(String name) &#123;</span><br><span class="line">        return mementomap.get(name);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /**</span><br><span class="line">     * 备忘录赋值方法</span><br><span class="line">     */</span><br><span class="line">    public void saveMemento(String name, MementoIF memento) &#123;</span><br><span class="line">        this.mementomap.put(name, memento);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.定义开发者缓存对象需实现的接口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 备忘录模式，定义接口，不需要写方法，起到安全保护和统一存储的作用</span><br><span class="line"> */</span><br><span class="line">public interface MementoIF &#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3.不同的开发者内部实现自己不同的缓存方法和对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 备忘录模式，第一个开发者，使用HashMap缓存数据，通过Memento类实现接口MementoIF统一封装</span><br><span class="line"> */</span><br><span class="line">public class Originator &#123;</span><br><span class="line">	private HashMap&lt;String, String&gt; state;</span><br><span class="line"></span><br><span class="line">	public Originator() &#123;</span><br><span class="line">		state = new HashMap();</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public MementoIF createMemento() &#123;</span><br><span class="line">		return new Memento(state);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void restoreMemento(MementoIF memento) &#123;</span><br><span class="line">		state = ((Memento) memento).getState();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void showState() &#123;</span><br><span class="line">		System.out.println(&quot;now state:&quot; + state.toString());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void testState1() &#123;</span><br><span class="line">		state.put(&quot;blood&quot;, &quot;500&quot;);</span><br><span class="line">		state.put(&quot;progress&quot;, &quot;gate1 end&quot;);</span><br><span class="line">		state.put(&quot;enemy&quot;, &quot;5&quot;);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void testState2() &#123;</span><br><span class="line">		state.put(&quot;blood&quot;, &quot;450&quot;);</span><br><span class="line">		state.put(&quot;progress&quot;, &quot;gate3 start&quot;);</span><br><span class="line">		state.put(&quot;enemy&quot;, &quot;3&quot;);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	private class Memento implements MementoIF &#123;</span><br><span class="line"></span><br><span class="line">		private HashMap&lt;String, String&gt; state;</span><br><span class="line"></span><br><span class="line">		private Memento(HashMap state) &#123;</span><br><span class="line">			this.state = new HashMap(state);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		private HashMap getState() &#123;</span><br><span class="line">			return state;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		private void setState(HashMap state) &#123;</span><br><span class="line">			this.state = state;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 备忘录模式，第一个开发者，使用ArrayList缓存数据，通过Memento类实现接口MementoIF统一封装</span><br><span class="line"> */</span><br><span class="line">public class Originator2 &#123;</span><br><span class="line">	private ArrayList&lt;String&gt; state;</span><br><span class="line"></span><br><span class="line">	public Originator2() &#123;</span><br><span class="line">		state = new ArrayList&lt;String&gt;();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public MementoIF createMemento() &#123;</span><br><span class="line">		return new Memento(state);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void restoreMemento(MementoIF memento) &#123;</span><br><span class="line">		state = ((Memento) memento).getState();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void testState1() &#123;</span><br><span class="line">		state = new ArrayList&lt;String&gt;();</span><br><span class="line">		state.add(&quot;blood:320&quot;);</span><br><span class="line">		state.add(&quot;progress:gate2 mid&quot;);</span><br><span class="line">		state.add(&quot;enemy:15&quot;);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void testState2() &#123;</span><br><span class="line">		state = new ArrayList&lt;String&gt;();</span><br><span class="line">		state.add(&quot;blood:230&quot;);</span><br><span class="line">		state.add(&quot;progress:gate8 last&quot;);</span><br><span class="line">		state.add(&quot;enemy:12&quot;);</span><br><span class="line"></span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void showState() &#123;</span><br><span class="line">		System.out.println(&quot;now state:&quot; + state.toString());</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	private class Memento implements MementoIF &#123;</span><br><span class="line"></span><br><span class="line">		private ArrayList&lt;String&gt; state;</span><br><span class="line"></span><br><span class="line">		private Memento(ArrayList&lt;String&gt; state) &#123;</span><br><span class="line">			this.state = new ArrayList(state);</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		private ArrayList&lt;String&gt; getState() &#123;</span><br><span class="line">			return state;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		private void setState(ArrayList&lt;String&gt; state) &#123;</span><br><span class="line">			this.state = state;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>4.外部直接使用备忘录对象进行存储，开发者之间互不干扰</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 备忘录模式：在不破坏封装的前提下，存储关键对象的重要状态，从而可以在将来把对象还原到存储的那个状态</span><br><span class="line"> */</span><br><span class="line">public class MainTest &#123;</span><br><span class="line"></span><br><span class="line">	public static void main(String[] args) &#123;</span><br><span class="line">		MementoCaretaker mMementoCaretaker = new MementoCaretaker();</span><br><span class="line">		Originator mOriginator = new Originator();</span><br><span class="line">		Originator2 mOriginator2 = new Originator2();</span><br><span class="line"></span><br><span class="line">		System.out.println(&quot;*****Originator*****&quot;);</span><br><span class="line">		mOriginator.testState1();</span><br><span class="line"></span><br><span class="line">		// 保存第一个人的数据</span><br><span class="line">		mMementoCaretaker.saveMemento(&quot;Originator&quot;, mOriginator.createMemento());</span><br><span class="line">		mOriginator.showState();</span><br><span class="line">		mOriginator.testState2();</span><br><span class="line">		mOriginator.showState();</span><br><span class="line"></span><br><span class="line">		// 重置数据</span><br><span class="line">		mOriginator.restoreMemento(mMementoCaretaker.retrieveMemento(&quot;Originator&quot;));</span><br><span class="line">		mOriginator.showState();</span><br><span class="line"></span><br><span class="line">		System.out.println(&quot;*****Originator 2*****&quot;);</span><br><span class="line">		mOriginator2.testState1();</span><br><span class="line">		mOriginator2.showState();</span><br><span class="line"></span><br><span class="line">		// 保存第二个人的进度</span><br><span class="line">		mMementoCaretaker.saveMemento(&quot;Originator2&quot;, mOriginator2.createMemento());</span><br><span class="line">		mOriginator2.testState2();</span><br><span class="line">		mOriginator2.showState();</span><br><span class="line"></span><br><span class="line">		// 重置数据</span><br><span class="line">		mOriginator2.restoreMemento(mMementoCaretaker.retrieveMemento(&quot;Originator2&quot;));</span><br><span class="line">		mOriginator2.showState();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="三、总结"><a href="#三、总结" class="headerlink" title="三、总结"></a>三、总结</h3><ul>
+<li><p>优点：</p>
+<ul>
+<li>状态存储在外面，不和关键对象混在一起，这可以帮助维护内聚</li>
+<li>提供了容易实现的恢复能力</li>
+<li>保持了关键对象的数据封装</li>
+</ul>
+</li>
+<li><p>缺点：</p>
+<ul>
+<li>资源消耗上面备忘录对象会很昂贵</li>
+<li>存储和恢复状态的过程比较耗时</li>
+</ul>
+</li>
+<li><p>适用场合：</p>
+<ul>
+<li>必须保存一个对象在某一个时刻的(整体或部分)状态，在对象以外的地方, 以后需要时恢复到先前的状态时</li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+<blockquote>
+<p>Java设计模式所有<a href="https://github.com/lilei644/design-pattern-example" target="_blank" rel="noopener">示例代码</a>，持续更新中</p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">GreenDao</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">sqlite</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
       
-        </div></section>
+
       
+
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/31/2016-12-31/" class="archive-article-date">
-  	<time datetime="2016-12-31T09:48:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-31</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/31/2016-12-31/">MySql性能优化——基础篇</a>
-    </h1>
-  
+      </div>
+    </span>
+  </div>
+</div>
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		
-		</ul>
-	</div>
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://lilei644.github.io/2018/06/13/2018-06-13/" alt="微信分享二维码">
+    </div>
+</div>
 
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/12/06/2016-12-06/" class="archive-article-date">
-  	<time datetime="2016-12-06T12:46:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-06</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/06/12/2018-06-12/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java 设计模式(20) —— 中介者模式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/12/06/2016-12-06/">手把手教你绘制Android粘性果冻动画组件</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">animation</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2016/01/04/2016-01-04/" class="archive-article-date">
-  	<time datetime="2016-01-04T03:01:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-01-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/01/04/2016-01-04/">使用Hexo + Github搭建个人博客</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">hexo</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">blog</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/3/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><a class="page-number" href="/archives/page/3/">3</a><span class="page-number current">4</span>
-    </nav>
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "https://lilei644.github.io/2018/06/13/2018-06-13/",
+  owner: 'lilei644',
+  repo: 'lilei644.github.io',
+  oauth: {
+    client_id: '6bcff90c95dab647eace',
+    client_secret: '186ae7e79b8b65f90b28a2b15683bfa5fb82a3c8',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
   
 
 
@@ -380,8 +393,8 @@ ga('send', 'pageview');
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
