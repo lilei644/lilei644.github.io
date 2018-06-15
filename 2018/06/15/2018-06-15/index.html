@@ -6,14 +6,21 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lilei644.github.io">
-  <title>Lei&#39;s blogs</title>
+  <title>Java 设计模式(22) —— 原型模式 | Lei&#39;s blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Lei&#39;s blogs">
-<meta property="og:url" content="https://lilei644.github.io/index.html">
+  <meta name="description" content="一、备忘录模式 通过复制现有实例来创建新的实例，无须知道相应类的信息">
+<meta name="keywords" content="java,设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 设计模式(22) —— 原型模式">
+<meta property="og:url" content="https://lilei644.github.io/2018/06/15/2018-06-15/index.html">
 <meta property="og:site_name" content="Lei&#39;s blogs">
+<meta property="og:description" content="一、备忘录模式 通过复制现有实例来创建新的实例，无须知道相应类的信息">
+<meta property="og:image" content="https://upload-images.jianshu.io/upload_images/1316029-09b8290e384dbec6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2018-06-15T00:49:44.415Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lei&#39;s blogs">
+<meta name="twitter:title" content="Java 设计模式(22) —— 原型模式">
+<meta name="twitter:description" content="一、备忘录模式 通过复制现有实例来创建新的实例，无须知道相应类的信息">
+<meta name="twitter:image" content="https://upload-images.jianshu.io/upload_images/1316029-09b8290e384dbec6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
   
     <link rel="alternative" href="/atom.xml" title="Lei&#39;s blogs" type="application/atom+xml">
   
@@ -164,16 +171,14 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-2018-06-15" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-2018-06-15" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/15/2018-06-15/">Java 设计模式(22) —— 原型模式</a>
+    <h1 class="article-title" itemprop="name">
+      Java 设计模式(22) —— 原型模式
     </h1>
   
 
@@ -190,9 +195,54 @@ ga('send', 'pageview');
 <p>通过复制现有实例来创建新的实例，无须知道相应类的信息</p>
 </blockquote>
 <p><img src="https://upload-images.jianshu.io/upload_images/1316029-09b8290e384dbec6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="原型模式"></p>
-        
-          <a class="article-more-a" href="/2018/06/15/2018-06-15/#more">more >></a>
-        
+<a id="more"></a>
+<h3 id="二、示例"><a href="#二、示例" class="headerlink" title="二、示例"></a>二、示例</h3><p>银行电子账单发送给客户的功能：系统每个月都要生成电子账单，要定期通过邮件发送给客户</p>
+<p>利用传统模式很简单，只需通过循环把发送邮件的方法发送给所有用户即可</p>
+<p>1.定义邮件对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 传统模式，定义邮件的内容对象</span><br><span class="line"> */</span><br><span class="line">public class Mail &#123;</span><br><span class="line">	private String receiver;</span><br><span class="line">	private String subject;</span><br><span class="line">	private String content;</span><br><span class="line">	private String tail;</span><br><span class="line"></span><br><span class="line">	public Mail(EventTemplate et) &#123;</span><br><span class="line">		this.tail = et.geteventContent();</span><br><span class="line">		this.subject = et.geteventSubject();</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public String getReceiver() &#123;</span><br><span class="line">		return receiver;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void setReceiver(String receiver) &#123;</span><br><span class="line">		this.receiver = receiver;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public String getSubject() &#123;</span><br><span class="line">		return subject;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void setSubject(String subject) &#123;</span><br><span class="line">		this.subject = subject;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void setContent(String content) &#123;</span><br><span class="line">		this.content = content;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public String getContent() &#123;</span><br><span class="line">		return content;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public String getTail() &#123;</span><br><span class="line">		return tail;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void setTail(String tail) &#123;</span><br><span class="line">		this.tail = tail;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.定义发送事件的任务</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 传统模式，发送邮件的事件任务</span><br><span class="line"> */</span><br><span class="line">public class EventTemplate &#123;</span><br><span class="line">    private String eventSubject, eventContent;</span><br><span class="line"></span><br><span class="line">    public EventTemplate(String eventSubject, String eventContent) &#123;</span><br><span class="line">        this.eventSubject = eventSubject;</span><br><span class="line">        this.eventContent = eventContent;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String geteventSubject() &#123;</span><br><span class="line">        return eventSubject;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public String geteventContent() &#123;</span><br><span class="line">        return eventContent;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>3.循环所有用户发送邮件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 传统模式，通过循环遍历所有的用户，发送账单邮件</span><br><span class="line"> * 缺点：效率慢，耗时长</span><br><span class="line"> */</span><br><span class="line">public class MainTest &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        int i = 0;</span><br><span class="line">        int MAX_COUNT = 10;</span><br><span class="line">        EventTemplate et = new EventTemplate(&quot;9月份信用卡账单&quot;, &quot;国庆抽奖活动...&quot;);</span><br><span class="line"></span><br><span class="line">        Mail mail = new Mail(et);</span><br><span class="line"></span><br><span class="line">        while (i &lt; MAX_COUNT) &#123;</span><br><span class="line">            // 以下是每封邮件不同的地方</span><br><span class="line"></span><br><span class="line">            mail.setContent(getRandString(5) + &quot;,先生（女士）:你的信用卡账单...&quot;</span><br><span class="line">                    + mail.getTail());</span><br><span class="line">            mail.setReceiver(getRandString(5) + &quot;@&quot; + getRandString(8) + &quot;.com&quot;);</span><br><span class="line">            // 然后发送邮件</span><br><span class="line">            sendMail(mail);</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static String getRandString(int maxLength) &#123;</span><br><span class="line">        String source = &quot;abcdefghijklmnopqrskuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;;</span><br><span class="line">        StringBuffer sb = new StringBuffer();</span><br><span class="line">        Random rand = new Random();</span><br><span class="line">        for (int i = 0; i &lt; maxLength; i++) &#123;</span><br><span class="line">            sb.append(source.charAt(rand.nextInt(source.length())));</span><br><span class="line">        &#125;</span><br><span class="line">        return sb.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void sendMail(Mail mail) &#123;</span><br><span class="line">        System.out.println(&quot;标题：&quot; + mail.getSubject() + &quot;\t收件人：&quot;</span><br><span class="line">                + mail.getReceiver() + &quot;\t内容：&quot; + mail.getContent()</span><br><span class="line">                + &quot;\t....发送成功！&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由以上示例发现随着用户的增多，要一直new出邮件对象，重复创建相同的对象耗时较长，则引入原型模式可以降低耗时</p>
+<h3 id="三、利用原型模式改进"><a href="#三、利用原型模式改进" class="headerlink" title="三、利用原型模式改进"></a>三、利用原型模式改进</h3><p>原型模式通过对象的克隆创建重复new的对象，降低创建对象的耗时，Java里面实现方法很简单，只需将对象实现Cloneable接口即可</p>
+<p>1.将邮件对象实现克隆接口</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 原型模式，邮件对象通过实现克隆接口，实现对象的克隆拷贝</span><br><span class="line"> */</span><br><span class="line">public class Mail implements Cloneable &#123;</span><br><span class="line">	private String receiver;</span><br><span class="line">	private String subject;</span><br><span class="line">	private String content;</span><br><span class="line">	private String tail;</span><br><span class="line">	private ArrayList&lt;String&gt; ars;</span><br><span class="line">	public Mail(EventTemplate et) &#123;</span><br><span class="line">		this.tail = et.geteventContent();</span><br><span class="line">		this.subject = et.geteventSubject();</span><br><span class="line">	</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	@Override</span><br><span class="line">	public Mail clone() &#123;</span><br><span class="line">		Mail mail = null;</span><br><span class="line">		try &#123;</span><br><span class="line">			mail = (Mail) super.clone();</span><br><span class="line">			mail.ars = (ArrayList&lt;String&gt;)this.ars.clone();</span><br><span class="line">		&#125; catch (CloneNotSupportedException e) &#123;</span><br><span class="line">			e.printStackTrace();</span><br><span class="line">		&#125;</span><br><span class="line">		return mail;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public String getReceiver() &#123;</span><br><span class="line">		return receiver;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void setReceiver(String receiver) &#123;</span><br><span class="line">		this.receiver = receiver;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public String getSubject() &#123;</span><br><span class="line">		return subject;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void setSubject(String subject) &#123;</span><br><span class="line">		this.subject = subject;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void setContent(String content) &#123;</span><br><span class="line">		this.content = content;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public String getContent() &#123;</span><br><span class="line">		return content;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public String getTail() &#123;</span><br><span class="line">		return tail;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	public void setTail(String tail) &#123;</span><br><span class="line">		this.tail = tail;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>2.创建对象方法不变，克隆方法在对象内部去实现，每次new时不用重建创建属性，直接实现内存克隆</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 原型模式，通过对象的拷贝快速克隆对象，降低重复创建对象的耗时</span><br><span class="line"> */</span><br><span class="line">public class MainTest &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        int i = 0;</span><br><span class="line">        int MAX_COUNT = 10;</span><br><span class="line">        EventTemplate et = new EventTemplate(&quot;9月份信用卡账单&quot;, &quot;国庆抽奖活动...&quot;);</span><br><span class="line"></span><br><span class="line">        Mail mail = new Mail(et);</span><br><span class="line"></span><br><span class="line">        while (i &lt; MAX_COUNT) &#123;</span><br><span class="line">            // 以下是每封邮件不同的地方</span><br><span class="line">            Mail cloneMail = mail.clone();</span><br><span class="line">            cloneMail.setContent(getRandString(5) + &quot;,先生（女士）:你的信用卡账单...&quot;</span><br><span class="line">                    + mail.getTail());</span><br><span class="line">            cloneMail.setReceiver(getRandString(5) + &quot;@&quot; + getRandString(8)</span><br><span class="line">                    + &quot;.com&quot;);</span><br><span class="line">            // 然后发送邮件</span><br><span class="line">            sendMail(cloneMail);</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static String getRandString(int maxLength) &#123;</span><br><span class="line">        String source = &quot;abcdefghijklmnopqrskuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ&quot;;</span><br><span class="line">        StringBuffer sb = new StringBuffer();</span><br><span class="line">        Random rand = new Random();</span><br><span class="line">        for (int i = 0; i &lt; maxLength; i++) &#123;</span><br><span class="line">            sb.append(source.charAt(rand.nextInt(source.length())));</span><br><span class="line">        &#125;</span><br><span class="line">        return sb.toString();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    public static void sendMail(Mail mail) &#123;</span><br><span class="line">        System.out.println(&quot;标题：&quot; + mail.getSubject() + &quot;\t收件人：&quot;</span><br><span class="line">                + mail.getReceiver() + &quot;\t内容：&quot; + mail.getContent()</span><br><span class="line">                + &quot;\t....发送成功！&quot;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="四、总结"><a href="#四、总结" class="headerlink" title="四、总结"></a>四、总结</h3><ul>
+<li><p>优点：</p>
+<ul>
+<li>使用原型模式创建对象比直接new一个对象更有效</li>
+<li>隐藏制造新实例的复杂性</li>
+<li>重复地创建相似对象时可以考虑使用原型模式</li>
+</ul>
+</li>
+<li><p>缺点：</p>
+<ul>
+<li>每一个类必须配备一个克隆方法</li>
+<li>深层复制比较复杂</li>
+</ul>
+</li>
+<li><p>注意事项：</p>
+<ul>
+<li>使用原型模式复制对象不会调用类的构造方法。所以，单例模式与原型模式是冲突的，在使用时要特别注意</li>
+<li>Object类的clone方法只会拷贝对象中的基本的数据类型，对于数组、容器对象、引用对象等都不会拷贝，这就是浅拷贝。如果要实现深拷贝，必须将原型模式中的数组、容器对象、引用对象等另行拷贝</li>
+</ul>
+</li>
+<li><p>适用场合：</p>
+<ul>
+<li>复制对象的结构与数据</li>
+<li>希望对目标对象的修改不影响既有的原型对象</li>
+<li>创建对象成本较大的情况下</li>
+</ul>
+</li>
+</ul>
+<p><br></p>
+<blockquote>
+<p>Java设计模式所有<a href="https://github.com/lilei644/design-pattern-example" target="_blank" rel="noopener">示例代码</a>，持续更新中</p>
+</blockquote>
+
       
 
       
@@ -218,16 +268,75 @@ ga('send', 'pageview');
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/15/2018-06-15/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://lilei644.github.io/2018/06/15/2018-06-15/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2018/06/13/2018-06-13/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java 设计模式(21) —— 备忘录模式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -247,760 +356,30 @@ ga('send', 'pageview');
 
 
 
-
-  
-    <article id="post-2018-06-13" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/13/2018-06-13/">Java 设计模式(21) —— 备忘录模式</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/13/2018-06-13/" class="archive-article-date">
-  	<time datetime="2018-06-13T00:22:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-13</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一、备忘录模式"><a href="#一、备忘录模式" class="headerlink" title="一、备忘录模式"></a>一、备忘录模式</h3><blockquote>
-<p> 在不破坏封装的前提下，存储关键对象的重要状态，从而可以在将来把对象还原到存储的那个状态</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/1316029-a8a2fc9589b188c6.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="备忘录模式"></p>
-        
-          <a class="article-more-a" href="/2018/06/13/2018-06-13/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/13/2018-06-13/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2018-06-12" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/12/2018-06-12/">Java 设计模式(20) —— 中介者模式</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/12/2018-06-12/" class="archive-article-date">
-  	<time datetime="2018-06-12T00:25:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-12</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一、中介者模式"><a href="#一、中介者模式" class="headerlink" title="一、中介者模式"></a>一、中介者模式</h3><blockquote>
-<p> 用一个中介对象来封装一系列的对象交互。中介者使各对象不需要显式地相互引用，从而使其耦合松散，而且可以独立地改变它们之间的交互</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/1316029-5ae354f4e53c6f69.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="中介者模式"></p>
-        
-          <a class="article-more-a" href="/2018/06/12/2018-06-12/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/12/2018-06-12/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2018-06-05" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/05/2018-06-05/">Java 设计模式(19) —— 解释器模式</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/05/2018-06-05/" class="archive-article-date">
-  	<time datetime="2018-06-05T00:48:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一、解释器模式"><a href="#一、解释器模式" class="headerlink" title="一、解释器模式"></a>一、解释器模式</h3><blockquote>
-<p> 定义一个语法, 定义一个解释器，该解释器处理该语法句子。将某些复杂问题，表达为某种语法规则，然后构建解释器来解释处理这类句子。</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/1316029-f89b1d52bf542774.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="解释器模式"></p>
-        
-          <a class="article-more-a" href="/2018/06/05/2018-06-05/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/05/2018-06-05/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2018-06-04" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/04/2018-06-04/">Java 设计模式(18) —— 蝇量模式(享元模式)</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/04/2018-06-04/" class="archive-article-date">
-  	<time datetime="2018-06-04T00:26:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一、蝇量模式"><a href="#一、蝇量模式" class="headerlink" title="一、蝇量模式"></a>一、蝇量模式</h3><blockquote>
-<p> 通过共享的方式高效地支持大量细粒度的对象。</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/1316029-045a0d5f5b62dba5.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="蝇量模式"></p>
-        
-          <a class="article-more-a" href="/2018/06/04/2018-06-04/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/04/2018-06-04/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2018-06-01" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/06/01/2018-06-01/">Java 9种排序算法详解和示例汇总</a>
-    </h1>
-  
-
-        
-        <a href="/2018/06/01/2018-06-01/" class="archive-article-date">
-  	<time datetime="2018-06-01T12:05:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-01</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>冒泡排序、选择排序、直接插入排序、二分法排序、希尔排序、快速排序、堆排序、归并排序、基数排序，共9中排序算法详解和代码示例。</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/1316029-7ae233ff25c3da7a.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="排序算法"></p>
-        
-          <a class="article-more-a" href="/2018/06/01/2018-06-01/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/06/01/2018-06-01/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2018-05-30" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/30/2018-05-30/">Java 设计模式(17) —— 责任链模式</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/30/2018-05-30/" class="archive-article-date">
-  	<time datetime="2018-05-30T12:49:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-30</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一、责任链模式"><a href="#一、责任链模式" class="headerlink" title="一、责任链模式"></a>一、责任链模式</h3><blockquote>
-<p> 如果有多个对象都有机会处理请求，责任链可使请求的发送者和接收者解耦，请求沿着责任链传递，直到有一个对象处理了它为止。</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/1316029-e42981b0c0892cc8.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="责任链模式"></p>
-        
-          <a class="article-more-a" href="/2018/05/30/2018-05-30/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/30/2018-05-30/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2018-05-29" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/29/2018-05-29/">Java 设计模式(16) —— 生成器模式</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/29/2018-05-29/" class="archive-article-date">
-  	<time datetime="2018-05-29T12:19:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-29</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一、生成器模式"><a href="#一、生成器模式" class="headerlink" title="一、生成器模式"></a>一、生成器模式</h3><blockquote>
-<p> 封装一个复杂对象构造过程，并允许按步骤构造</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/1316029-d1fd5249e8709c06.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="生成器模式"></p>
-        
-          <a class="article-more-a" href="/2018/05/29/2018-05-29/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/29/2018-05-29/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2018-05-28" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/28/2018-05-28/">Java 设计模式(15) —— 桥接模式</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/28/2018-05-28/" class="archive-article-date">
-  	<time datetime="2018-05-28T13:16:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-28</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一、桥接模式"><a href="#一、桥接模式" class="headerlink" title="一、桥接模式"></a>一、桥接模式</h3><blockquote>
-<p>                                                                                                                                                                                                                                                                                                                                           将实现与抽象放在两个不同的类层次中，使两个层次可以独立改变</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/1316029-af9eaae9ca0dbe88.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="桥接模式"></p>
-        
-          <a class="article-more-a" href="/2018/05/28/2018-05-28/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/28/2018-05-28/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2018-05-26" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/05/26/2018-05-26/">Java 设计模式(14) —— 复合模式</a>
-    </h1>
-  
-
-        
-        <a href="/2018/05/26/2018-05-26/" class="archive-article-date">
-  	<time datetime="2018-05-26T13:19:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-26</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="一、复合模式"><a href="#一、复合模式" class="headerlink" title="一、复合模式"></a>一、复合模式</h3><blockquote>
-<p> 模式常一起使用，组合在一个设计解决方案中</p>
-<p>复合模式在一个解决方案中结合两个或多个模式,能解决一般性或一系列的问题</p>
-</blockquote>
-<p><img src="https://upload-images.jianshu.io/upload_images/1316029-3af1ace61d122bb7.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="复合模式"></p>
-        
-          <a class="article-more-a" href="/2018/05/26/2018-05-26/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/05/26/2018-05-26/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
+  
+
+  
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "https://lilei644.github.io/2018/06/15/2018-06-15/",
+  owner: 'lilei644',
+  repo: 'lilei644.github.io',
+  oauth: {
+    client_id: '6bcff90c95dab647eace',
+    client_secret: '186ae7e79b8b65f90b28a2b15683bfa5fb82a3c8',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
   
 
 
@@ -1023,8 +402,8 @@ ga('send', 'pageview');
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,
