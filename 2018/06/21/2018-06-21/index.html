@@ -6,14 +6,19 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lilei644.github.io">
-  <title>Archives | Lei&#39;s blogs</title>
+  <title>Java 设计模式总结 | Lei&#39;s blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Lei&#39;s blogs">
-<meta property="og:url" content="https://lilei644.github.io/archives/page/3/index.html">
+  <meta name="description" content="Java 23种设计模式总结  一、设计模式总结模式：在某些场景下，针对某类问题的某种通用解决方案 场景：项目环境 问题：约束条件，项目目标等 解决方案：通用、可以复用的设计，解决约束，达到目标">
+<meta name="keywords" content="java,设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java 设计模式总结">
+<meta property="og:url" content="https://lilei644.github.io/2018/06/21/2018-06-21/index.html">
 <meta property="og:site_name" content="Lei&#39;s blogs">
+<meta property="og:description" content="Java 23种设计模式总结  一、设计模式总结模式：在某些场景下，针对某类问题的某种通用解决方案 场景：项目环境 问题：约束条件，项目目标等 解决方案：通用、可以复用的设计，解决约束，达到目标">
+<meta property="og:updated_time" content="2018-06-21T00:37:08.153Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lei&#39;s blogs">
+<meta name="twitter:title" content="Java 设计模式总结">
+<meta name="twitter:description" content="Java 23种设计模式总结  一、设计模式总结模式：在某些场景下，针对某类问题的某种通用解决方案 场景：项目环境 问题：约束条件，项目目标等 解决方案：通用、可以复用的设计，解决约束，达到目标">
   
     <link rel="alternative" href="/atom.xml" title="Lei&#39;s blogs" type="application/atom+xml">
   
@@ -164,36 +169,173 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-2018-06-21" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java 设计模式总结
+    </h1>
+  
+
+        
+        <a href="/2018/06/21/2018-06-21/" class="archive-article-date">
+  	<time datetime="2018-06-21T00:25:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-21</time>
+</a>
+        
+      </header>
     
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Java 23种设计模式总结</p>
+</blockquote>
+<h3 id="一、设计模式总结"><a href="#一、设计模式总结" class="headerlink" title="一、设计模式总结"></a>一、设计模式总结</h3><p>模式：在某些场景下，针对某类问题的某种通用解决方案</p>
+<p>场景：项目环境</p>
+<p>问题：约束条件，项目目标等</p>
+<p>解决方案：通用、可以复用的设计，解决约束，达到目标</p>
+<a id="more"></a>
+<h3 id="二、设计模式的分类"><a href="#二、设计模式的分类" class="headerlink" title="二、设计模式的分类"></a>二、设计模式的分类</h3><ul>
+<li><p>创建型模式：对象实例化的模式，创建型模式解耦了对象的实例化过程</p>
+<ul>
+<li>简单工厂：一个工厂类根据传入的参量决定创建出哪一种产品类的实例</li>
+<li>工厂方法：定义一个创建对象的接口，让子类决定实例化哪一个类</li>
+<li>抽象工厂：创建相关或依赖对象的家族，而无需明确指定具体类</li>
+<li>单例模式：某个类只能有一个实例，提供一个全局访问点</li>
+<li>生成器模式：封装一个复杂对象的构建过程，并可以按步骤构造</li>
+<li>原型模式：通过复制现有的实例来创建新的实例</li>
+</ul>
+</li>
+<li><p>结构型模式：把类或对象结合在一起形成更大的结构</p>
+<ul>
+<li>适配器模式：将一个类的方法接口转换成客户希望的另外一个接口</li>
+<li>组合模式：将对象组合成树形结构以表示“部分-整体”的层次结构</li>
+<li>装饰模式：动态地给对象添加新的功能</li>
+<li>代理模式：为其他对象提供一个代理以控制对这个对象的访问</li>
+<li>蝇量模式：通过共享技术有效地支持大量细粒度的对象</li>
+<li>外观模式：提供统一的方法来访问子系统的一群接口</li>
+<li>桥接模式：将抽象部分与它的实现部分分离，使它们都可以独立地变化</li>
+</ul>
+</li>
+<li><p>行为型模式：类和对象如何交互，及划分责任和算法</p>
+<ul>
+<li>模板模式：定义一个算法结构，而将一些步骤延迟到子类中实现</li>
+<li>解释器模式：给定一个语言， 定义它的文法的一种表示，并定义一个解释器</li>
+<li>策略模式：定义一系列的算法，把它们封装起来， 并且使它们可相互替换</li>
+<li>状态模式：允许一个对象在其内部状态改变时改变它的行为</li>
+<li>观测者模式：对象间的一对多的依赖关系</li>
+<li>备忘录模式：在不破坏封装性的前提下，保存对象的内部状态</li>
+<li>中介者模式：用一个中介对象来封装一系列的对象交互</li>
+<li>命令模式：将命令请求封装为一个对象，使得可用不同的请求来进行参数化</li>
+<li>访问者模式：在不改变数据结构的前提下，增加作用于一组对象元素新的功能</li>
+<li>责任链：请求发送者和接收者之间解耦，使的多个对象都有机会处理这个请求</li>
+<li>迭代器：一种遍历访问聚合对象中各个元素的方法，不暴露该对象的内部结构</li>
+</ul>
+</li>
+</ul>
+<h3 id="三、对象设计的六大原则"><a href="#三、对象设计的六大原则" class="headerlink" title="三、对象设计的六大原则"></a>三、对象设计的六大原则</h3><ol>
+<li>组合复用原则</li>
+<li>依赖倒置原则</li>
+<li>开闭原则</li>
+<li>迪米特法则</li>
+<li>里氏替换原则</li>
+<li>单一职责原则</li>
+</ol>
+<p>多用组合，少用继承</p>
+<p>找到变化部分，抽象，封装变化</p>
+<p>区分“Has-A”与“Is-A”</p>
+<p>依赖：成员变量、方法参数、返回值</p>
+<p>要依赖于抽象，不要依赖于具体</p>
+<p>高层模块不应该依赖低层模块，二者都应该依赖其抽象</p>
+<p>抽象不应该依赖具体，具体应该依赖抽象</p>
+<p>针对接口编程，不要针对实现编程</p>
+<p>以抽象为基础搭建的结构比具体类搭建的结构要稳定的多</p>
+<p>在java中，抽象指的是接口或者抽象类，具体就是具体的实现类</p>
+<p>对扩展开放，对修改关闭；通过扩展已有软件系统，可以提供新的功能；修改的关闭，保证稳定性和延续性</p>
+<p>所有引用基类的地方必须能透明地使用其子类对象</p>
+<p>子类在扩展父类功能时不能破坏父类原有的功能</p>
+<p>使用继承时，遵循里氏替换原则：</p>
+<ul>
+<li>子类可以实现父类的抽象方法，但不能覆盖父类的非抽象方法。</li>
+<li>当子类重载父类方法时，方法的形参要比父类方法的参数更宽松</li>
+<li>当子类实现父类的抽象方法时，方法的返回值要比父类更严格</li>
+</ul>
+<ol>
+<li>一个对象应该与其他对象保持最少的了解。只与直接朋友交谈。</li>
+<li>成员变量、方法参数、方法返回值中需要的类为直接朋友</li>
+<li>类与类之间的关系越密切了解越多，耦合度越大</li>
+<li>尽量降低类与类之间的耦合</li>
+</ol>
+<blockquote>
+<p>接口隔离原则：一个类对另一个类的依赖应该建立在最小的接口上</p>
+</blockquote>
+<h3 id="四、用模式来思考"><a href="#四、用模式来思考" class="headerlink" title="四、用模式来思考"></a>四、用模式来思考</h3><ul>
+<li><p>保持简单</p>
+<ul>
+<li>尽可能用最简单的方式解决问题</li>
+<li>简单而弹性的设计，一般使用模式是最好的方法</li>
+</ul>
+</li>
+<li><p>设计模式非万能</p>
+<ul>
+<li>模式是通用问题的经验总结</li>
+<li>使用模式时要考虑它对其他部分的影响</li>
+<li>不需要预留任何弹性的时候，删除掉模式</li>
+<li>平衡与妥协</li>
+</ul>
+</li>
+<li><p>何时需要模式</p>
+<ul>
+<li>找出设计中会变化的部分，通常就是需要考虑模式的地方</li>
+<li>重构时</li>
+</ul>
+</li>
+<li><p>重构的时间就是模式的时间</p>
+<ul>
+<li>重构就是改变代码来改进组织方式的过程</li>
+<li>利用模式来重构</li>
+</ul>
+</li>
+</ul>
+<h3 id="五、23种设计模式介绍"><a href="#五、23种设计模式介绍" class="headerlink" title="五、23种设计模式介绍"></a>五、23种设计模式介绍</h3><ul>
+<li><a href="https://lilei644.github.io/2018/05/02/2018-05-02/">策略模式</a></li>
+<li><a href="https://lilei644.github.io/2018/05/04/2018-05-04/">观察者模式</a></li>
+<li><a href="https://lilei644.github.io/2018/05/05/2018-05-05/">装饰者模式</a></li>
+<li><a href="https://lilei644.github.io/2018/05/06/2018-05-06/">单例模式</a></li>
+<li><a href="https://lilei644.github.io/2018/05/07/2018-05-07/">工厂模式</a></li>
+<li><a href="https://lilei644.github.io/2018/05/08/2018-05-08/">命令模式</a></li>
+<li><a href="https://lilei644.github.io/2018/05/09/2018-05-09/">适配器模式</a></li>
+<li><a href="https://lilei644.github.io/2018/05/10/2018-05-10/">外观模式</a></li>
+<li><a href="https://lilei644.github.io/2018/05/13/2018-05-13/">模板模式</a></li>
+<li><a href="https://lilei644.github.io/2018/05/14/2018-05-14/">迭代器模式</a></li>
+<li><a href="https://lilei644.github.io/2018/05/16/2018-05-16/">组合模式</a></li>
+<li><a href="https://lilei644.github.io/2018/05/22/2018-05-22/">状态模式</a></li>
+<li><a href="https://lilei644.github.io/2018/05/24/2018-05-24/">代理模式</a></li>
+<li><a href="https://lilei644.github.io/2018/05/26/2018-05-26/">复合模式</a></li>
+<li><a href="https://lilei644.github.io/2018/05/28/2018-05-28/">桥接模式</a></li>
+<li><a href="https://lilei644.github.io/2018/05/29/2018-05-29/">生成器模式</a></li>
+<li><a href="https://lilei644.github.io/2018/05/30/2018-05-30/">责任链模式</a></li>
+<li><a href="https://lilei644.github.io/2018/06/04/2018-06-04/">蝇量模式</a></li>
+<li><a href="https://lilei644.github.io/2018/06/05/2018-06-05/">解释器模式</a></li>
+<li><a href="https://lilei644.github.io/2018/06/12/2018-06-12/">中介者模式</a></li>
+<li><a href="https://lilei644.github.io/2018/06/13/2018-06-13/">备忘录模式</a></li>
+<li><a href="https://lilei644.github.io/2018/06/15/2018-06-15/">原型模式</a></li>
+<li><a href="https://lilei644.github.io/2018/06/19/2018-06-19/">访问者模式</a></li>
+</ul>
+<p><br></p>
+<blockquote>
+<p>Java设计模式所有<a href="https://github.com/lilei644/design-pattern-example" target="_blank" rel="noopener">示例代码</a></p>
+</blockquote>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
       
       
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2018" class="archive-year">2018</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/09/2018-05-09/" class="archive-article-date">
-  	<time datetime="2018-05-09T13:22:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-09</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/09/2018-05-09/">Java 设计模式(7) —— 适配器模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -209,400 +351,121 @@ ga('send', 'pageview');
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=https://lilei644.github.io/2018/06/21/2018-06-21/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/08/2018-05-08/" class="archive-article-date">
-  	<time datetime="2018-05-08T12:22:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-08</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2018/06/19/2018-06-19/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java 设计模式(23) —— 访问者模式</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
+        
+        
+    </div>
+</aside>
+
+
+
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/08/2018-05-08/">Java 设计模式(6) —— 命令模式</a>
-    </h1>
+  
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/07/2018-05-07/" class="archive-article-date">
-  	<time datetime="2018-05-07T13:14:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-07</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/07/2018-05-07/">Java 设计模式(5) —— 工厂模式</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/06/2018-05-06/" class="archive-article-date">
-  	<time datetime="2018-05-06T07:13:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-06</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/06/2018-05-06/">Java 设计模式(4) —— 单例模式</a>
-    </h1>
   
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/05/2018-05-05/" class="archive-article-date">
-  	<time datetime="2018-05-05T15:59:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-05</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/05/2018-05-05/">Java 设计模式(3) —— 装饰者模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/04/2018-05-04/" class="archive-article-date">
-  	<time datetime="2018-05-04T13:43:18.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-04</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/04/2018-05-04/">Java 设计模式(2) —— 观察者模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/05/02/2018-05-02/" class="archive-article-date">
-  	<time datetime="2018-05-02T13:54:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-02</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/05/02/2018-05-02/">Java 设计模式(1) —— 策略模式</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">设计模式</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/04/21/2018-04-21/" class="archive-article-date">
-  	<time datetime="2018-04-21T04:50:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-21</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/04/21/2018-04-21/">JVM的理解与整理</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">jvm</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">java虚拟机</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/20/2018-01-20/" class="archive-article-date">
-  	<time datetime="2018-01-20T03:20:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-20</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/20/2018-01-20/">python练习示例 -- 简单的爬虫解析</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">爬虫</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2018/01/11/2018-01-11/" class="archive-article-date">
-  	<time datetime="2018-01-11T10:00:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-01-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2018/01/11/2018-01-11/">python练习示例 -- Mysql</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">python example</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-
-    
-    <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/archives/page/2/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><a class="page-number" href="/archives/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/archives/page/4/">4</a><a class="extend next" rel="next" href="/archives/page/4/">Next &raquo;</a>
-    </nav>
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "https://lilei644.github.io/2018/06/21/2018-06-21/",
+  owner: 'lilei644',
+  repo: 'lilei644.github.io',
+  oauth: {
+    client_id: '6bcff90c95dab647eace',
+    client_secret: '186ae7e79b8b65f90b28a2b15683bfa5fb82a3c8',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
   
 
 
@@ -626,8 +489,8 @@ ga('send', 'pageview');
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
