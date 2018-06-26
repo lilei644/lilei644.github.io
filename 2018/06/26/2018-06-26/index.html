@@ -6,27 +6,22 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lilei644.github.io">
-  <title>手把手教你绘制Android粘性果冻动画组件 | Lei&#39;s blogs</title>
+  <title>Java 多线程以及并发技术总结 | Lei&#39;s blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="利用阻尼函数以及ValueAnimator通过贝塞尔曲线绘制弹性动画的组件 引言    从事移动互联网开发已经快两年了，回想当初是Android带我走进了移动端的世界，后来由于自身对用户体验比较感兴趣，发现iOS更注重对图形渲染以及动画处理，所以转身自学iOS开发，之后也发布了几个iOS的组件库。但是Android进两年发展趋势猛增，在动画处理上也比以前有所改进，Android3.0之后开启了GP">
-<meta name="keywords" content="Android,animation">
+  <meta name="description" content="Java多线程技术总结：多线程基础、线程安全、无锁、JDK并发包、并行设计模式、NIO和AIO、锁的优化">
+<meta name="keywords" content="java,多线程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="手把手教你绘制Android粘性果冻动画组件">
-<meta property="og:url" content="https://lilei644.github.io/2016/12/06/2016-12-06/index.html">
+<meta property="og:title" content="Java 多线程以及并发技术总结">
+<meta property="og:url" content="https://lilei644.github.io/2018/06/26/2018-06-26/index.html">
 <meta property="og:site_name" content="Lei&#39;s blogs">
-<meta property="og:description" content="利用阻尼函数以及ValueAnimator通过贝塞尔曲线绘制弹性动画的组件 引言    从事移动互联网开发已经快两年了，回想当初是Android带我走进了移动端的世界，后来由于自身对用户体验比较感兴趣，发现iOS更注重对图形渲染以及动画处理，所以转身自学iOS开发，之后也发布了几个iOS的组件库。但是Android进两年发展趋势猛增，在动画处理上也比以前有所改进，Android3.0之后开启了GP">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1316029-0cc45c25def89df6.gif?imageMogr2/auto-orient/strip">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1316029-924cfa8ebc26521d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1316029-0dd05d8158c5ed7c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1316029-69c0e1a013b464d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1316029-93df57e35a97c473.gif?imageMogr2/auto-orient/strip">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1316029-ebcd96f3f8f42430.gif?imageMogr2/auto-orient/strip">
-<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/1316029-1a7489f146d8df79.gif?imageMogr2/auto-orient/strip">
-<meta property="og:updated_time" content="2018-01-04T03:12:11.727Z">
+<meta property="og:description" content="Java多线程技术总结：多线程基础、线程安全、无锁、JDK并发包、并行设计模式、NIO和AIO、锁的优化">
+<meta property="og:image" content="https://raw.githubusercontent.com/lilei644/lilei644.github.io/master/img/image12.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/lilei644/lilei644.github.io/master/img/image13.png">
+<meta property="og:updated_time" content="2018-06-26T09:52:08.702Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="手把手教你绘制Android粘性果冻动画组件">
-<meta name="twitter:description" content="利用阻尼函数以及ValueAnimator通过贝塞尔曲线绘制弹性动画的组件 引言    从事移动互联网开发已经快两年了，回想当初是Android带我走进了移动端的世界，后来由于自身对用户体验比较感兴趣，发现iOS更注重对图形渲染以及动画处理，所以转身自学iOS开发，之后也发布了几个iOS的组件库。但是Android进两年发展趋势猛增，在动画处理上也比以前有所改进，Android3.0之后开启了GP">
-<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/1316029-0cc45c25def89df6.gif?imageMogr2/auto-orient/strip">
+<meta name="twitter:title" content="Java 多线程以及并发技术总结">
+<meta name="twitter:description" content="Java多线程技术总结：多线程基础、线程安全、无锁、JDK并发包、并行设计模式、NIO和AIO、锁的优化">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/lilei644/lilei644.github.io/master/img/image12.png">
   
     <link rel="alternative" href="/atom.xml" title="Lei&#39;s blogs" type="application/atom+xml">
   
@@ -177,56 +172,76 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2016-12-06" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-2018-06-26" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      手把手教你绘制Android粘性果冻动画组件
+      Java 多线程以及并发技术总结
     </h1>
   
 
         
-        <a href="/2016/12/06/2016-12-06/" class="archive-article-date">
-  	<time datetime="2016-12-06T12:46:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-06</time>
+        <a href="/2018/06/26/2018-06-26/" class="archive-article-date">
+  	<time datetime="2018-06-26T08:26:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-06-26</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>利用阻尼函数以及ValueAnimator通过贝塞尔曲线绘制弹性动画的组件</p>
-<h2 id="引言"><a href="#引言" class="headerlink" title="引言"></a>引言</h2><blockquote>
-<p>   从事移动互联网开发已经快两年了，回想当初是Android带我走进了移动端的世界，后来由于自身对用户体验比较感兴趣，发现iOS更注重对图形渲染以及动画处理，所以转身自学iOS开发，之后也发布了几个iOS的<a href="https://github.com/lilei644" target="_blank" rel="noopener">组件库</a>。但是Android进两年发展趋势猛增，在动画处理上也比以前有所改进，Android3.0之后开启了GPU硬件加速让图形渲染没以前那么卡顿，特别是5.0之后的material design更是引领潮流。所以趁最近工作不忙有时间，写了个弹性动画的<a href="https://github.com/lilei644/SpringActionMenu" target="_blank" rel="noopener">ActionMenu</a>，核心原理来自咱们iOS界有动画小王子之称的kittenyang的<a href="http://kittenyang.com/deformationandgooey/" target="_blank" rel="noopener">这篇博客</a>（特此鸣谢），废话不多说了，先上效果图（gif存在失真，实际效果更佳流畅Q弹）。</p>
+        <blockquote>
+<p>Java多线程技术总结：多线程基础、线程安全、无锁、JDK并发包、并行设计模式、NIO和AIO、锁的优化</p>
 </blockquote>
-<p><img src="http://upload-images.jianshu.io/upload_images/1316029-0cc45c25def89df6.gif?imageMogr2/auto-orient/strip" alt="效果图"></p>
+<p><img src="https://raw.githubusercontent.com/lilei644/lilei644.github.io/master/img/image12.png" alt="多线程"></p>
 <a id="more"></a>
-<h2 id="核心原理"><a href="#核心原理" class="headerlink" title="核心原理"></a>核心原理</h2><h3 id="主要知识点其实就下面三项"><a href="#主要知识点其实就下面三项" class="headerlink" title="主要知识点其实就下面三项"></a>主要知识点其实就下面三项</h3><ul>
-<li>Android自定义View以及ViewGroup</li>
-<li>利用三阶贝塞尔曲线绘制图形</li>
-<li>通过ValueAnimator结合<a href="https://zh.wikipedia.org/zh-cn/%E6%8C%AF%E5%8A%A8#.E9.98.BB.E5.B0.BC.E6.8C.AF.E5.8A.A8" target="_blank" rel="noopener">阻尼振动</a>自定义属性变化</li>
+<h3 id="一、多线程基础"><a href="#一、多线程基础" class="headerlink" title="一、多线程基础"></a>一、多线程基础</h3><h4 id="1、什么是线程"><a href="#1、什么是线程" class="headerlink" title="1、什么是线程"></a>1、什么是线程</h4><ul>
+<li>线程是进程内的执行单元</li>
 </ul>
-<h2 id="各项讲解"><a href="#各项讲解" class="headerlink" title="各项讲解"></a>各项讲解</h2><h3 id="Android自定义View以及ViewGroup"><a href="#Android自定义View以及ViewGroup" class="headerlink" title="Android自定义View以及ViewGroup"></a>Android自定义View以及ViewGroup</h3><p>首先我们先做出一个圆形的弹性动画效果，先得自定义一个view，然后重写onDraw可以用过path和paint任意绘制图形，具体细节我就不多说了，不了解的同学可以查阅相关资料学习。</p>
-<h3 id="利用三阶贝塞尔曲线绘制图形"><a href="#利用三阶贝塞尔曲线绘制图形" class="headerlink" title="利用三阶贝塞尔曲线绘制图形"></a>利用三阶贝塞尔曲线绘制图形</h3><p>贝塞尔曲线是我认为一个比较神奇的东西，因为他基本上可以绘制出任何图形，有兴趣的同学可以到<a href="http://bezier.method.ac/#" target="_blank" rel="noopener">这个网站</a>玩一下，那么我们今天需要做的就是用三阶贝塞尔曲线画圆<br><img src="http://upload-images.jianshu.io/upload_images/1316029-924cfa8ebc26521d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="三阶贝塞尔曲线"><br>图中以A,B,C,D四个点作为基准点，把一个圆分4次绘制，以c1-c8作为四次绘制中三阶贝塞尔曲线的辅助点，各点的位置我们设为offSet，由前辈们计算，当offSet为（圆形直径/3.6）时刚好是一个整圆，后来找到一篇<a href="http://blog.csdn.net/nibiewuxuanze/article/details/48103059" target="_blank" rel="noopener">文章</a>介绍了其原理（虽然我看完之后还是一脸懵逼）。我们设置形变系数为factor（0~1），设定圆形拉伸的最大程度为圆形的2/5， 则extra= circleRadius<em>2</em>factor/5，分别列出各点坐标<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">intxA =0,xB =0,xC =0,xD =0,yA =0,yB =0,yC =0,yD =0;</span><br><span class="line">xA =circleRadius;</span><br><span class="line">xB =circleRadius*2+extra;</span><br><span class="line">xC =circleRadius;</span><br><span class="line">xD =0;</span><br><span class="line">yA =extra;</span><br><span class="line">yB =circleRadius;</span><br><span class="line">yC =circleRadius*2-extra;</span><br><span class="line">yD =circleRadius;</span><br><span class="line">offSet=circleRadius*2/3.6f;</span><br><span class="line">mPath.moveTo(xA,yA);</span><br><span class="line">mPath.cubicTo(xA +offSet,yA,xB,yB  -offSet,xB,yB);</span><br><span class="line">mPath.cubicTo(xB,yB +offSet,xC +offSet,yC,xC,yC);</span><br><span class="line">mPath.cubicTo(xC -offSet,yC,xD,yD  +offSet,xD,yD);</span><br><span class="line">mPath.cubicTo(xD,yD -offSet,xA -offSet,yA,xA,yA);</span><br></pre></td></tr></table></figure></p>
-<p>OK！基本点都绘制完了，直接Run起来<br><img src="http://upload-images.jianshu.io/upload_images/1316029-0dd05d8158c5ed7c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="效果图"><br>看到一个红通通的圆形绘制成功之后第一部大功告成！</p>
-<h3 id="通过ValueAnimator结合阻尼振动自定义属性变化"><a href="#通过ValueAnimator结合阻尼振动自定义属性变化" class="headerlink" title="通过ValueAnimator结合阻尼振动自定义属性变化"></a>通过ValueAnimator结合<a href="https://zh.wikipedia.org/zh-cn/%E6%8C%AF%E5%8A%A8#.E9.98.BB.E5.B0.BC.E6.8C.AF.E5.8A.A8" target="_blank" rel="noopener">阻尼振动</a>自定义属性变化</h3><p>上面我们已经绘制好了一个圆形，接下来事情就很简单了，只需要通过改变形变系数factor（0~1）的值来改变形变程度就可以了，下面介绍一个Android的动画API—ValueAnimator，直接通过组件属性定义的动画效果，然后重写变化机制<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">ValueAnimator valueAnimator = ValueAnimator.ofObject(new FloatEvaluator(time,1,0),1,0);</span><br><span class="line">valueAnimator.addUpdateListener(this);</span><br><span class="line">valueAnimator.setDuration(time);</span><br><span class="line">valueAnimator.start();</span><br></pre></td></tr></table></figure></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public voidonAnimationUpdate(ValueAnimator animation) &#123;</span><br><span class="line">      factor= (float)animation.getAnimatedValue();</span><br><span class="line">      invalidate();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>由此原理就是通过属性动画不断的改变factor从1到0，然后刷新重绘小圆球，FloatEvaluator就是我们自定义的根据什么样的函数去改变factor，这个时候就要介绍到我们高中学习的阻尼振动函数了<br><img src="http://upload-images.jianshu.io/upload_images/1316029-69c0e1a013b464d9.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="阻尼振动"></p>
-<p><img src="http://upload-images.jianshu.io/upload_images/1316029-93df57e35a97c473.gif?imageMogr2/auto-orient/strip" alt="阻尼振动"><br>该函数可以模拟最真实的弹性效果<br><img src="http://upload-images.jianshu.io/upload_images/1316029-ebcd96f3f8f42430.gif?imageMogr2/auto-orient/strip" alt="阻尼函数"><br>我们60帧为基准（肉眼看到刷新流畅度的最低标准），计算出一列变化factor的值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">publicFloatEvaluator(longtime, floatstartValue, floatendValue) &#123;</span><br><span class="line">        sum= (int)time *60/1000;</span><br><span class="line">        float diff = endValue - startValue;</span><br><span class="line">        value=new float[sum];</span><br><span class="line">        float x;</span><br><span class="line">        for(int i = 0; i &lt; sum; i++) &#123;</span><br><span class="line">        x = i *1.0f/sum;</span><br><span class="line">        value[i] = endValue - (float)(diff * Math.pow(Math.E,-1*dampingFactor* x) * Math.cos(velocityFactor* x));</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>其中dampingFactor和velocityFactor为阻力和速度，我这里设置的是5和30，可以自定义调节改变弹性程度。</p>
-<p>基本构建完成，添加一个按钮启动动画试试效果<br><img src="http://upload-images.jianshu.io/upload_images/1316029-1a7489f146d8df79.gif?imageMogr2/auto-orient/strip" alt="效果图"></p>
-<p>大功告成！</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>大家掌握了一个圆形组件的形变原理之后剩下的就容易多了，利用ViewGroup多绘制几个摆摆位置就OK了，也可以利用这种原理自己创新构思出别的控件，只要掌握了核心的两点：</p>
+<h4 id="2、线程的基本操作"><a href="#2、线程的基本操作" class="headerlink" title="2、线程的基本操作"></a>2、线程的基本操作</h4><p><img src="https://raw.githubusercontent.com/lilei644/lilei644.github.io/master/img/image13.png" alt="多线程"></p>
+<p>(1) 新建线程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Thread t1=new Thread(); </span><br><span class="line">t1.start();</span><br></pre></td></tr></table></figure>
+<p>(2) 终止线程</p>
 <ul>
-<li>贝塞尔曲线绘制图形</li>
-<li>利用阻尼函数以及ValueAnimator自定义形变属性的值<blockquote>
-<p>最后贴上<a href="https://github.com/lilei644/SpringActionMenu" target="_blank" rel="noopener">源码地址</a>，有兴趣的同学欢迎star，共同学习探讨动画知识！</p>
-</blockquote>
-</li>
+<li>Thread.stop() 不推荐使用。它会释放所有monitor</li>
 </ul>
-
+<p>(3) 中断线程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public void Thread.interrupt() // 中断线程</span><br><span class="line">public boolean Thread.isInterrupted() // 判断是否被中断</span><br><span class="line">public static boolean Thread.interrupted() // 判断是否被中断，并清除当前中断状态</span><br></pre></td></tr></table></figure>
+<p>(4) 线程的挂起和继续执行</p>
+<ul>
+<li>suspend()不会释放锁</li>
+<li>如果加锁发生在resume()之前 ，则死锁发生</li>
+</ul>
+<p>(5) 线程等待结束和谦让</p>
+<ul>
+<li>join()会等待线程结束后执行</li>
+<li>yeild会让出CPU的执行段</li>
+</ul>
+<p>(6) 守护线程</p>
+<ul>
+<li>在后台默默地完成一些系统性的服务，比如垃圾回收线程、JIT线程就可以理解为守护线程 </li>
+<li>当一个Java应用内，只有守护线程时，Java虚拟机就会自然退出</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Thread t=new DaemonT(); </span><br><span class="line">t.setDaemon(true); 	// 设置为守护线程</span><br><span class="line">t.start();</span><br></pre></td></tr></table></figure>
+<p>(7) 线程的优先级</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Thread high=new HightPriority(); </span><br><span class="line">LowPriority low=new LowPriority(); high.setPriority(Thread.MAX_PRIORITY); low.setPriority(Thread.MIN_PRIORITY); </span><br><span class="line">low.start();</span><br><span class="line">high.start();</span><br></pre></td></tr></table></figure>
+<p>高优先级的线程更容易再竞争中获胜</p>
+<h4 id="3、基本的线程同步操作"><a href="#3、基本的线程同步操作" class="headerlink" title="3、基本的线程同步操作"></a>3、基本的线程同步操作</h4><p>(1) synchronized</p>
+<ul>
+<li>指定加锁对象:对给定对象加锁，进入同步代码前要获得给定对象的锁。</li>
+<li>直接作用于实例方法:相当于对当前实例加锁，进入同步代码前要获得当前实例的锁。 </li>
+<li>直接作用于静态方法:相当于对当前类加锁，进入同步代码前要获得当前类的锁。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">// 指定加锁对象</span><br><span class="line">public void run() &#123;</span><br><span class="line">	for(int j=0;j&lt;10000000;j++)&#123;</span><br><span class="line">		synchronized(instance)&#123;</span><br><span class="line">			i++; </span><br><span class="line">		&#125;</span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// 用在方法上</span><br><span class="line">public synchronized void increase()&#123;</span><br><span class="line">	i++; </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">public static synchronized void increase()&#123;</span><br><span class="line">	i++; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>(2) 线程的等待和唤醒</p>
+<ul>
+<li>Object.wait() 线程阻塞等待操作，操作会释放锁</li>
+<li>Obejct.notify() 唤醒等待的线程，操作会释放锁</li>
+<li>Obejct.notify()随机唤醒一个线程，Obejct.notifyAll()唤醒全部线程</li>
+</ul>
+<h3 id="二、Java内存模型和线程安全"><a href="#二、Java内存模型和线程安全" class="headerlink" title="二、Java内存模型和线程安全"></a>二、Java内存模型和线程安全</h3>
       
 
       
@@ -239,11 +254,11 @@ ga('send', 'pageview');
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Android</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">animation</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">多线程</a>
         		</li>
       		
 		</ul>
@@ -299,7 +314,7 @@ ga('send', 'pageview');
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://lilei644.github.io/2016/12/06/2016-12-06/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=https://lilei644.github.io/2018/06/26/2018-06-26/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -313,18 +328,9 @@ ga('send', 'pageview');
   
 <nav id="article-nav">
   
-    <a href="/2016/12/31/2016-12-31/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          MySql性能优化——基础篇
-        
-      </div>
-    </a>
   
-  
-    <a href="/2016/01/04/2016-01-04/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">使用Hexo + Github搭建个人博客</div>
+    <a href="/2018/06/21/2018-06-21/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java 23种设计模式总结</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -363,7 +369,7 @@ ga('send', 'pageview');
 <script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-  id: "https://lilei644.github.io/2016/12/06/2016-12-06/",
+  id: "https://lilei644.github.io/2018/06/26/2018-06-26/",
   owner: 'lilei644',
   repo: 'lilei644.github.io',
   oauth: {
