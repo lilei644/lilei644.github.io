@@ -8,19 +8,21 @@
   <link rel="dns-prefetch" href="https://lilei644.github.io">
   <title>Java 多线程以及并发技术总结 | Lei&#39;s blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Java多线程技术总结：多线程基础、线程安全、无锁、JDK并发包、并行设计模式、NIO和AIO、锁的优化">
+  <meta name="description" content="Java多线程技术总结：多线程基础、线程安全、CAS无锁、JDK并发包、并行设计模式、NIO和AIO、锁的优化">
 <meta name="keywords" content="java,多线程">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java 多线程以及并发技术总结">
 <meta property="og:url" content="https://lilei644.github.io/2018/06/26/2018-06-26/index.html">
 <meta property="og:site_name" content="Lei&#39;s blogs">
-<meta property="og:description" content="Java多线程技术总结：多线程基础、线程安全、无锁、JDK并发包、并行设计模式、NIO和AIO、锁的优化">
+<meta property="og:description" content="Java多线程技术总结：多线程基础、线程安全、CAS无锁、JDK并发包、并行设计模式、NIO和AIO、锁的优化">
 <meta property="og:image" content="https://raw.githubusercontent.com/lilei644/lilei644.github.io/master/img/image12.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/lilei644/lilei644.github.io/master/img/image13.png">
-<meta property="og:updated_time" content="2018-06-26T09:52:08.702Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/lilei644/lilei644.github.io/master/img/image14.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/lilei644/lilei644.github.io/master/img/image15.png">
+<meta property="og:updated_time" content="2018-06-27T07:22:39.607Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 多线程以及并发技术总结">
-<meta name="twitter:description" content="Java多线程技术总结：多线程基础、线程安全、无锁、JDK并发包、并行设计模式、NIO和AIO、锁的优化">
+<meta name="twitter:description" content="Java多线程技术总结：多线程基础、线程安全、CAS无锁、JDK并发包、并行设计模式、NIO和AIO、锁的优化">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/lilei644/lilei644.github.io/master/img/image12.png">
   
     <link rel="alternative" href="/atom.xml" title="Lei&#39;s blogs" type="application/atom+xml">
@@ -193,7 +195,7 @@ ga('send', 'pageview');
     <div class="article-entry" itemprop="articleBody">
       
         <blockquote>
-<p>Java多线程技术总结：多线程基础、线程安全、无锁、JDK并发包、并行设计模式、NIO和AIO、锁的优化</p>
+<p>Java多线程技术总结：多线程基础、线程安全、CAS无锁、JDK并发包、并行设计模式、NIO和AIO、锁的优化</p>
 </blockquote>
 <p><img src="https://raw.githubusercontent.com/lilei644/lilei644.github.io/master/img/image12.png" alt="多线程"></p>
 <a id="more"></a>
@@ -241,7 +243,109 @@ ga('send', 'pageview');
 <li>Obejct.notify() 唤醒等待的线程，操作会释放锁</li>
 <li>Obejct.notify()随机唤醒一个线程，Obejct.notifyAll()唤醒全部线程</li>
 </ul>
-<h3 id="二、Java内存模型和线程安全"><a href="#二、Java内存模型和线程安全" class="headerlink" title="二、Java内存模型和线程安全"></a>二、Java内存模型和线程安全</h3>
+<h3 id="二、Java内存模型和线程安全"><a href="#二、Java内存模型和线程安全" class="headerlink" title="二、Java内存模型和线程安全"></a>二、Java内存模型和线程安全</h3><h4 id="1、原子性"><a href="#1、原子性" class="headerlink" title="1、原子性"></a>1、原子性</h4><p>原子性是指一个操作是不可中断的。即使是在多个线程一起执行的时候，一个操作一旦开始，就 不会被其它线程干扰。</p>
+<p>i++是原子操作吗?  （不是）</p>
+<h4 id="2、有序性"><a href="#2、有序性" class="headerlink" title="2、有序性"></a>2、有序性</h4><p>在并发时，程序的执行可能就会出现乱序</p>
+<p>一条指令的执行是可以分为很多步骤的 </p>
+<ol>
+<li>取指IF</li>
+<li>译码和取寄存器操作数 ID</li>
+<li>执行或者有效地址计算 EX</li>
+<li>存储器访问 MEM</li>
+<li>写回WB</li>
+</ol>
+<h4 id="3、可见性"><a href="#3、可见性" class="headerlink" title="3、可见性"></a>3、可见性</h4><p>可见性是指当一个线程修改了某一个共享变量的值，其他线程是否能够立即知道这个修改。</p>
+<p><img src="https://raw.githubusercontent.com/lilei644/lilei644.github.io/master/img/image14.png" alt="可见性"></p>
+<p>volatile 修饰可以保证变量的可见性</p>
+<h4 id="4、Happen-Before规则"><a href="#4、Happen-Before规则" class="headerlink" title="4、Happen-Before规则"></a>4、Happen-Before规则</h4><ul>
+<li>程序顺序原则:一个线程内保证语义的串行性</li>
+<li>volatile规则:volatile变量的写，先发生于读，这保证了volatile变量的可见性 </li>
+<li>锁规则:解锁(unlock)必然发生在随后的加锁(lock)前</li>
+<li>传递性:A先于B，B先于C，那么A必然先于C</li>
+<li>线程的start()方法先于它的每一个动作</li>
+<li>线程的所有操作先于线程的终结(Thread.join())</li>
+<li>线程的中断(interrupt())先于被中断线程的代码</li>
+<li>对象的构造函数执行结束先于finalize()方法</li>
+</ul>
+<h4 id="5、线程安全的概念"><a href="#5、线程安全的概念" class="headerlink" title="5、线程安全的概念"></a>5、线程安全的概念</h4><p>指某个函数、函数库在多线程环境中被调用时，能够正确地处理各个线程的局部变量，使程序功 能正确完成。</p>
+<p>i++在多线程下访问的情况下是线程不安全的操作</p>
+<p><img src="https://raw.githubusercontent.com/lilei644/lilei644.github.io/master/img/image15.png" alt="线程安全"></p>
+<p>最简单的保证线程安全的方法是添加synchronized关键字修饰</p>
+<h3 id="三、CAS无锁"><a href="#三、CAS无锁" class="headerlink" title="三、CAS无锁"></a>三、CAS无锁</h3><h4 id="1、什么是CAS"><a href="#1、什么是CAS" class="headerlink" title="1、什么是CAS"></a>1、什么是CAS</h4><p>CAS算法的过程是这样:它包含3个参数CAS(V,E,N)。V表示要更新的变量，E表示预期值，N表示新值。仅当V 值等于E值时，才会将V的值设为N，如果V值和E值不同，则说明已经有其他线程做了更新，则当前线程什么 都不做。最后，CAS返回当前V的真实值。CAS操作是抱着乐观的态度进行的，它总是认为自己可以成功完成 操作。当多个线程同时使用CAS操作一个变量时，只有一个会胜出，并成功更新，其余均会失败。失败的线程 不会被挂起，仅是被告知失败，并且允许再次尝试，当然也允许失败的线程放弃操作。基于这样的原理，CAS 操作即时没有锁，也可以发现其他线程对当前线程的干扰，并进行恰当的处理。</p>
+<h4 id="2、无锁类的使用"><a href="#2、无锁类的使用" class="headerlink" title="2、无锁类的使用"></a>2、无锁类的使用</h4><p>(1) AtomicInteger</p>
+<p>基于Integer的操作，利用CPU指令集修改对象的值，若修改之后的值不等于期望的值则一直重复操作，直至与期望的值相等位置</p>
+<p>(2) Unsafe</p>
+<p>非安全的操作，比如: 根据偏移量设置值 park() 底层的CAS操作<br>非公开API，在不同版本的JDK中， 可能有较大差异</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//获得给定对象偏移量上的int值</span><br><span class="line">public native int getInt(Object o, long offset); //设置给定对象偏移量上的int值</span><br><span class="line">public native void putInt(Object o, long offset, int x); //获得字段在对象中的偏移量</span><br><span class="line">public native long objectFieldOffset(Field f); //设置给定对象的int值，使用volatile语义</span><br><span class="line">public native void putIntVolatile(Object o, long offset, int x); //获得给定对象对象的int值，使用volatile语义</span><br><span class="line">public native int getIntVolatile(Object o, long offset); //和putIntVolatile()一样，但是它要求被操作字段就是volatile类型的 public native void putOrderedInt(Object o, long offset, int x);</span><br></pre></td></tr></table></figure>
+<p>(3) AtomicReference</p>
+<p>对引用进行修改 是一个模板类，抽象化了数据类型</p>
+<p>(4) AtomicStampedReference</p>
+<p>解决ABA问题，通过时间戳或版本号的比较判断是否被修改过</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//比较设置 参数依次为:期望值 写入新值 期望时间戳 新时间戳</span><br><span class="line">public boolean compareAndSet(V expectedReference,V newReference,int expectedStamp,int newStamp) //获得当前对象引用</span><br><span class="line">public V getReference()</span><br><span class="line">//获得当前时间戳</span><br><span class="line">public int getStamp()</span><br><span class="line">//设置当前对象引用和时间戳</span><br><span class="line">public void set(V newReference, int newStamp)</span><br></pre></td></tr></table></figure>
+<p>(5) AtomicIntegerArray</p>
+<p>支持无锁的数组</p>
+<p>(6) AtomicIntegerFieldUpdater</p>
+<p>让普通变量也享受原子操作</p>
+<ol>
+<li>Updater只能修改它可见范围内的变量。因为Updater使用反射得到这个变量。如果变量不可见，就会出错。<br>比如如果score申明为private，就是不可行的。</li>
+<li>为了确保变量被正确的读取，它必须是volatile类型的。如果我们原有代码中未申明这个类型，那么简单得 申明一下就行，这不会引起什么问题。</li>
+</ol>
+<h3 id="四、JDK并发包"><a href="#四、JDK并发包" class="headerlink" title="四、JDK并发包"></a>四、JDK并发包</h3><h4 id="1、ReentrantLock"><a href="#1、ReentrantLock" class="headerlink" title="1、ReentrantLock"></a>1、ReentrantLock</h4><p>重入锁，是synchronized的高级版，老版本的JDK中synchronized性能优化较低，现在的版本中性能经过优化后与重入锁相当，所以需要高级功能的时候才需要用到重入锁</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public static ReentrantLock lock = new ReentrantLock();</span><br><span class="line"></span><br><span class="line">lock.lock();</span><br><span class="line">try &#123;</span><br><span class="line">	i++;</span><br><span class="line">&#125; finally &#123;</span><br><span class="line">	lock.unlock();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>可重入 单线程可以重复进入，但要重复退出</li>
+<li>可中断 lockInterruptibly()</li>
+<li>可限时 超时不能获得锁，就返回false，不会永久等待构成死锁</li>
+<li>公平锁 先来先得</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">public ReentrantLock(boolean fair)</span><br><span class="line">public static ReentrantLock fairLock = new ReentrantLock(true);</span><br></pre></td></tr></table></figure>
+<p>内部通过CAS实现线程是否拿到锁的判断，另外定义一个等待队列，将所有等待拿锁的线程给保存起来，进入等待的线程将进行park()操作将线程挂起，有锁释放了要执行的时候则调用unpark()操作</p>
+<h4 id="2、Condition"><a href="#2、Condition" class="headerlink" title="2、Condition"></a>2、Condition</h4><p>类似于 Object.wait()和Object.notify() </p>
+<p>与ReentrantLock结合使用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">void await() throws InterruptedException;</span><br><span class="line">void awaitUninterruptibly();</span><br><span class="line">long awaitNanos(long nanosTimeout) throws InterruptedException; boolean await(long time, TimeUnit unit) throws InterruptedException; boolean awaitUntil(Date deadline) throws InterruptedException;</span><br><span class="line">void signal();</span><br><span class="line">void signalAll();</span><br></pre></td></tr></table></figure>
+<ul>
+<li>await()方法会使当前线程等待，同时释放当前锁，当其他线程中使用signal()时或者signalAll()方法时，线<br>程会重新获得锁并继续执行。或者当线程被中断时，也能跳出等待。这和Object.wait()方法很相似。</li>
+<li>awaitUninterruptibly()方法与await()方法基本相同，但是它并不会再等待过程中响应中断。</li>
+<li>singal()方法用于唤醒一个在等待中的线程。相对的singalAll()方法会唤醒所有在等待中的线程。这和Obej ct.notify()方法很类似。</li>
+</ul>
+<h3 id="3、Semaphore"><a href="#3、Semaphore" class="headerlink" title="3、Semaphore"></a>3、Semaphore</h3><p>共享锁 运行多个线程同时临界区</p>
+<p>设置多个线程能拿到锁的总个数，未拿到的线程则进行等待</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public void acquire()		// 设置线程进入的限制</span><br><span class="line">public void acquireUninterruptibly()</span><br><span class="line">public boolean tryAcquire()</span><br><span class="line">public boolean tryAcquire(long timeout, TimeUnit unit) public void release()	// 释放限制</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">public class MyTestC extends Thread &#123;</span><br><span class="line"></span><br><span class="line">    private static Semaphore semaphore = new Semaphore(5);</span><br><span class="line"></span><br><span class="line">    private static int i = 0;</span><br><span class="line"></span><br><span class="line">    @Override</span><br><span class="line">    public void run() &#123;</span><br><span class="line"></span><br><span class="line">        try &#123;</span><br><span class="line">            semaphore.acquire();</span><br><span class="line">            i++;</span><br><span class="line">            System.out.println(i);</span><br><span class="line">            Thread.sleep(2000);</span><br><span class="line">        &#125; catch (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; finally &#123;</span><br><span class="line">            semaphore.release();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line"></span><br><span class="line">        MyTestC[] myTest = new MyTestC[20];</span><br><span class="line">        for (int i = 0; i &lt; 20; i++) &#123;</span><br><span class="line">            myTest[i] = new MyTestC();</span><br><span class="line">            myTest[i].start();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="4、ReadWriteLock"><a href="#4、ReadWriteLock" class="headerlink" title="4、ReadWriteLock"></a>4、ReadWriteLock</h4><p>ReadWriteLock是JDK5中提供的读写分离锁</p>
+<ul>
+<li>读-读不互斥:读读之间不阻塞。 </li>
+<li>读-写互斥:读阻塞写，写也会阻塞读。 </li>
+<li>写-写互斥:写写阻塞。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">private static ReentrantReadWriteLock readWriteLock=new ReentrantReadWriteLock(); </span><br><span class="line">private static Lock readLock = readWriteLock.readLock();</span><br><span class="line">private static Lock writeLock = readWriteLock.writeLock();</span><br></pre></td></tr></table></figure>
+<h4 id="5、CountDownLatch"><a href="#5、CountDownLatch" class="headerlink" title="5、CountDownLatch"></a>5、CountDownLatch</h4><p>倒数计时器。</p>
+<p>一种典型的场景就是火箭发射。在火箭发射前，为了保证万无一失，往往还要进行各项设备、仪器的检查。 只有等所有检查完毕后，引擎才能点火。这种场景就非常适合使用CountDownLatch。它可以使得点火线程 ，等待所有检查线程全部完工后，再执行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">static final CountDownLatch end = new CountDownLatch(10); </span><br><span class="line">end.countDown();</span><br><span class="line"></span><br><span class="line">// 倒计时到0之后再执行后面的操作</span><br><span class="line">end.await();</span><br></pre></td></tr></table></figure>
+<h4 id="6、CyclicBarrier"><a href="#6、CyclicBarrier" class="headerlink" title="6、CyclicBarrier"></a>6、CyclicBarrier</h4><p>循环栅栏 </p>
+<p>Cyclic意为循环，也就是说这个计数器可以反复使用。比如，假设我们将计数器设置为10。那么凑齐第一批1 0个线程后，计数器就会归零，然后接着凑齐下一批10个线程</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">public CyclicBarrier(int parties, Runnable barrierAction)</span><br><span class="line">barrierAction就是当计数器一次计数完成后，系统会执行的动作</span><br><span class="line"></span><br><span class="line">await()</span><br></pre></td></tr></table></figure>
+<h4 id="7、LockSupport"><a href="#7、LockSupport" class="headerlink" title="7、LockSupport"></a>7、LockSupport</h4><p>提供线程阻塞原语</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">LockSupport.park(); </span><br><span class="line">LockSupport.unpark(thread);</span><br></pre></td></tr></table></figure>
+<p>与suspend()比较不容易引起线程冻结</p>
+<p>能够响应中断，但不抛出异常。中断响应的结果是，park()函数的返回，可以从Thread.interrupted()得到中断标志</p>
+<h4 id="8、并发容器"><a href="#8、并发容器" class="headerlink" title="8、并发容器"></a>8、并发容器</h4><ul>
+<li>HashMap <ul>
+<li>ConcurrentHashMap</li>
+<li>Collections.synchronizedMap</li>
+</ul>
+</li>
+<li>List<ul>
+<li>synchronizedList</li>
+</ul>
+</li>
+<li>Set<ul>
+<li>synchronizedSet</li>
+</ul>
+</li>
+<li>BlockingQueue，ConcurrentLinkedQueue阻塞队列    </li>
+</ul>
+
       
 
       
