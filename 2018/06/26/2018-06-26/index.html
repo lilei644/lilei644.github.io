@@ -19,7 +19,7 @@
 <meta property="og:image" content="https://raw.githubusercontent.com/lilei644/lilei644.github.io/master/img/image13.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/lilei644/lilei644.github.io/master/img/image14.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/lilei644/lilei644.github.io/master/img/image15.png">
-<meta property="og:updated_time" content="2018-06-27T07:22:39.607Z">
+<meta property="og:updated_time" content="2018-07-01T12:52:02.364Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java 多线程以及并发技术总结">
 <meta name="twitter:description" content="Java多线程技术总结：多线程基础、线程安全、CAS无锁、JDK并发包、并行设计模式、NIO和AIO、锁的优化">
@@ -344,6 +344,172 @@ ga('send', 'pageview');
 </ul>
 </li>
 <li>BlockingQueue，ConcurrentLinkedQueue阻塞队列    </li>
+</ul>
+<h4 id="9、线程池"><a href="#9、线程池" class="headerlink" title="9、线程池"></a>9、线程池</h4><p>如果并发的线程数量很多，并且每个线程都是执行一个时间很短的任务就结束了，这样频繁创建线程就会大大降低系统的效率，因为频繁创建线程和销毁线程需要时间。</p>
+<p>那么有没有一种办法使得线程可以复用，就是执行完一个任务，并不被销毁，而是可以继续执行其他的任务？在Java中可以通过线程池来达到这样的效果。</p>
+<ul>
+<li>newFixedThreadPool ：创建一个指定工作线程数量的线程池。每当提交一个任务就创建一个工作线程，如果工作线程数量达到线程池初始的最大数，则将提交的任务存入到池队列中。</li>
+<li>newSingleThreadExecutor ：创建一个单线程化的Executor，即只创建唯一的工作者线程来执行任务，它只会用唯一的工作线程来执行任务，保证所有任务按照指定顺序(FIFO, LIFO, 优先级)执行。如果这个线程异常结束，会有另一个取代它，保证顺序执行。单工作线程最大的特点是可保证顺序地执行各个任务，并且在任意给定的时间不会有多个线程是活动的。</li>
+<li>newCachedThreadPool ：创建一个可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程。</li>
+<li>newScheduledThreadPool：创建一个定长的线程池，而且支持定时的以及周期性的任务执行，支持定时及周期性任务执行。</li>
+</ul>
+<h3 id="五、NIO和AIO"><a href="#五、NIO和AIO" class="headerlink" title="五、NIO和AIO"></a>五、NIO和AIO</h3><h4 id="1、什么是NIO"><a href="#1、什么是NIO" class="headerlink" title="1、什么是NIO"></a>1、什么是NIO</h4><p>NIO是New I/O的简称，与旧式的基于流的I/O方法相对，从名字看，它表示新的一套Java I/O标 准。它是在Java 1.4中被纳入到JDK中的，并具有以下特性:</p>
+<ul>
+<li>NIO是基于块(Block)的，它以块为基本单位处理数据</li>
+<li>为所有的原始类型提供(Buffer)缓存支持</li>
+<li>增加通道(Channel)对象，作为新的原始 I/O 抽象</li>
+<li>支持锁和内存映射文件的文件访问接口</li>
+<li>提供了基于Selector的异步网络I/O</li>
+</ul>
+<h4 id="2、buffer"><a href="#2、buffer" class="headerlink" title="2、buffer"></a>2、buffer</h4><p>NIO中的Buffer用于和NIO通道进行交互。数据是从通道读入缓冲区，从缓冲区写入到通道中的。</p>
+<p>缓冲区本质上是一块可以写入数据，然后可以从中读取数据的内存。这块内存被包装成NIO Buffer对象，并提供了一组方法，用来方便的访问该块内存。</p>
+<p>使用Buffer读写数据一般遵循以下四个步骤：</p>
+<ol>
+<li>写入数据到Buffer</li>
+<li>调用flip()方法</li>
+<li>从Buffer中读取数据</li>
+<li>调用clear()方法或者compact()方法</li>
+</ol>
+<p>当向buffer写入数据时，buffer会记录下写了多少数据。一旦要读取数据，需要通过flip()方法将Buffer从写模式切换到读模式。在读模式下，可以读取之前写入到buffer的所有数据。</p>
+<p>一旦读完了所有的数据，就需要清空缓冲区，让它可以再次被写入。有两种方式能清空缓冲区：调用clear()或compact()方法。clear()方法会清空整个缓冲区。compact()方法只会清除已经读过的数据。任何未读的数据都被移到缓冲区的起始处，新写入的数据将放到缓冲区未读数据的后面。</p>
+<p>NIO利用buffer复制文件</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">public static void nioCopyFile(String resource, String destination) throws IOException &#123;</span><br><span class="line">&#125;</span><br><span class="line">	FileInputStream fis = new FileInputStream(resource); 	FileOutputStream fos = new FileOutputStream(destination); </span><br><span class="line">	FileChannel readChannel = fis.getChannel();</span><br><span class="line">	FileChannel writeChannel = fos.getChannel();</span><br><span class="line">	ByteBuffer buffer = ByteBuffer.allocate(1024); </span><br><span class="line">	while (true) &#123;</span><br><span class="line">		buffer.clear();</span><br><span class="line">		int len = readChannel.read(buffer); </span><br><span class="line">		if (len == -1) &#123;</span><br><span class="line">			break;	//读取完毕 </span><br><span class="line">		&#125;</span><br><span class="line">		buffer.flip();</span><br><span class="line">		writeChannel.write(buffer); //写入文件</span><br><span class="line">	&#125; </span><br><span class="line">	readChannel.close(); </span><br><span class="line">	writeChannel.close();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>Buffer中有3个重要的参数:位置(position)、容量(capactiy)和上限(limit)</p>
+<ul>
+<li><p>capacity</p>
+<ul>
+<li>作为一个内存块，Buffer有一个固定的大小值，也叫“capacity”.你只能往里写capacity个byte、long，char等类型。一旦Buffer满了，需要将其清空（通过读数据或者清除数据）才能继续写数据往里写数据。</li>
+</ul>
+</li>
+<li><p>position</p>
+<ul>
+<li>当你写数据到Buffer中时，position表示当前的位置。初始的position值为0.当一个byte、long等数据写到Buffer后， position会向前移动到下一个可插入数据的Buffer单元。position最大可为capacity – 1.</li>
+<li>当读取数据时，也是从某个特定位置读。当将Buffer从写模式切换到读模式，position会被重置为0. 当从Buffer的position处读取数据时，position向前移动到下一个可读的位置。</li>
+</ul>
+</li>
+<li><p>limit</p>
+<ul>
+<li>在写模式下，Buffer的limit表示你最多能往Buffer里写多少数据。 写模式下，limit等于Buffer的capacity。</li>
+<li>当切换Buffer到读模式时， limit表示你最多能读到多少数据。因此，当切换Buffer到读模式时，limit会被设置成写模式下的position值。换句话说，你能读到之前写入的所有数据（limit被设置成已写数据的数量，这个值在写模式下就是position）</li>
+</ul>
+</li>
+</ul>
+<p>常用方法</p>
+<ul>
+<li>public final Buffer rewind()<ul>
+<li>将position置零，并清除标志位(mark)</li>
+</ul>
+</li>
+<li>public final Buffer clear()<ul>
+<li>将position置零，同时将limit设置为capacity的大小，并清除了标志mark</li>
+</ul>
+</li>
+<li>public final Buffer flip()<ul>
+<li>先将limit设置到position所在位置，然后将position置零，并清除标志位mark </li>
+<li>通常在读写转换时使用</li>
+</ul>
+</li>
+</ul>
+<h4 id="3、网络编程中的NIO"><a href="#3、网络编程中的NIO" class="headerlink" title="3、网络编程中的NIO"></a>3、网络编程中的NIO</h4><p>问题:</p>
+<ol>
+<li><p>为每一个客户端使用一个线程，如果客户端出现延时等异常，线程可能会被占用很长时间。因为数据的准备和读取都在这个线程中。</p>
+</li>
+<li><p>此时，如果客户端数量众多，可能会消耗大量的系统资源</p>
+</li>
+</ol>
+<p>解决</p>
+<ol>
+<li>非阻塞的NIO</li>
+<li>数据准备好了在工作</li>
+</ol>
+<h4 id="4、网络编程中的AIO"><a href="#4、网络编程中的AIO" class="headerlink" title="4、网络编程中的AIO"></a>4、网络编程中的AIO</h4><ol>
+<li>读完了再通知我</li>
+<li>不会加快IO，只是在读完后进行通知 </li>
+<li>使用回调函数，进行业务处理</li>
+</ol>
+<h3 id="六、锁的优化和注意事项"><a href="#六、锁的优化和注意事项" class="headerlink" title="六、锁的优化和注意事项"></a>六、锁的优化和注意事项</h3><h4 id="1、锁的优化思路和方法"><a href="#1、锁的优化思路和方法" class="headerlink" title="1、锁的优化思路和方法"></a>1、锁的优化思路和方法</h4><ul>
+<li>减少锁持有时间 </li>
+<li>减小锁粒度<ul>
+<li>将大对象，拆成小对象，大大增加并行度，降低锁竞争 </li>
+<li>偏向锁，轻量级锁成功率提高</li>
+<li>ConcurrentHashMap</li>
+<li>HashMap的同步实现</li>
+</ul>
+</li>
+<li>锁分离<ul>
+<li>根据功能进行锁分离</li>
+<li>ReadWriteLock</li>
+<li>读多写少的情况，可以提高性能</li>
+</ul>
+</li>
+<li>锁粗化<ul>
+<li>通常情况下，为了保证多线程间的有效并发，会要求每个线程持有锁的时间尽量短，即在使用完 公共资源后，应该立即释放锁。只有这样，等待在这个锁上的其他线程才能尽早的获得资源执行 任务。但是，凡事都有一个度，如果对同一个锁不停的进行请求、同步和释放，其本身也会消耗 系统宝贵的资源，反而不利于性能的优化</li>
+</ul>
+</li>
+<li>锁消除<ul>
+<li>在即时编译器时，如果发现不可能被共享的对象，则可以消除这些对象的锁操作</li>
+</ul>
+</li>
+</ul>
+<h4 id="2、虚拟机内锁的优化"><a href="#2、虚拟机内锁的优化" class="headerlink" title="2、虚拟机内锁的优化"></a>2、虚拟机内锁的优化</h4><ul>
+<li>偏向锁 <ul>
+<li>大部分情况是没有竞争的，所以可以通过偏向来提高性能</li>
+<li>所谓的偏向，就是偏心，即锁会偏向于当前已经占有锁的线程</li>
+<li>将对象头Mark的标记设置为偏向，并将线程ID写入对象头Mark</li>
+<li>只要没有竞争，获得偏向锁的线程，在将来进入同步块，不需要做同步</li>
+<li>当其他线程请求相同的锁时，偏向模式结束</li>
+<li>-XX:+UseBiasedLocking  默认启用</li>
+<li>在竞争激烈的场合，偏向锁会增加系统负担</li>
+</ul>
+</li>
+<li>轻量级锁 <ul>
+<li>普通的锁处理性能不够理想，轻量级锁是一种快速的锁定方法。</li>
+<li>如果对象没有被锁定；将对象头的Mark指针保存到锁对象中；将对象头设置为指向锁的指针(在线程栈空间中)</li>
+<li>如果轻量级锁失败，表示存在竞争，升级为重量级锁(常规锁)</li>
+<li>在没有锁竞争的前提下，减少传统锁使用OS互斥量产生的性能损耗</li>
+<li>在竞争激烈时，轻量级锁会多做很多额外操作，导致性能下降</li>
+</ul>
+</li>
+<li>自旋锁<ul>
+<li>当竞争存在时，如果线程可以很快获得锁，那么可以不在OS层挂起线程，让线程做几个空操作( 自旋)</li>
+<li>JDK1.6中-XX:+UseSpinning开启</li>
+<li>JDK1.7中，去掉此参数，改为内置实现</li>
+<li>如果同步块很长，自旋失败，会降低系统性能</li>
+<li>如果同步块很短，自旋成功，节省线程挂起切换时间，提升系统性能</li>
+</ul>
+</li>
+</ul>
+<p>总结：</p>
+<ul>
+<li>不是Java语言层面的锁优化方法</li>
+<li><p>内置于JVM中的获取锁的优化方法和获取锁的步骤 </p>
+<ol>
+<li>偏向锁可用会先尝试偏向锁</li>
+<li>轻量级锁可用会先尝试轻量级锁</li>
+<li>以上都失败，尝试自旋锁</li>
+<li>再失败，尝试普通锁，使用OS互斥量在操作系统层挂起</li>
+</ol>
+</li>
+</ul>
+<h3 id="七、ThreadLocal"><a href="#七、ThreadLocal" class="headerlink" title="七、ThreadLocal"></a>七、ThreadLocal</h3><h4 id="1、什么是ThreadLocal"><a href="#1、什么是ThreadLocal" class="headerlink" title="1、什么是ThreadLocal"></a>1、什么是ThreadLocal</h4><p>ThreadLocal很容易让人望文生义，想当然地认为是一个“本地线程”。其实，ThreadLocal并不是一个Thread，而是Thread的局部变量，也许把它命名为ThreadLocalVariable更容易让人理解一些。</p>
+<ol>
+<li>ThreadLocal.get: 获取ThreadLocal中当前线程共享变量的值。</li>
+<li>ThreadLocal.set: 设置ThreadLocal中当前线程共享变量的值。</li>
+<li>ThreadLocal.remove: 移除ThreadLocal中当前线程共享变量的值。</li>
+<li>ThreadLocal.initialValue: ThreadLocal没有被当前线程赋值时或当前线程刚调用remove方法后调用get方法，返回此方法值。</li>
+</ol>
+<p>我们调用ThreadLocal.get等方法时，实际上是从当前线程中获取ThreadLocalMap<threadlocal, object="">，然后根据当前ThreadLocal获取当前线程共享变量Object</threadlocal,></p>
+<h4 id="2、ThreadLocal的内存泄露"><a href="#2、ThreadLocal的内存泄露" class="headerlink" title="2、ThreadLocal的内存泄露"></a>2、ThreadLocal的内存泄露</h4><p>ThreadLocal 本身并不存储值，它只是作为一个 key 来让线程从 ThreadLocalMap 获取 value。ThreadLocalMap 是使用 ThreadLocal 的弱引用作为 Key 的，弱引用的对象在 GC 时会被回收。</p>
+<p>ThreadLocalMap使用ThreadLocal的弱引用作为key，如果一个ThreadLocal没有外部强引用来引用它，那么系统 GC 的时候，这个ThreadLocal势必会被回收，这样一来，ThreadLocalMap中就会出现key为null的Entry，就没有办法访问这些key为null的Entry的value，如果当前线程再迟迟不结束的话，这些key为null的Entry的value就会一直存在一条强引用链：Thread Ref -&gt; Thread -&gt; ThreaLocalMap -&gt; Entry -&gt; value永远无法回收，造成内存泄漏。</p>
+<p>其实，ThreadLocalMap的设计中已经考虑到这种情况，也加上了一些防护措施：在ThreadLocal的get(),set(),remove()的时候都会清除线程ThreadLocalMap里所有key为null的value。</p>
+<p>但是这些被动的预防措施并不能保证不会内存泄漏：</p>
+<ul>
+<li>使用static的ThreadLocal，延长了ThreadLocal的生命周期，可能导致的内存泄漏（参考ThreadLocal 内存泄露的实例分析）。</li>
+<li>分配使用了ThreadLocal又不再调用get(),set(),remove()方法，那么就会导致内存泄漏。</li>
+</ul>
+<p>综合上面的分析，我们可以理解ThreadLocal内存泄漏的前因后果，那么怎么避免内存泄漏呢？</p>
+<ul>
+<li>每次使用完ThreadLocal，都调用它的remove()方法，清除数据。</li>
 </ul>
 
       
