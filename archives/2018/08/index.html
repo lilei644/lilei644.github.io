@@ -6,19 +6,14 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="https://lilei644.github.io">
-  <title>MySql性能优化——基础篇 | Lei&#39;s blogs</title>
+  <title>Archives: 2018/8 | Lei&#39;s blogs</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录工作中累计的sql正确的使用方式，从sql语句上优化mysql性能  1.分页mysql的limit语法跟sqlserver的top比起来真的是好用太多，特别是在分页上基本是想要什么就取什么，那么当单标数据量达到百万以上时应该怎样正确的使用分页呢？ 1SELECT * FROM table ORDER BY id LIMIT 1000000, 10; 这是大部分分页的方式，然而当数据量超过百">
-<meta name="keywords" content="mysql">
-<meta property="og:type" content="article">
-<meta property="og:title" content="MySql性能优化——基础篇">
-<meta property="og:url" content="https://lilei644.github.io/2016/12/31/2016-12-31/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Lei&#39;s blogs">
+<meta property="og:url" content="https://lilei644.github.io/archives/2018/08/index.html">
 <meta property="og:site_name" content="Lei&#39;s blogs">
-<meta property="og:description" content="记录工作中累计的sql正确的使用方式，从sql语句上优化mysql性能  1.分页mysql的limit语法跟sqlserver的top比起来真的是好用太多，特别是在分页上基本是想要什么就取什么，那么当单标数据量达到百万以上时应该怎样正确的使用分页呢？ 1SELECT * FROM table ORDER BY id LIMIT 1000000, 10; 这是大部分分页的方式，然而当数据量超过百">
-<meta property="og:updated_time" content="2018-01-04T03:12:37.066Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MySql性能优化——基础篇">
-<meta name="twitter:description" content="记录工作中累计的sql正确的使用方式，从sql语句上优化mysql性能  1.分页mysql的limit语法跟sqlserver的top比起来真的是好用太多，特别是在分页上基本是想要什么就取什么，那么当单标数据量达到百万以上时应该怎样正确的使用分页呢？ 1SELECT * FROM table ORDER BY id LIMIT 1000000, 10; 这是大部分分页的方式，然而当数据量超过百">
+<meta name="twitter:title" content="Lei&#39;s blogs">
   
     <link rel="alternative" href="/atom.xml" title="Lei&#39;s blogs" type="application/atom+xml">
   
@@ -169,201 +164,60 @@ ga('send', 'pageview');
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-2016-12-31" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      MySql性能优化——基础篇
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/08/05/2018-08-05/" class="archive-article-date">
+  	<time datetime="2018-08-05T08:46:45.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-08-05</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2018/08/05/2018-08-05/">《Java8 实战》读书笔记</a>
     </h1>
   
 
-        
-        <a href="/2016/12/31/2016-12-31/" class="archive-article-date">
-  	<time datetime="2016-12-31T09:48:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2016-12-31</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>记录工作中累计的sql正确的使用方式，从sql语句上优化mysql性能</p>
-</blockquote>
-<h3 id="1-分页"><a href="#1-分页" class="headerlink" title="1.分页"></a>1.分页</h3><p>mysql的limit语法跟sqlserver的top比起来真的是好用太多，特别是在分页上基本是想要什么就取什么，那么当单标数据量达到百万以上时应该怎样正确的使用分页呢？</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM table ORDER BY id LIMIT 1000000, 10;</span><br></pre></td></tr></table></figure>
-<p>这是大部分分页的方式，然而当数据量超过百万甚至千万时耗时大概十几秒甚至几十秒！</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM table WHERE id &gt;= (SELECT id FROM table LIMIT 1000000, 1) LIMIT 10;</span><br></pre></td></tr></table></figure>
-<p>这样的话可以优化只0.x秒内</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT * FROM table WHERE id BETWEEN 1000000 AND 1000010;</span><br></pre></td></tr></table></figure>
-<p>比上面那句，还要再快5至10倍 </p>
-<a id="more"></a>
-<h3 id="2-尽量不在sql中使用函数"><a href="#2-尽量不在sql中使用函数" class="headerlink" title="2.尽量不在sql中使用函数"></a>2.尽量不在sql中使用函数</h3><p>尽量不要在sql中使用函数，因为这样缓存是无效的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT username FROM user WHERE signup_date &gt;= CURDATE()</span><br></pre></td></tr></table></figure>
-<h3 id="3-为你的搜索字段建立索引"><a href="#3-为你的搜索字段建立索引" class="headerlink" title="3.为你的搜索字段建立索引"></a>3.为你的搜索字段建立索引</h3><p>为你的搜索字段以及连接查询的关联字段创建索引可以大大提高搜索效率，不过如果你的搜索字段是varchar并且使用like模糊查询就没有必要使用索引了。</p>
-<h3 id="4-当判断是否存在时使用LIMIT-1"><a href="#4-当判断是否存在时使用LIMIT-1" class="headerlink" title="4.当判断是否存在时使用LIMIT 1"></a>4.当判断是否存在时使用LIMIT 1</h3><p>如果在表中只为了判断是否存在请使用limit 1,例如用户注册判断是否存在同名的用户等情况</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SELECT 1 FROM user WHERE country = &apos;China&apos; LIMIT 1</span><br></pre></td></tr></table></figure>
-<h3 id="5-千万不要ORDER-BY-RAND"><a href="#5-千万不要ORDER-BY-RAND" class="headerlink" title="5.千万不要ORDER BY RAND()"></a>5.千万不要ORDER BY RAND()</h3><h3 id="6-请不要使用SELECT"><a href="#6-请不要使用SELECT" class="headerlink" title="6.    请不要使用SELECT *"></a>6.    请不要使用SELECT *</h3><p>使用SELECT *的弊端有两点：</p>
-<blockquote>
-<p>1.需要什么字段就查询什么字段，这样可以不需要遍历所有列<br>2.可以减少网络传输中不必要的数据</p>
-</blockquote>
-<h3 id="7-建议给每张表建一个自增长的主键ID"><a href="#7-建议给每张表建一个自增长的主键ID" class="headerlink" title="7.建议给每张表建一个自增长的主键ID"></a>7.建议给每张表建一个自增长的主键ID</h3><p>最好给每张表建一个为ID的主键列，查询，排序时会十分方便，如果知道数据量不大，ID的类型可以为SMALLINT或者更小的无符号类型</p>
-<h3 id="8-尽量使用NOT-NULL"><a href="#8-尽量使用NOT-NULL" class="headerlink" title="8.尽量使用NOT NULL"></a>8.尽量使用NOT NULL</h3><p>我们开发过程中最讨厌的就是空指针异常了，因为他真的防不胜防，所以请尽量给每一个字段加上NOT NULL，有需要的请加上默认值</p>
-<h3 id="9-把IP地址存成-UNSIGNED-INT"><a href="#9-把IP地址存成-UNSIGNED-INT" class="headerlink" title="9.把IP地址存成 UNSIGNED INT"></a>9.把IP地址存成 UNSIGNED INT</h3><p>很多程序员都会创建一个 VARCHAR(15) 字段来存放字符串形式的IP而不是整形的IP。如果你用整形来存放，只需要4个字节，并且你可以有定长的字段。而且，这会为你带来查询上的优势，尤其是当你需要使用这样的WHERE条件：IP between ip1 and ip2。</p>
-<h3 id="10-设计表的时候请垂直分割"><a href="#10-设计表的时候请垂直分割" class="headerlink" title="10.设计表的时候请垂直分割"></a>10.设计表的时候请垂直分割</h3><p>“垂直分割”是一种把数据库中的表按列变成几张表的方法，这样可以降低表的复杂度和字段的数目，不仅可以加快处理速度，也可减少数据冗余，从而达到优化的目的。</p>
-<h3 id="11-请拆分大的连接语句"><a href="#11-请拆分大的连接语句" class="headerlink" title="11.请拆分大的连接语句"></a>11.请拆分大的连接语句</h3><p>之前见过同事写的连接语句，把编译器整整暂满了10行，看起来简直蛋疼。请拆分你的连接语句，不仅可以提高执行效率而且分段查询可以减少因行锁而产生的死锁问题</p>
-<h3 id="12-选择正确的存储引擎"><a href="#12-选择正确的存储引擎" class="headerlink" title="12.选择正确的存储引擎"></a>12.选择正确的存储引擎</h3><p>MySql的存储引擎有两种：MyISAM、InnoDB</p>
-<blockquote>
-<p>1.MyISAM 适合于一些需要大量查询的应用，但其对于有大量写操作并不是很好。甚至你只是需要update一个字段，整个表都会被锁起来，而别的进程，就算是读进程都无法操作直到读操作完成。另外，MyISAM 对于 SELECT COUNT(*) 这类的计算是超快无比的。</p>
-<p>2.InnoDB 的趋势会是一个非常复杂的存储引擎，对于一些小的应用，它会比 MyISAM 还慢。他是它支持“行锁” ，于是在写操作比较多的时候，会更优秀。并且，他还支持更多的高级应用，比如：事务。</p>
-</blockquote>
-<h3 id="13-尽量少使用连接查询"><a href="#13-尽量少使用连接查询" class="headerlink" title="13.尽量少使用连接查询"></a>13.尽量少使用连接查询</h3><p>避免少使用连接查询，虽然有的同学说多次查询会增加连接次数，但是也有一个很有利的优点就是单个查询语句可以利用缓存，所以合理的拆分你的连接语句可以大大提高执行效率</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">mysql</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">java</a>
         		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=https://lilei644.github.io/2016/12/31/2016-12-31/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2017/02/05/2017-02-05/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          记录一次GreenDao3.x踏坑之旅
-        
-      </div>
-    </a>
   
   
-    <a href="/2016/12/06/2016-12-06/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">手把手教你绘制Android粘性果冻动画组件</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
-  
-  <div id="gitment-ctn"></div> 
-<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
-<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
-<script>
-var gitment = new Gitment({
-  id: "https://lilei644.github.io/2016/12/31/2016-12-31/",
-  owner: 'lilei644',
-  repo: 'lilei644.github.io',
-  oauth: {
-    client_id: '6bcff90c95dab647eace',
-    client_secret: '186ae7e79b8b65f90b28a2b15683bfa5fb82a3c8',
-  },
-})
-gitment.render('gitment-ctn')
-</script>
-  
+    
 
 
           </div>
@@ -386,8 +240,8 @@ gitment.render('gitment-ctn')
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
